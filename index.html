@@ -52,6 +52,129 @@
             .container-fluid.p-0 {
                 margin-top: 80px !important;
             }
+            /* Mobile optimizations for iPhone and small screens */
+            @media (max-width: 768px) {
+                /* Reduce navbar height for mobile */
+                #topNav {
+                    padding-top: 0.5rem !important;
+                    padding-bottom: 0.5rem !important;
+                    min-height: 65px !important;
+                }
+                
+                /* Adjust company name font sizes for mobile */
+                .company-name-multiline .line-1 {
+                    font-size: 0.95rem !important;
+                }
+                .company-name-multiline .line-2 {
+                    font-size: 0.85rem !important;
+                }
+                
+                /* Reduce logo size for mobile */
+                .navbar-brand img {
+                    width: 45px !important;
+                    height: 45px !important;
+                }
+                
+                /* Adjust side navigation and main content for smaller navbar */
+                #sideNav {
+                    top: 65px !important;
+                    height: calc(100vh - 65px) !important;
+                }
+                .container-fluid.p-0 {
+                    margin-top: 65px !important;
+                }
+                
+                /* Reduce main heading sizes */
+                h1 {
+                    font-size: 2.5rem !important;
+                }
+                h2 {
+                    font-size: 2rem !important;
+                }
+                h3 {
+                    font-size: 1.5rem !important;
+                }
+                
+                /* Reduce lead text size */
+                .lead {
+                    font-size: 1.1rem !important;
+                }
+                
+                /* Reduce section padding */
+                .resume-section {
+                    padding: 4rem 1.5rem !important;
+                }
+                
+                /* Reduce subheading font size */
+                .subheading {
+                    font-size: 1rem !important;
+                }
+            }
+            
+            /* Extra small screens (iPhone SE, etc.) */
+            @media (max-width: 480px) {
+                /* Further reduce navbar height */
+                #topNav {
+                    min-height: 60px !important;
+                    padding-top: 0.4rem !important;
+                    padding-bottom: 0.4rem !important;
+                }
+                
+                /* Smaller company name */
+                .company-name-multiline .line-1 {
+                    font-size: 0.85rem !important;
+                }
+                .company-name-multiline .line-2 {
+                    font-size: 0.75rem !important;
+                }
+                
+                /* Smaller logo */
+                .navbar-brand img {
+                    width: 40px !important;
+                    height: 40px !important;
+                }
+                
+                /* Adjust layout for smaller navbar */
+                #sideNav {
+                    top: 60px !important;
+                    height: calc(100vh - 60px) !important;
+                }
+                .container-fluid.p-0 {
+                    margin-top: 60px !important;
+                }
+                
+                /* Smaller headings */
+                h1 {
+                    font-size: 2rem !important;
+                }
+                h2 {
+                    font-size: 1.75rem !important;
+                }
+                h3 {
+                    font-size: 1.25rem !important;
+                }
+                
+                /* Smaller lead text */
+                .lead {
+                    font-size: 1rem !important;
+                }
+                
+                /* Reduce section padding further */
+                .resume-section {
+                    padding: 3rem 1rem !important;
+                }
+                
+                /* Smaller subheading */
+                .subheading {
+                    font-size: 0.9rem !important;
+                }
+                
+                /* Smaller contact info */
+                .contact-info p {
+                    font-size: 0.9rem !important;
+                }
+            }
+            
             /* Compact dropdown menu positioned under hamburger */
             @media (max-width: 991.98px) {
                 #topNavbarNav {
