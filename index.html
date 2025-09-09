@@ -52,6 +52,69 @@
             .container-fluid.p-0 {
                 margin-top: 80px !important;
             }
+            
+            /* Circuit background gradient extension for desktop */
+            @media (min-width: 992px) {
+                body {
+                    background: linear-gradient(
+                        to right,
+                        #f0f0f0 0%,           /* Circuit background color (matches sidebar) */
+                        #f0f0f0 8%,           /* Keep full circuit color longer */
+                        rgba(240, 240, 240, 0.9) 12%,  /* Start fade later, more aggressive */
+                        rgba(240, 240, 240, 0.6) 16%,  /* Stronger presence */
+                        rgba(240, 240, 240, 0.3) 20%,  /* Still visible */
+                        white 25%             /* Sharp transition to white */
+                    );
+                    background-attachment: fixed;
+                }
+                
+                /* Add a subtle circuit pattern overlay that fades out */
+                body::before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('assets/img/circuit_col.png');
+                    background-size: cover;
+                    background-position: left center;
+                    background-repeat: no-repeat;
+                    opacity: 1;
+                    z-index: -1;
+                    pointer-events: none;
+                    
+                    /* Create gradient mask to fade out the circuit pattern */
+                    -webkit-mask-image: linear-gradient(
+                        to right,
+                        rgba(0,0,0,0.6) 0%,     /* Much stronger circuit pattern at 60% opacity */
+                        rgba(0,0,0,0.5) 8%,     /* Keep strong presence longer */
+                        rgba(0,0,0,0.3) 12%,    /* Still quite visible */
+                        rgba(0,0,0,0.15) 16%,   /* Fade more aggressively */
+                        rgba(0,0,0,0.05) 20%,   /* Almost gone */
+                        rgba(0,0,0,0) 25%       /* Completely transparent - shorter span */
+                    );
+                    mask-image: linear-gradient(
+                        to right,
+                        rgba(0,0,0,0.6) 0%,
+                        rgba(0,0,0,0.5) 8%,
+                        rgba(0,0,0,0.3) 12%,
+                        rgba(0,0,0,0.15) 16%,
+                        rgba(0,0,0,0.05) 20%,
+                        rgba(0,0,0,0) 25%
+                    );
+                }
+                
+                /* Ensure main content has transparent background to show gradient */
+                .resume-section {
+                    background-color: transparent !important;
+                }
+                
+                /* Slight adjustment to sidebar positioning to ensure seamless transition */
+                #sideNav {
+                    box-shadow: 1px 0 4px rgba(0,0,0,0.05);
+                }
+            }
             /* Mobile optimizations for iPhone and small screens */
             @media (max-width: 768px) {
                 /* Reduce navbar height for mobile */
