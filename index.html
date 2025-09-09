@@ -14,6 +14,40 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            /* Fix navbar dropdown text visibility */
+            #topNavbarNav .nav-link {
+                color: rgba(255, 255, 255, 0.85) !important;
+            }
+            #topNavbarNav .nav-link:hover {
+                color: rgba(255, 255, 255, 1) !important;
+            }
+            /* Compact dropdown menu positioned under hamburger */
+            @media (max-width: 991.98px) {
+                #topNavbarNav {
+                    position: absolute;
+                    top: 100%;
+                    right: 15px;
+                    background-color: rgba(52, 58, 64, 0.95);
+                    border-radius: 0.375rem;
+                    padding: 0.5rem;
+                    min-width: 200px;
+                    max-width: 250px;
+                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+                #topNavbarNav .navbar-nav {
+                    flex-direction: column;
+                }
+                #topNavbarNav .nav-item {
+                    padding: 0.25rem 0;
+                }
+                #topNavbarNav .nav-link {
+                    padding: 0.375rem 0.75rem;
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Top Navigation Bar -->
@@ -23,11 +57,18 @@
                     <img src="assets/img/processor_2.png" alt="Logo" width="60" height="60" class="me-2">
                     <span>Mikael Bengtsson Elektrotekniska AB</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbarNav" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="topNavbarNav">
                     <ul class="navbar-nav ms-auto">
+                        <!-- Navigation items - only visible on mobile/tablet when sidebar is hidden -->
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests">About</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item d-lg-none"><hr class="dropdown-divider"></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-globe me-1"></i>
@@ -50,7 +91,7 @@
         </nav>
         
         <!-- Side Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" style="top: 70px; height: calc(100vh - 70px);">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top d-none d-lg-flex" id="sideNav" style="top: 70px; height: calc(100vh - 70px);">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Mikael Bengtsson</span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.png" alt="Mikael Bengtsson" /></span>
@@ -262,6 +303,41 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const savedLang = localStorage.getItem('selectedLanguage') || 'en';
                 setLanguage(savedLang);
+                
+                // Enhanced hamburger menu functionality
+                const hamburger = document.querySelector('.navbar-toggler');
+                const navMenu = document.querySelector('#topNavbarNav');
+                const navLinks = document.querySelectorAll('#topNavbarNav .nav-link');
+                
+                if (hamburger && navMenu) {
+                    // Toggle menu on hamburger click
+                    hamburger.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Hamburger toggled');
+                        navMenu.classList.toggle('show');
+                    });
+                    
+                    // Prevent menu from closing when clicking inside it
+                    navMenu.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                    
+                    // Close menu when clicking on navigation links
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', function() {
+                            console.log('Nav link clicked, closing menu');
+                            navMenu.classList.remove('show');
+                        });
+                    });
+                    
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                            navMenu.classList.remove('show');
+                        }
+                    });
+                }
             });
         </script>
     </body>
