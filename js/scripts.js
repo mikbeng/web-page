@@ -20,13 +20,28 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
+    const sideNavResponsiveItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link')
     );
-    responsiveNavItems.map(function (responsiveNavItem) {
+    const topNavResponsiveItems = [].slice.call(
+        document.querySelectorAll('#topNavbarNav .nav-link')
+    );
+    
+    // Handle side navigation collapse
+    sideNavResponsiveItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
             if (window.getComputedStyle(navbarToggler).display !== 'none') {
                 navbarToggler.click();
+            }
+        });
+    });
+    
+    // Handle top navigation collapse
+    const topNavbarToggler = document.body.querySelector('#topNav .navbar-toggler');
+    topNavResponsiveItems.map(function (responsiveNavItem) {
+        responsiveNavItem.addEventListener('click', () => {
+            if (topNavbarToggler && window.getComputedStyle(topNavbarToggler).display !== 'none') {
+                topNavbarToggler.click();
             }
         });
     });
