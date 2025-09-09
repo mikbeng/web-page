@@ -238,6 +238,98 @@
                 }
             }
             
+            /* Service Cards Styling */
+            .service-card {
+                background: #fff;
+                border-radius: 12px;
+                padding: 2rem 1.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                border: 1px solid #e9ecef;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+                border-color: #007bff;
+            }
+            
+            .service-image-container {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 1.5rem;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #007bff, #0056b3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 15px;
+                box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            }
+            
+            .service-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                filter: brightness(0) invert(1);
+            }
+            
+            .service-title {
+                color: #343a40;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                font-size: 1.25rem;
+                line-height: 1.3;
+            }
+            
+            .service-description {
+                color: #6c757d;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 0;
+                flex-grow: 1;
+            }
+            
+            /* Responsive adjustments for service cards */
+            @media (max-width: 768px) {
+                .service-card {
+                    padding: 1.5rem 1rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .service-image-container {
+                    width: 70px;
+                    height: 70px;
+                    margin-bottom: 1rem;
+                }
+                
+                .service-title {
+                    font-size: 1.1rem;
+                }
+                
+                .service-description {
+                    font-size: 0.9rem;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .service-card {
+                    padding: 1.25rem 0.75rem;
+                }
+                
+                .service-image-container {
+                    width: 60px;
+                    height: 60px;
+                }
+                
+                .service-title {
+                    font-size: 1rem;
+                }
+            }
+            
             /* Compact dropdown menu positioned under hamburger */
             @media (max-width: 991.98px) {
                 #topNavbarNav {
@@ -341,32 +433,49 @@
             <section class="resume-section" id="services">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Services</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Embedded Systems Design</h3>
-                            <div class="subheading mb-3">Custom Electronics Solutions</div>
-                            <p>Design and development of custom embedded systems for industrial applications, IoT devices, and specialized electronics. From concept to production-ready solutions.</p>
+                    <div class="row g-4">
+                        <!-- Elektronikutveckling -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="service-card text-center h-100">
+                                <div class="service-image-container mb-3">
+                                    <img src="assets/img/circuit_col.png" alt="Elektronikutveckling" class="service-image">
+                                </div>
+                                <h4 class="service-title">Elektronikutveckling</h4>
+                                <p class="service-description">Kompletta lösningar för elektronikdesign från koncept till färdig produkt.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Circuit Design & PCB Layout</h3>
-                            <div class="subheading mb-3">Hardware Development</div>
-                            <p>Complete circuit design services including schematic capture, PCB layout, component selection, and prototype development for various electronic applications.</p>
+                        
+                        <!-- Mjukvaruuutveckling -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="service-card text-center h-100">
+                                <div class="service-image-container mb-3">
+                                    <img src="assets/img/processor.png" alt="Mjukvaruuutveckling" class="service-image">
+                                </div>
+                                <h4 class="service-title">Mjukvaruuutveckling</h4>
+                                <p class="service-description">Firmware och mjukvaruutveckling för inbyggda system och applikationer.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Firmware Development</h3>
-                            <div class="subheading mb-3">Software for Embedded Systems</div>
-                            <p>Custom firmware development for microcontrollers and embedded processors, including real-time systems, communication protocols, and device drivers.</p>
+                        
+                        <!-- Industrialisering -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="service-card text-center h-100">
+                                <div class="service-image-container mb-3">
+                                    <img src="assets/img/processor_2.png" alt="Industrialisering" class="service-image">
+                                </div>
+                                <h4 class="service-title">Industrialisering</h4>
+                                <p class="service-description">Övergång från prototyp till produktion med fokus på kvalitet och skalbarhet.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Technical Consulting</h3>
-                            <div class="subheading mb-3">Expert Advisory Services</div>
-                            <p>Technical consultation for electronics projects, system architecture design, technology selection, and project feasibility assessments.</p>
+                        
+                        <!-- Certifiering/Standardisering -->
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="service-card text-center h-100">
+                                <div class="service-image-container mb-3">
+                                    <img src="assets/img/circuit_col.png" alt="Certifiering/Standardisering" class="service-image">
+                                </div>
+                                <h4 class="service-title">Certifiering/Standardisering</h4>
+                                <p class="service-description">EMC-testning, certifiering och uppfyllelse av internationella standarder.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
