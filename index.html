@@ -12,6 +12,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <style>
@@ -31,11 +32,11 @@
             .company-name-multiline .line-1,
             .company-name-multiline .line-2 {
                 display: block;
-                font-size: 1.1rem;
+                font-size: 1.5rem;
             }
             .company-name-multiline .line-2 {
-                font-size: 1rem;
-                opacity: 0.9;
+                font-size: 1.3rem;
+                opacity: 1;
             }
             /* Increase navbar height to accommodate two-line text */
             #topNav {
@@ -51,6 +52,23 @@
             /* Adjust main content margin */
             .container-fluid.p-0 {
                 margin-top: 80px !important;
+            }
+            
+            /* Font overrides - Use Nunito for headings but keep Saira for company name */
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                font-weight: 500;
+            }
+            
+            /* Use Nunito for subheadings too */
+            .subheading {
+                font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                font-weight: 600;
+            }
+            
+            /* Keep Saira Extra Condensed for company name only */
+            .company-name-multiline, .navbar-brand {
+                font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
             }
             
             /* Circuit background gradient extension for desktop */
@@ -374,11 +392,11 @@
                 <div class="collapse navbar-collapse" id="topNavbarNav">
                     <ul class="navbar-nav ms-auto">
                         <!-- Navigation items - only visible on mobile/tablet when sidebar is hidden -->
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests">About</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services">Tjänster</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience">Erfarenhet</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills">Kompetenser</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests">Om mig</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a></li>
                         <li class="nav-item d-lg-none"><hr class="dropdown-divider"></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -410,11 +428,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Tjänster</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Erfarenhet</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Kompetenser</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Om mig</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a></li>
                 </ul>
             </div>
         </nav>
@@ -432,7 +450,7 @@
             <!-- Services-->
             <section class="resume-section" id="services">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Services</h2>
+                    <h2 class="mb-5">Tjänster</h2>
                     <div class="row g-4">
                         <!-- Elektronikutveckling -->
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -484,38 +502,30 @@
             <!-- Experience-->
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
+                    <h2 class="mb-5">Erfarenhet</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Senior Web Developer</h3>
-                            <div class="subheading mb-3">Intelitec Solutions</div>
-                            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                            <h3 class="mb-0">Electrical, Systems and Embedded Engineer</h3>
+                            <div class="subheading mb-3">Elysics</div>
+                            <p>På Elysics arbetar jag med inbyggda system med fokus på både elektronisk design och mjukvaruutveckling. Min roll innebär att designa och utveckla kretskort, från schematisk design till PCB-layout. Jag skriver inbyggd kod i C för realtidsapplikationer och utvecklar testsystemmjukvara i Python för att automatisera hårdvarutestning och diagnostik.</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">March 2013 - Present</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">2024 - nuvarande</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Web Developer</h3>
-                            <div class="subheading mb-3">Intelitec Solutions</div>
-                            <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+                            <h3 class="mb-0">Electrical Engineer</h3>
+                            <div class="subheading mb-3">Plejd</div>
+                            <p>Utvecklade produkter inom Smart Home Systems som del av det elektriska ingenjörsteamet. Jag arbetade med switched-mode strömförsörjningar, motordrifter och belysningsstyrning. Projekten var FoU-fokuserade och involverade testning av nya idéer och lösningar. Jag var projektledare för Smart Plug (SPR-01), där jag övervakade planering, teamledning och övergripande beslutsfattande.</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">December 2011 - March 2013</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">2019 - 2024</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Junior Web Designer</h3>
-                            <div class="subheading mb-3">Shout! Media Productions</div>
-                            <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
+                            <h3 class="mb-0">Embedded Developer</h3>
+                            <div class="subheading mb-3">Pluspole</div>
+                            <p>Konsultarbete inom produktutveckling med fokus på prototypfasen. Individuellt ansvarig för projekt och kunder, vilket ofta innebar att använda en bred uppsättning färdigheter inom elektronik, mekanik och firmware-teknik. Arbetade på ett vakuumlyft-system som involverade motor- och inbyggd C-utveckling på ARM Cortex-M MCUs. Utvecklade ett solföljarsystem med höga krav på noggrannhet.</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">July 2010 - December 2011</span></div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Web Design Intern</h3>
-                            <div class="subheading mb-3">Shout! Media Productions</div>
-                            <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2008 - June 2010</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">2016 - 2019</span></div>
                     </div>
                 </div>
             </section>
@@ -523,61 +533,111 @@
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-angular"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-sass"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-less"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-gulp"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-grunt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                    </ul>
-                    <div class="subheading mb-3">Workflow</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Mobile-First, Responsive Design
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Browser Testing & Debugging
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Cross Functional Teams
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Agile Development & Scrum
-                        </li>
-                    </ul>
+                    <h2 class="mb-5">Kompetenser</h2>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="subheading mb-3">Programmering</div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Embedded C</span>
+                                    <span class="text-primary">●●●●●</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Python</span>
+                                    <span class="text-primary">●●●●○</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="subheading mb-3">Mjukvara</div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Matlab</span>
+                                    <span class="text-primary">●●●●●</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Altium Designer</span>
+                                    <span class="text-primary">●●●●●</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>KiCad</span>
+                                    <span class="text-primary">●●●●●</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Linux</span>
+                                    <span class="text-primary">●●●●○</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <div class="subheading mb-3">Kärnområden</div>
+                            <ul class="fa-ul mb-0">
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Inbyggda System
+                                </li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Reglerteknik
+                                </li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Krets- & PCB-design
+                                </li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Prototyputveckling
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="subheading mb-3">Språk</div>
+                            <ul class="fa-ul mb-0">
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Svenska - Modersmål
+                                </li>
+                                <li>
+                                    <span class="fa-li"><i class="fas fa-check"></i></span>
+                                    Engelska - Flyt
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
             <!-- About me-->
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">About me</h2>
-                    <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
-                    <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
+                    <h2 class="mb-5">Om mig</h2>
+                    <p>Utöver mitt arbete som elektronik- och mjukvaruingenjör tillbringar jag gärna tid utomhus. På vintern är jag en entusiastisk skidåkare och cyklar gärna. Under de varmare månaderna gillar jag att vandra och utforska naturen.</p>
+                    <p class="mb-0">När jag är inomhus ägnar jag mycket tid åt att utforska de senaste tekniska framstegen inom elektronik och inbyggda system. Jag tycker också om att experimentera med egna personliga projekt, allt från flip-dot-displayer till elektriska skateboards.</p>
                 </div>
             </section>
             <hr class="m-0" />
             <!-- Contact-->
             <section class="resume-section" id="contact">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Contact</h2>
+                    <h2 class="mb-5">Kontakt</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Get in Touch</h3>
-                            <div class="subheading mb-3">Ready to discuss your next electronics project?</div>
+                            <h3 class="mb-0">Hör av dig</h3>
+                            <div class="subheading mb-3">Redo att diskutera ditt nästa elektronikprojekt?</div>
                             <div class="contact-info">
                                 <p class="mb-2">
                                     <i class="fas fa-user me-2"></i>
@@ -593,11 +653,15 @@
                                 </p>
                                 <p class="mb-2">
                                     <i class="fas fa-map-marker-alt me-2"></i>
-                                    Frösö-Berge 185, 832 96, Frösön
+                                    Stabbegatan 40, 416 79, Göteborg
                                 </p>
                                 <p class="mb-0">
                                     <i class="fab fa-linkedin me-2"></i>
-                                    <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank">LinkedIn Profile</a>
+                                    <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank">LinkedIn-profil</a>
+                                </p>
+                                <p class="mb-0">
+                                    <i class="fab fa-github me-2"></i>
+                                    <a href="https://github.com/mikbeng" target="_blank">GitHub-profil</a>
                                 </p>
                             </div>
                         </div>
