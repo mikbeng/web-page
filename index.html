@@ -32,10 +32,10 @@
             .company-name-multiline .line-1,
             .company-name-multiline .line-2 {
                 display: block;
-                font-size: 1.5rem;
+                font-size: 1.7rem;
             }
             .company-name-multiline .line-2 {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
                 opacity: 1;
             }
             /* Increase navbar height to accommodate two-line text */
@@ -189,6 +189,60 @@
                 /* Reduce subheading font size */
                 .subheading {
                     font-size: 1rem !important;
+                }
+            }
+            
+            /* Make main heading smaller */
+            h1.mb-0 {
+                font-size: 3.5rem !important;
+            }
+            
+            @media (max-width: 768px) {
+                h1.mb-0 {
+                    font-size: 2.5rem !important;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                h1.mb-0 {
+                    font-size: 2rem !important;
+                }
+            }
+            
+            /* About section layout with image */
+            .about-content {
+                display: flex;
+                align-items: flex-start;
+                gap: 3rem;
+            }
+            
+            .about-text {
+                flex: 1;
+            }
+            
+            .about-image {
+                flex: 0 0 300px;
+                max-width: 300px;
+            }
+            
+            .about-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Responsive adjustments for about section */
+            @media (max-width: 768px) {
+                .about-content {
+                    flex-direction: column;
+                    gap: 2rem;
+                }
+                
+                .about-image {
+                    flex: none;
+                    max-width: 100%;
+                    order: -1;
                 }
             }
             
@@ -442,8 +496,15 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h1 class="mb-0">Elektronik & Mjukvaruutvecklare</h1>
-                    <p class="lead mb-5">Som erfaren utvecklingsingenjör erbjuder jag specialistkompetens inom elektronik och mjukvaruutveckling. Mitt tjänsteutbud omfattar hela utvecklingskedjan - från initial produktutveckling och prototypframtagning till avancerad kretskortsdesign och EMC-provning. Med min expertis kan jag bistå i alla steg av ert projekt, oavsett komplexitet.</p>
-                    <p class="lead mb-5">Med min bakgrund inom produktutveckling så kan jag även hjälpa uppdragsgivare med att analysera befintliga system och hitta eventuella problem/förbättringar, både inom elektronik och mjukvara.</p>
+                    <div class="about-content mt-4">
+                        <div class="about-text">
+                            <p class="lead mb-5">Som erfaren utvecklingsingenjör erbjuder jag specialistkompetens inom elektronik och mjukvaruutveckling. Mitt tjänsteutbud omfattar hela utvecklingskedjan - från initial produktutveckling och prototypframtagning till avancerad kretskortsdesign och EMC-provning. Med min expertis kan jag bistå i alla steg av ert projekt, oavsett komplexitet.</p>
+                            <p class="lead mb-5">Med min bakgrund inom produktutveckling så kan jag även hjälpa uppdragsgivare med att analysera befintliga system och hitta eventuella problem/förbättringar, både inom elektronik och mjukvara.</p>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://via.placeholder.com/300x200/e9ecef/6c757d?text=Elektronik+%26+Mjukvara" alt="Elektronik och mjukvaruutveckling" />
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
