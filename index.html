@@ -402,6 +402,15 @@
                 }
             }
             
+            /* Override uppercase text transforms to allow lowercase headings */
+            h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+                text-transform: none !important;
+            }
+            
+            .subheading {
+                text-transform: none !important;
+            }
+            
             /* Compact dropdown menu positioned under hamburger */
             @media (max-width: 991.98px) {
                 #topNavbarNav {
@@ -495,14 +504,17 @@
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">Elektronik & Mjukvaruutvecklare</h1>
+                    <h1 class="mb-0">
+                        Elektronik och<br>
+                        Mjukvaruutvecklare
+                    </h1>
                     <div class="about-content mt-4">
                         <div class="about-text">
                             <p class="lead mb-5">Som erfaren utvecklingsingenjör erbjuder jag specialistkompetens inom elektronik och mjukvaruutveckling. Mitt tjänsteutbud omfattar hela utvecklingskedjan - från initial produktutveckling och prototypframtagning till avancerad kretskortsdesign och EMC-provning. Med min expertis kan jag bistå i alla steg av ert projekt, oavsett komplexitet.</p>
                             <p class="lead mb-5">Med min bakgrund inom produktutveckling så kan jag även hjälpa uppdragsgivare med att analysera befintliga system och hitta eventuella problem/förbättringar, både inom elektronik och mjukvara.</p>
                         </div>
                         <div class="about-image">
-                            <img src="https://via.placeholder.com/300x200/e9ecef/6c757d?text=Elektronik+%26+Mjukvara" alt="Elektronik och mjukvaruutveckling" />
+                            <img src="assets/img/soldering-1038523_1920.jpg" alt="Elektronik och mjukvaruutveckling" />
                         </div>
                     </div>
                 </div>
@@ -530,7 +542,7 @@
                                 <div class="service-image-container mb-3">
                                     <img src="assets/img/processor.png" alt="Mjukvaruuutveckling" class="service-image">
                                 </div>
-                                <h4 class="service-title">Mjukvaruuutveckling</h4>
+                                <h4 class="service-title">Mjukvaruutveckling</h4>
                                 <p class="service-description">Firmware och mjukvaruutveckling för inbyggda system och applikationer.</p>
                             </div>
                         </div>
@@ -685,7 +697,7 @@
             <!-- About me-->
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Om mig</h2>
+                    <h2 class="mb-5">Om Mig</h2>
                     <p>Utöver mitt arbete som elektronik- och mjukvaruingenjör tillbringar jag gärna tid utomhus. På vintern är jag en entusiastisk skidåkare och cyklar gärna. Under de varmare månaderna gillar jag att vandra och utforska naturen.</p>
                     <p class="mb-0">När jag är inomhus ägnar jag mycket tid åt att utforska de senaste tekniska framstegen inom elektronik och inbyggda system. Jag tycker också om att experimentera med egna personliga projekt, allt från flip-dot-displayer till elektriska skateboards.</p>
                 </div>
@@ -697,7 +709,7 @@
                     <h2 class="mb-5">Kontakt</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Hör av dig</h3>
+                            <h3 class="mb-0">Hör Av Dig</h3>
                             <div class="subheading mb-3">Redo att diskutera ditt nästa elektronikprojekt?</div>
                             <div class="contact-info">
                                 <p class="mb-2">
