@@ -23,35 +23,28 @@
             #topNavbarNav .nav-link:hover {
                 color: rgba(255, 255, 255, 1) !important;
             }
-            /* Company name multiline styling */
-            .company-name-multiline {
-                display: flex;
-                flex-direction: column;
-                line-height: 1.2;
+            /* Company name single line styling */
+            .company-name-single-line {
+                font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                font-size: 1.25rem;
+                font-weight: 400;
+                color: #ffffff !important;
+                white-space: nowrap;
             }
-            .company-name-multiline .line-1,
-            .company-name-multiline .line-2 {
-                display: block;
-                font-size: 1.7rem;
-            }
-            .company-name-multiline .line-2 {
-                font-size: 1.5rem;
-                opacity: 1;
-            }
-            /* Increase navbar height to accommodate two-line text */
+            /* Adjust navbar height for single-line text */
             #topNav {
-                padding-top: 0.75rem !important;
-                padding-bottom: 0.75rem !important;
-                min-height: 80px;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+                min-height: 70px;
             }
             /* Adjust side navigation top position */
             #sideNav {
-                top: 80px !important;
-                height: calc(100vh - 80px) !important;
+                top: 70px !important;
+                height: calc(100vh - 70px) !important;
             }
             /* Adjust main content margin */
             .container-fluid.p-0 {
-                margin-top: 80px !important;
+                margin-top: 70px !important;
             }
             
             /* Font overrides - Use Nunito for headings but keep Saira for company name */
@@ -66,8 +59,8 @@
                 font-weight: 600;
             }
             
-            /* Keep Saira Extra Condensed for company name only */
-            .company-name-multiline, .navbar-brand {
+            /* Keep Saira Extra Condensed for navbar-brand only (if needed for other elements) */
+            .navbar-brand {
                 font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
             }
             
@@ -142,12 +135,9 @@
                     min-height: 65px !important;
                 }
                 
-                /* Adjust company name font sizes for mobile */
-                .company-name-multiline .line-1 {
-                    font-size: 0.95rem !important;
-                }
-                .company-name-multiline .line-2 {
-                    font-size: 0.85rem !important;
+                /* Adjust company name font size for mobile */
+                .company-name-single-line {
+                    font-size: 1rem !important;
                 }
                 
                 /* Reduce logo size for mobile */
@@ -256,11 +246,8 @@
                 }
                 
                 /* Smaller company name */
-                .company-name-multiline .line-1 {
-                    font-size: 0.85rem !important;
-                }
-                .company-name-multiline .line-2 {
-                    font-size: 0.75rem !important;
+                .company-name-single-line {
+                    font-size: 0.9rem !important;
                 }
                 
                 /* Smaller logo */
@@ -442,11 +429,10 @@
         <!-- Top Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="background-color: #343a40; z-index: 1031;">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="#page-top">
+                <a class="navbar-brand d-flex align-items-center ms-4" href="#page-top">
                     <img src="assets/img/processor_2.png" alt="Logo" width="60" height="60" class="me-2">
-                    <span class="company-name-multiline">
-                        <span class="line-1">Mikael Bengtsson</span>
-                        <span class="line-2">Elektrotekniska AB</span>
+                    <span class="company-name-single-line">
+                        Mikael Bengtsson Elektrotekniska AB
                     </span>
                 </a>
                 <button class="navbar-toggler" type="button" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -483,7 +469,7 @@
         </nav>
         
         <!-- Side Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top d-none d-lg-flex" id="sideNav" style="top: 80px; height: calc(100vh - 80px);">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top d-none d-lg-flex" id="sideNav" style="top: 70px; height: calc(100vh - 70px);">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Mikael Bengtsson</span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.png" alt="Mikael Bengtsson" /></span>
@@ -500,7 +486,7 @@
             </div>
         </nav>
         <!-- Page Content-->
-        <div class="container-fluid p-0" style="margin-top: 80px;">
+        <div class="container-fluid p-0" style="margin-top: 70px;">
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
