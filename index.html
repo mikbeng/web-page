@@ -383,11 +383,66 @@
                 z-index: 10;
             }
             
+            /* Default size for all timeline images */
             .timeline-image img {
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                object-fit: contain;
+            }
+
+            /* Specific sizes for individual timeline items */
+            .timeline-item:nth-child(1) .timeline-image img {
                 width: 130px;
                 height: 130px;
-                border-radius: 50%;
-                object-fit: cover;
+            }
+
+            .timeline-item:nth-child(2) .timeline-image img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .timeline-item:nth-child(3) .timeline-image img {
+                width: 170px;
+                height: 170px;
+            }
+            
+            .timeline-item:nth-child(4) .timeline-image img {
+                width: 110px;
+                height: 110px;
+            }
+
+            .timeline-item:nth-child(5) .timeline-image img {
+                width: 140px;
+                height: 140px;
+            }
+
+            /* Additional size options */
+            .timeline-image.small img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .timeline-image.large img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .timeline-image.extra-large img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            /* Larger for current/important positions */
+            .timeline-image.current img {
+                width: 170px;
+                height: 170px;
+            }
+
+            /* Smaller for education */
+            .timeline-image.education img {
+                width: 120px;
+                height: 120px;
             }
             
             .timeline-date {
@@ -719,7 +774,7 @@
                         <!-- Current: Consultant -->
                         <div class="timeline-item">
                             <div class="timeline-image">
-                                <img src="assets/img/processor_2.png" alt="Konsultarbete">
+                                <img src="assets/img/engcon.jpg" alt="Konsultarbete">
                             </div>
                             <div class="timeline-content">
                                 <div class="timeline-date">2024 - nuvarande</div>
@@ -771,7 +826,7 @@
                         <!-- Chalmers Tekniska Högskola -->
                         <div class="timeline-item">
                             <div class="timeline-image">
-                                <img src="assets/img/chalmers.png" alt="Chalmers Tekniska Högskola">
+                                <img src="assets/img/chalmers.jpg" alt="Chalmers Tekniska Högskola">
                             </div>
                             <div class="timeline-content">
                                 <div class="timeline-date">2011 - 2016</div>
