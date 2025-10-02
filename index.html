@@ -42,6 +42,30 @@
                 top: 70px !important;
                 height: calc(100vh - 70px) !important;
             }
+            
+            /* Add semi-transparent overlay only to the menu area for better text readability */
+            #sideNav .navbar-collapse {
+                position: relative;
+                z-index: 1;
+            }
+            
+            #sideNav .navbar-collapse::before {
+                content: '';
+                position: absolute;
+                top: -20px;
+                left: 0;
+                right: 0;
+                bottom: -20px;
+                background-color: rgba(45, 55, 72, 0.75);
+                z-index: -1;
+                pointer-events: none;
+            }
+            
+            /* Ensure navbar brand (profile pic) is above */
+            #sideNav .navbar-brand {
+                position: relative;
+                z-index: 1;
+            }
             /* Adjust main content margin */
             .container-fluid.p-0 {
                 margin-top: 70px !important;
@@ -69,12 +93,12 @@
                 body {
                     background: linear-gradient(
                         to right,
-                        #f0f0f0 0%,           /* Circuit background color (matches sidebar) */
-                        #f0f0f0 8%,           /* Keep full circuit color longer */
-                        rgba(240, 240, 240, 0.9) 12%,  /* Start fade later, more aggressive */
-                        rgba(240, 240, 240, 0.6) 16%,  /* Stronger presence */
-                        rgba(240, 240, 240, 0.3) 20%,  /* Still visible */
-                        white 25%             /* Sharp transition to white */
+                        #2d3748 0%,           /* Charcoal dark sidebar color */
+                        #2d3748 8%,           /* Keep full color longer */
+                        rgba(45, 55, 72, 0.9) 12%,  /* Start fade later */
+                        rgba(45, 55, 72, 0.6) 16%,  /* Stronger presence */
+                        rgba(45, 55, 72, 0.3) 20%,  /* Still visible */
+                        #fafaf9 25%           /* Warm white main content */
                     );
                     background-attachment: fixed;
                 }
@@ -116,9 +140,9 @@
                     );
                 }
                 
-                /* Ensure main content has transparent background to show gradient */
+                /* Ensure main content has warm white background */
                 .resume-section {
-                    background-color: transparent !important;
+                    background-color: #fafaf9 !important;
                 }
                 
                 /* Slight adjustment to sidebar positioning to ensure seamless transition */
@@ -310,7 +334,7 @@
                 top: 0;
                 bottom: 0;
                 width: 2px;
-                background: #007bff;
+                background: #bd5d38;
                 transform: translateX(-50%);
                 z-index: 1;
             }
@@ -393,8 +417,8 @@
 
             /* Specific sizes for individual timeline items */
             .timeline-item:nth-child(1) .timeline-image img {
-                width: 130px;
-                height: 130px;
+                width: 110px;
+                height: 110px;
             }
             
             /* Dark background for the consultant timeline item to show white logo */
@@ -451,7 +475,7 @@
             }
             
             .timeline-date {
-                color: #007bff;
+                color: #bd5d38;
                 font-size: 0.9rem;
                 font-weight: 600;
                 margin-bottom: 0.5rem;
@@ -506,7 +530,7 @@
             .service-card:hover {
                 transform: translateY(-8px);
                 box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-                border-color: #007bff;
+                border-color: #bd5d38;
             }
             
             .service-image-container {
@@ -514,12 +538,12 @@
                 height: 80px;
                 margin: 0 auto 1.5rem;
                 border-radius: 50%;
-                background: linear-gradient(135deg, #007bff, #0056b3);
+                background: linear-gradient(135deg, #bd5d38, #a04d2f);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 15px;
-                box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+                box-shadow: 0 4px 15px rgba(189, 93, 56, 0.3);
             }
             
             .service-image {
@@ -617,7 +641,7 @@
                     position: absolute;
                     top: 100%;
                     right: 15px;
-                    background-color: rgba(52, 58, 64, 0.95);
+                    background-color: rgba(45, 55, 72, 0.95);
                     border-radius: 0.375rem;
                     padding: 0.5rem;
                     min-width: 200px;
@@ -640,10 +664,10 @@
     </head>
     <body id="page-top">
         <!-- Top Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="background-color: #343a40; z-index: 1031;">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="background-color: #2d3748; z-index: 1031;">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center ms-4" href="#page-top">
-                    <img src="assets/img/mb_logo.png" alt="Logo" width="60" height="60" class="me-2">
+                    <img src="assets/img/logo_footprint_3_orange.png" alt="Logo" width="40" height="40" class="me-2">
                     <span class="company-name-single-line">
                         Mikael Bengtsson Elektrotekniska AB
                     </span>
@@ -746,13 +770,13 @@
                             </div>
                         </div>
                         
-                        <!-- Industrialisering -->
+                        <!-- Test och Automation -->
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="service-card text-center h-100">
                                 <div class="service-image-container mb-3">
-                                    <img src="assets/img/mb_logo.png" alt="Industrialisering" class="service-image">
+                                    <img src="assets/img/mb_logo.png" alt="Test och Automation" class="service-image">
                                 </div>
-                                <h4 class="service-title">Industrialisering</h4>
+                                <h4 class="service-title">Test och Automation</h4>
                                 <p class="service-description">Övergång från prototyp till produktion med fokus på kvalitet och skalbarhet.</p>
                             </div>
                         </div>
@@ -779,12 +803,12 @@
                         <!-- Current: Consultant -->
                         <div class="timeline-item">
                             <div class="timeline-image">
-                                <img src="assets/img/mb_logo.png" alt="Konsultarbete">
+                                <img src="assets/img/logo_footprint_3_orange.png" alt="Konsultarbete">
                             </div>
                             <div class="timeline-content">
                                 <div class="timeline-date">2024 - nuvarande</div>
                                 <h3 class="mb-2">Konsultarbete</h3>
-                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Engcon/Knowit</div>
+                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Elektronikutveckling och<br>Embeddedutveckling</div>
                                 <p class="mb-0">Arbetar som konsult inom elektronik- och mjukvaruutveckling med fokus på inbyggda system och produktutveckling.</p>
                             </div>
                         </div>
@@ -797,7 +821,7 @@
                             <div class="timeline-content">
                                 <div class="timeline-date">2024 - nuvarande</div>
                                 <h3 class="mb-2">Elysics AB</h3>
-                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Electrical and Embedded Engineer</div>
+                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Utvecklingsingenjör<br>Elektronik och Embedded</div>
                                 <p class="mb-0">På Elysics arbetar jag med inbyggda system med fokus på både elektronisk design och mjukvaruutveckling. Min roll innebär att designa och utveckla kretskort, från schematisk design till PCB-layout. Jag skriver inbyggd kod i C för realtidsapplikationer och utvecklar testsystemmjukvara i Python för att automatisera hårdvarutestning och diagnostik.</p>
                             </div>
                         </div>
@@ -810,7 +834,7 @@
                             <div class="timeline-content">
                                 <div class="timeline-date">2019 - 2024</div>
                                 <h3 class="mb-2">Plejd AB</h3>
-                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Electrical Engineer</div>
+                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Elektronikingenjör</div>
                                 <p class="mb-0">Utvecklade produkter inom Smart Home Systems som del av det elektriska ingenjörsteamet. Jag arbetade med switched-mode strömförsörjningar, motordrifter och belysningsstyrning. Projekten var FoU-fokuserade och involverade testning av nya idéer och lösningar. Jag var projektledare för Smart Plug (SPR-01), där jag övervakade planering, teamledning och övergripande beslutsfattande.</p>
                             </div>
                         </div>
@@ -823,7 +847,7 @@
                             <div class="timeline-content">
                                 <div class="timeline-date">2016 - 2019</div>
                                 <h3 class="mb-2">Pluspole AB</h3>
-                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Embedded Developer</div>
+                                <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Embeddedutvecklare</div>
                                 <p class="mb-0">Konsultarbete inom produktutveckling med fokus på prototypfasen. Individuellt ansvarig för projekt och kunder, vilket ofta innebar att använda en bred uppsättning färdigheter inom elektronik, mekanik och firmware-teknik. Arbetade på ett vakuumlyft-system som involverade motor- och inbyggd C-utveckling på ARM Cortex-M MCUs. Utvecklade ett solföljarsystem med höga krav på noggrannhet.</p>
                             </div>
                         </div>
