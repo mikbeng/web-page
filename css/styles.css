@@ -10922,7 +10922,7 @@ p.lead {
   }
   #sideNav .navbar-brand {
     display: flex;
-    margin: 1.5rem auto 0;
+    margin: auto auto 2rem;
     padding: 0.5rem;
   }
   #sideNav .navbar-brand .img-profile {
