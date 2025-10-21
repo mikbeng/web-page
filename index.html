@@ -605,8 +605,9 @@
 
             /* Specific sizes for individual timeline items */
             .timeline-item:nth-child(1) .timeline-image img {
-                width: 90px;
-                height: 90px;
+                width: 80px;
+                height: 80px;
+                border-radius: 0;  /* Remove the circular crop */
             }
             
             /* Dark background for the consultant timeline item to show white logo */
@@ -679,7 +680,10 @@
                 }
                 
                 /* Override specific sizes for mobile */
-                .timeline-item:nth-child(1) .timeline-image img,
+                .timeline-item:nth-child(1) .timeline-image img {
+                    width: 40px !important;
+                    height: 40px !important;
+                }
                 .timeline-item:nth-child(2) .timeline-image img,
                 .timeline-item:nth-child(4) .timeline-image img,
                 .timeline-item:nth-child(5) .timeline-image img {
@@ -847,7 +851,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="background-color: #2d3748; z-index: 1031;">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center ms-4" href="#page-top">
-                    <img src="assets/img/logo_footprint_3_orange.png" alt="Logo" width="40" height="40" class="me-2">
+                    <img src="assets/img/mb_logo.png" alt="Logo" class="me-3" style="width: 50px; height: 50px; object-fit: contain;">
                     <span class="company-name-single-line">
                         Mikael Bengtsson Elektrotekniska AB
                     </span>
@@ -907,14 +911,31 @@
             <!-- About-->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">
+                    <h1 class="mb-0" 
+                        data-lang-sv="Elektronik och<br>Mjukvaruutvecklare" 
+                        data-lang-en="Electronics and<br>Software Developer">
                         Elektronik och<br>
                         Mjukvaruutvecklare
                     </h1>
                     <div class="about-content mt-4">
                         <div class="about-text">
-                            <p class="lead mb-5">Som erfaren utvecklingsingenjör erbjuder jag specialistkompetens inom elektronik och mjukvaruutveckling. Mitt tjänsteutbud omfattar hela utvecklingskedjan - från initial produktutveckling och prototypframtagning till avancerad kretskortsdesign och EMC-provning. Med min expertis kan jag bistå i alla steg av ert projekt, oavsett komplexitet.</p>
-                            <p class="lead mb-5">Med min bakgrund inom produktutveckling så kan jag även hjälpa uppdragsgivare med att analysera befintliga system och hitta eventuella problem/förbättringar, både inom elektronik och mjukvara.</p>
+                            <p class="lead mb-5" 
+                                data-lang-sv=
+                                "Jag arbetar som konsult specialiserad på elektronik och inbyggda system, 
+                                och erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. 
+                                Med över tio års erfarenhet från produktutveckling och konsultuppdrag kan jag bidra med en 
+                                helhetsförståelse och ett multidisciplinärt arbetssätt för att skapa innovativa och hållbara produkter." 
+                                data-lang-en="I work as a consultant specializing in electronics and embedded systems, 
+                                offering services in electronic and software development. With over ten years of experience in 
+                                product development and consulting assignments, I can provide end-to-end expertise and a 
+                                multidisciplinary approach to create innovative and sustainable products.">
+                            <p class="lead mb-5" 
+                                data-lang-sv="Med erfarenhet av hela utvecklingskedjan, från koncept och prototyp till certifiering och 
+                                produktionssättning, kan jag bidra med praktisk förståelse för både design, test och tillverkningsaspekter. 
+                                Vare sig det gäller att utveckla en ny produkt, förbättra ett befintligt system eller lösa en specifik utmaning." 
+                                data-lang-en="With experience across the entire development chain, from concept and prototype to 
+                                certification and production, I can contribute with practical understanding of design, testing, and 
+                                manufacturing aspects. Whether it's developing a new product, improving an existing system, or solving a specific challenge.">
                         </div>
                     </div>
                     <div class="about-images-below">
@@ -986,7 +1007,7 @@
                         <!-- Current: Consultant -->
                         <div class="timeline-item">
                             <div class="timeline-image">
-                                <img src="assets/img/logo_footprint_3_orange.png" alt="Konsultarbete">
+                                <img src="assets/img/mb_logo.png" alt="Konsultarbete">
                             </div>
                             <div class="timeline-content">
                                 <div class="timeline-date">2024 - nuvarande</div>
@@ -1157,34 +1178,26 @@
             <section class="resume-section" id="contact">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Kontakt</h2>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Hör Av Dig</h3>
-                            <div class="subheading mb-3">Redo att diskutera ditt nästa elektronikprojekt?</div>
                             <div class="contact-info">
-                                <p class="mb-2">
-                                    <i class="fas fa-user me-2"></i>
-                                    <strong>Mikael Bengtsson</strong>
-                                </p>
                                 <p class="mb-2">
                                     <i class="fas fa-envelope me-2"></i>
                                     <a href="mailto:mikael.bengtsson@mbelektro.se">mikael.bengtsson@mbelektro.se</a>
                                 </p>
                                 <p class="mb-2">
                                     <i class="fas fa-phone me-2"></i>
-                                    <a href="tel:+46735078198">+46 735 078 198</a>
+                                    <a href="tel:+46735078198">+46735078198</a>
                                 </p>
                                 <p class="mb-2">
                                     <i class="fas fa-map-marker-alt me-2"></i>
-                                    Stabbegatan 40, 416 79, Göteborg
+                                    Frösö-Berge 185, 832 96 Frösön
                                 </p>
                                 <p class="mb-0">
                                     <i class="fab fa-linkedin me-2"></i>
-                                    <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank">LinkedIn-profil</a>
+                                    <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank">LinkedIn</a>
                                 </p>
                                 <p class="mb-0">
                                     <i class="fab fa-github me-2"></i>
-                                    <a href="https://github.com/mikbeng" target="_blank">GitHub-profil</a>
+                                    <a href="https://github.com/mikbeng" target="_blank">GitHub</a>
                                 </p>
                             </div>
                         </div>
@@ -1202,21 +1215,46 @@
                 const currentLangSpan = document.getElementById('currentLang');
                 if (lang === 'sv') {
                     currentLangSpan.textContent = 'SE';
-                    // Here you would add logic to switch to Swedish content
-                    console.log('Switched to Swedish');
                 } else {
                     currentLangSpan.textContent = 'EN';
-                    // Here you would add logic to switch to English content
-                    console.log('Switched to English');
                 }
                 
                 // Store language preference
                 localStorage.setItem('selectedLanguage', lang);
+                
+                // Update all elements with data-lang-* attributes
+                updatePageLanguage(lang);
+            }
+            
+            function updatePageLanguage(lang) {
+                // Find all elements with language attributes
+                const elements = document.querySelectorAll('[data-lang-en], [data-lang-sv]');
+                
+                elements.forEach(element => {
+                    const enText = element.getAttribute('data-lang-en');
+                    const svText = element.getAttribute('data-lang-sv');
+                    
+                    if (lang === 'en' && enText) {
+                        // Check if element has innerHTML with HTML tags or is plain text
+                        if (enText.includes('<')) {
+                            element.innerHTML = enText;
+                        } else {
+                            element.textContent = enText;
+                        }
+                    } else if (lang === 'sv' && svText) {
+                        // Check if element has innerHTML with HTML tags or is plain text
+                        if (svText.includes('<')) {
+                            element.innerHTML = svText;
+                        } else {
+                            element.textContent = svText;
+                        }
+                    }
+                });
             }
             
             // Load saved language preference on page load
             document.addEventListener('DOMContentLoaded', function() {
-                const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+                const savedLang = localStorage.getItem('selectedLanguage') || 'sv';
                 setLanguage(savedLang);
                 
                 // Enhanced hamburger menu functionality

@@ -10929,6 +10929,7 @@ p.lead {
     max-width: 20rem;
     max-height: 20rem;
     border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    filter: saturate(50%);
   }
   #sideNav .navbar-collapse {
     display: flex;
