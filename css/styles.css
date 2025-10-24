@@ -10998,3 +10998,15 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
+
+/* Service list styling */
+.service-list {
+  text-align: left !important;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Service description styling */
+.service-description {
+  text-align: left !important;
+}
