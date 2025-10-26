@@ -749,10 +749,35 @@
                 color: #495057;
                 font-size: 0.95rem;
                 line-height: 1.6;
-                margin-bottom: 0;
-                flex-grow: 1;
+                margin-bottom: 1rem !important;
+                flex-grow: 0;
             }
             
+            .service-list {
+                list-style: none;
+                padding: 0;
+                margin: 0 !important;
+                margin-top: 0.15rem !important;
+                text-align: left;
+            }
+            
+            .service-list li {
+                color: #495057;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+                padding-left: 1.5rem;
+                position: relative;
+            }
+            
+            .service-list li::before {
+                content: '•';
+                color: #bd5d38;
+                font-weight: bold;
+                position: absolute;
+                left: 0;
+            }
+
             /* Responsive adjustments for service cards */
             @media (max-width: 768px) {
                 .service-card {
@@ -930,12 +955,11 @@
                                 product development and consulting assignments, I can provide end-to-end expertise and a 
                                 multidisciplinary approach to create innovative and sustainable products.">
                             <p class="lead mb-5" 
-                                data-lang-sv="Med erfarenhet av hela utvecklingskedjan, från koncept och prototyp till certifiering och 
-                                produktionssättning, kan jag bidra med praktisk förståelse för både design, test och tillverkningsaspekter. 
+                                data-lang-sv="Jag har erfarenhet av hela utvecklingskedjan, från koncept till certifiering och 
+                                produktion, och kan bidra med teknisk kompetens i alla steg. 
                                 Vare sig det gäller att utveckla en ny produkt, förbättra ett befintligt system eller lösa en specifik utmaning." 
-                                data-lang-en="With experience across the entire development chain, from concept and prototype to 
-                                certification and production, I can contribute with practical understanding of design, testing, and 
-                                manufacturing aspects. Whether it's developing a new product, improving an existing system, or solving a specific challenge.">
+                                data-lang-en="I have experience across the entire development chain, from concept to 
+                                certification and production, and can contribute with technical expertise in all stages. Whether it's developing a new product, improving an existing system, or solving a specific challenge.">
                         </div>
                     </div>
                     <div class="about-images-below">
@@ -965,7 +989,7 @@
                                 <ul class="service-list">
                                     <li>Kretskortsdesign och PCB-layout</li>
                                     <li>Komponentval, EOL support samt kostnadseffektivisering</li>
-                                    <li>Support vid EMC-problem, certifiering och testning</li>
+                                    <li>Systemdesign och integration</li>
                                     <li>Produktionsoptimering (DFM - Design for Manufacturing)</li>
                                 </ul>
                             </div>
@@ -978,7 +1002,17 @@
                                     <img src="assets/img/mb_logo.png" alt="Mjukvaruuutveckling" class="service-image">
                                 </div>
                                 <h4 class="service-title">Mjukvaruutveckling</h4>
-                                <p class="service-description">Firmware och mjukvaruutveckling för inbyggda system och applikationer.</p>
+                                <p class="service-description">
+                                    Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll.
+                                </p>
+                                <ul class="service-list">
+                                    <li>Firmware för inbyggda system (C/C++)</li>
+                                    <li>Automationsskript och testsystem (Python)</li>
+                                    <li>Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl.</li>
+                                    <li>CAN/CANopen-utveckling</li>
+                                    <li>DevOps och versionshantering (Git), CI/CD</li>
+                                    <li>Modellering och simulering (Matlab, Simulink)</li>
+                                </ul>
                             </div>
                         </div>
                         
@@ -989,18 +1023,33 @@
                                     <img src="assets/img/mb_logo.png" alt="Test och Automation" class="service-image">
                                 </div>
                                 <h4 class="service-title">Test och Automation</h4>
-                                <p class="service-description">Övergång från prototyp till produktion med fokus på kvalitet och skalbarhet.</p>
+                                <p class="service-description">
+                                    Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion.
+                                </p>
+                                <ul class="service-list">
+                                    <li>Automationsutrustning för produktionsmiljö</li>
+                                    <li>Framtagning av testfixturer för PCB</li>
+                                    <li>Testsystem för serieproduktion</li>
+                                    <li>Kvalitetskontroll och diagnostik</li>
+                                </ul>
                             </div>
                         </div>
                         
-                        <!-- Certifiering/Standardisering -->
+                        <!-- Mätning och Certifiering -->
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="service-card text-center h-100">
                                 <div class="service-image-container mb-3">
-                                    <img src="assets/img/circuit_col.png" alt="Certifiering/Standardisering" class="service-image">
+                                    <img src="assets/img/circuit_col.png" alt="Mätning och Certifiering" class="service-image">
                                 </div>
-                                <h4 class="service-title">Certifiering/Standardisering</h4>
-                                <p class="service-description">EMC-testning, certifiering och uppfyllelse av internationella standarder.</p>
+                                <h4 class="service-title">Mätning och Certifiering</h4>
+                                <p class="service-description">
+                                    Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder.
+                                </p>
+                                <ul class="service-list">
+                                    <li>Felsökning och design för EMC-kompatibilitet</li>
+                                    <li>CE-märkning och produktsäkerhetsstandarder</li>
+                                    <li>Support vid certifieringsprocessen</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
