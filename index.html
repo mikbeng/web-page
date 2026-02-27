@@ -255,6 +255,7 @@
                 font-size: 3.5rem !important;
                 position: relative;
                 z-index: 10;
+                max-width: 700px;
             }
             
             @media (max-width: 768px) {
@@ -279,103 +280,71 @@
                 position: relative;
                 z-index: 10;
                 margin-bottom: 3rem;
+                max-width: 700px;
             }
             
-            /* Images positioned below text in diagonal arrangement */
+            /* Images positioned below text in side-by-side arrangement */
             .about-images-below {
                 position: relative;
                 width: 100%;
+                max-width: 900px;
                 margin-top: 2rem;
             }
             
             .image-diagonal-container {
                 position: relative;
+                display: flex;
+                gap: 1.5rem;
                 width: 100%;
-                height: 450px;
+                height: auto;
                 margin: 0 auto;
             }
             
             .diagonal-image {
-                position: absolute;
+                position: relative;
                 border-radius: 12px;
                 object-fit: cover;
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
             
-            /* KiCad image - top right, diagonally above */
+            .diagonal-image:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+            }
+            
+            /* KiCad image - left side */
             .diagonal-image-1 {
-                top: -10px;
-                right: 2%;
-                width: 55%;
-                max-width: 550px;
-                height: 280px;
+                width: 50%;
+                height: 260px;
                 z-index: 2;
-                opacity: 0.95;
-                -webkit-mask-image: linear-gradient(
-                    135deg,
-                    rgba(0,0,0,1) 30%,
-                    rgba(0,0,0,0.9) 50%,
-                    rgba(0,0,0,0.5) 70%,
-                    rgba(0,0,0,0.2) 85%,
-                    rgba(0,0,0,0) 95%
-                );
-                mask-image: linear-gradient(
-                    135deg,
-                    rgba(0,0,0,1) 30%,
-                    rgba(0,0,0,0.9) 50%,
-                    rgba(0,0,0,0.7) 70%,
-                    rgba(0,0,0,0.5) 85%,
-                    rgba(0,0,0,0.2) 95%
-                );
             }
             
-            /* IC image - bottom left, diagonally below */
+            /* IC image - right side */
             .diagonal-image-2 {
-                bottom: -40px;
-                left: 2%;
-                width: 55%;
-                max-width: 550px;
-                height: 300px;
+                width: 50%;
+                height: 260px;
                 z-index: 1;
-                opacity: 0.9;
-                -webkit-mask-image: linear-gradient(
-                    315deg,
-                    rgba(0,0,0,1) 30%,
-                    rgba(0,0,0,0.9) 50%,
-                    rgba(0,0,0,0.5) 70%,
-                    rgba(0,0,0,0.2) 85%,
-                    rgba(0,0,0,0) 95%
-                );
-                mask-image: linear-gradient(
-                    315deg,
-                    rgba(0,0,0,1) 30%,
-                    rgba(0,0,0,0.9) 50%,
-                    rgba(0,0,0,0.7) 70%,
-                    rgba(0,0,0,0.5) 85%,
-                    rgba(0,0,0,0.2) 95%
-                );
             }
             
             /* Responsive adjustments for about section */
             @media (max-width: 768px) {
                 .about-text {
                     margin-bottom: 2rem;
+                    max-width: 100%;
                 }
                 
                 .image-diagonal-container {
-                    height: 350px;
+                    flex-direction: column;
+                    gap: 1rem;
                 }
                 
-                .diagonal-image-1 {
-                    width: 65%;
-                    height: 220px;
-                    right: 2%;
-                }
-                
+                .diagonal-image-1,
                 .diagonal-image-2 {
-                    width: 65%;
-                    height: 220px;
-                    left: 2%;
+                    width: 100%;
+                    height: 200px;
+                    transform: none;
+                    margin-top: 0;
                 }
             }
             
@@ -384,20 +353,9 @@
                     margin-bottom: 1.5rem;
                 }
                 
-                .image-diagonal-container {
-                    height: 300px;
-                }
-                
-                .diagonal-image-1 {
-                    width: 75%;
-                    height: 180px;
-                    right: -10%;
-                }
-                
+                .diagonal-image-1,
                 .diagonal-image-2 {
-                    width: 75%;
-                    height: 180px;
-                    left: 0%;
+                    height: 160px;
                 }
             }
             
@@ -994,11 +952,11 @@
                 <div class="collapse navbar-collapse" id="topNavbarNav">
                     <ul class="navbar-nav ms-auto">
                         <!-- Navigation items - only visible on mobile/tablet when sidebar is hidden -->
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services">Tjänster</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience">Erfarenhet</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills">Kompetenser</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests">Projekt</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
                         <li class="nav-item d-lg-none"><hr class="dropdown-divider"></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -1030,11 +988,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Tjänster</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Erfarenhet</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Kompetenser</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Projekt</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
                 </ul>
             </div>
         </nav>
@@ -1052,21 +1010,11 @@
                     <div class="about-content mt-4">
                         <div class="about-text">
                             <p class="lead mb-5" 
-                                data-lang-sv=
-                                "Jag arbetar som konsult specialiserad på elektronik och inbyggda system, 
-                                och erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. 
-                                Med över tio års erfarenhet från produktutveckling och konsultuppdrag kan jag bidra med en 
-                                helhetsförståelse och ett multidisciplinärt arbetssätt för att skapa innovativa och hållbara produkter." 
-                                data-lang-en="I work as a consultant specializing in electronics and embedded systems, 
-                                offering services in electronic and software development. With over ten years of experience in 
-                                product development and consulting assignments, I can provide end-to-end expertise and a 
-                                multidisciplinary approach to create innovative and sustainable products.">
+                                data-lang-sv="Med över tio års erfarenhet inom elektronik och inbyggda system hjälper jag företag med produktutveckling genom hela utvecklingskedjan – från tidigt koncept till serieproduktion." 
+                                data-lang-en="With over ten years of experience in electronics and embedded systems, I support companies with product development throughout the entire development chain – from early concept to final production.">
                             <p class="lead mb-5" 
-                                data-lang-sv="Jag har erfarenhet av hela utvecklingskedjan, från koncept till certifiering och 
-                                produktion, och kan bidra med teknisk kompetens i alla steg. 
-                                Vare sig det gäller att utveckla en ny produkt, förbättra ett befintligt system eller lösa en specifik utmaning." 
-                                data-lang-en="I have experience across the entire development chain, from concept to 
-                                certification and production, and can contribute with technical expertise in all stages. Whether it's developing a new product, improving an existing system, or solving a specific challenge.">
+                                data-lang-sv="Jag erbjuder tjänster inom elektronikdesign, firmware-utveckling, testsystem och EMC/certifiering." 
+                                data-lang-en="I offer services in electronics design, firmware development, test systems, and EMC/certification.">
                         </div>
                     </div>
                     <div class="about-images-below">
@@ -1081,7 +1029,7 @@
             <!-- Services-->
             <section class="resume-section" id="services">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Tjänster</h2>
+                    <h2 class="mb-5" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</h2>
                     <div class="row g-4">
                         <!-- Elektronikutveckling -->
                         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
@@ -1089,16 +1037,16 @@
                                 <div class="service-image-container mb-3">
                                     <img src="assets/img/electro_1.png" alt="Elektronikutveckling" class="service-image">
                                 </div>
-                                <h4 class="service-title">Elektronikutveckling</h4>
-                                <p class="service-description">
+                                <h4 class="service-title" data-lang-sv="Elektronikutveckling" data-lang-en="Electronics Development">Elektronikutveckling</h4>
+                                <p class="service-description" data-lang-sv="Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt." data-lang-en="Complete solutions for electronics design, from troubleshooting existing systems to prototype development and finished products.">
                                     Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt.
                                 </p>
                                 <ul class="service-list">
-                                    <li>Kretskortsdesign och PCB-layout</li>
-                                    <li>Komponentval, EOL support samt kostnadseffektivisering</li>
-                                    <li>Systemdesign och integration</li>
-                                    <li>Produktionsoptimering (DFM - Design for Manufacturing)</li>
-                                    <li>Snabb och kostnadseffektiv prototyputveckling</li>
+                                    <li data-lang-sv="Kretskortsdesign och PCB-layout" data-lang-en="Circuit board design and PCB layout">Kretskortsdesign och PCB-layout</li>
+                                    <li data-lang-sv="Komponentval, EOL support samt kostnadseffektivisering" data-lang-en="Component selection, EOL support, and cost optimization">Komponentval, EOL support samt kostnadseffektivisering</li>
+                                    <li data-lang-sv="Systemdesign och integration" data-lang-en="System design and integration">Systemdesign och integration</li>
+                                    <li data-lang-sv="Produktionsoptimering (DFM - Design for Manufacturing)" data-lang-en="Production optimization (DFM - Design for Manufacturing)">Produktionsoptimering (DFM - Design for Manufacturing)</li>
+                                    <li data-lang-sv="Snabb och kostnadseffektiv prototyputveckling" data-lang-en="Fast and cost-effective prototype development">Snabb och kostnadseffektiv prototyputveckling</li>
                                 </ul>
                             </div>
                         </div>
@@ -1109,17 +1057,18 @@
                                 <div class="service-image-container mb-3">
                                     <img src="assets/img/logo_footprint_3_orange.png" alt="Mjukvaruuutveckling" class="service-image">
                                 </div>
-                                <h4 class="service-title">Mjukvaruutveckling</h4>
-                                <p class="service-description">
+                                <h4 class="service-title" data-lang-sv="Mjukvaruutveckling" data-lang-en="Software Development">Mjukvaruutveckling</h4>
+                                <p class="service-description" data-lang-sv="Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll." data-lang-en="Software for embedded systems and automation with experience across multiple processor architectures and protocols.">
                                     Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll.
                                 </p>
                                 <ul class="service-list">
-                                    <li>Firmware för inbyggda system (C/C++), RTOS och Embedded Linux</li>
-                                    <li>Automationsskript och testsystem (Python)</li>
-                                    <li>Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl.</li>
-                                    <li>CAN/CANopen-utveckling</li>
-                                    <li>DevOps och versionshantering (Git), CI/CD</li>
-                                    <li>Modellering och simulering (Matlab, Simulink)</li>
+                                    <li data-lang-sv="Firmware för inbyggda system (C/C++), RTOS och Embedded Linux" data-lang-en="Firmware for embedded systems (C/C++), RTOS, and Embedded Linux">Firmware för inbyggda system (C/C++), RTOS och Embedded Linux</li>
+                                    <li data-lang-sv="Automationsskript och testsystem (Python)" data-lang-en="Automation scripts and test systems (Python)">Automationsskript och testsystem (Python)</li>
+                                    <li data-lang-sv="Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl." data-lang-en="Development for ARM Cortex (STM32, nRF) and ESP32, among others">Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl.</li>
+                                    <li>CAN, CANopen, J1939</li>
+                                    <li>FreeRTOS, Zephyr</li>
+                                    <li data-lang-sv="DevOps och versionshantering (Git), CI/CD" data-lang-en="DevOps and version control (Git), CI/CD">DevOps och versionshantering (Git), CI/CD</li>
+                                    <li data-lang-sv="Modellering och simulering (Matlab, Simulink)" data-lang-en="Modeling and simulation (Matlab, Simulink)">Modellering och simulering (Matlab, Simulink)</li>
                                 </ul>
                             </div>
                         </div>
@@ -1130,15 +1079,15 @@
                                 <div class="service-image-container mb-3">
                                     <img src="assets/img/robo_logo.png" alt="Test och Automation" class="service-image">
                                 </div>
-                                <h4 class="service-title">Test och Automation</h4>
-                                <p class="service-description">
+                                <h4 class="service-title" data-lang-sv="Test och Automation" data-lang-en="Test and Automation">Test och Automation</h4>
+                                <p class="service-description" data-lang-sv="Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion." data-lang-en="Solutions for production and quality assurance from prototype to mass production.">
                                     Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion.
                                 </p>
                                 <ul class="service-list">
-                                    <li>Automationsutrustning för produktionsmiljö</li>
-                                    <li>Framtagning av testfixturer för PCB</li>
-                                    <li>Testsystem för serieproduktion</li>
-                                    <li>Kvalitetskontroll och diagnostik</li>
+                                    <li data-lang-sv="Automationsutrustning för produktionsmiljö" data-lang-en="Automation equipment for production environments">Automationsutrustning för produktionsmiljö</li>
+                                    <li data-lang-sv="Framtagning av testfixturer för PCB" data-lang-en="Development of test fixtures for PCB">Framtagning av testfixturer för PCB</li>
+                                    <li data-lang-sv="Testsystem för serieproduktion" data-lang-en="Test systems for mass production">Testsystem för serieproduktion</li>
+                                    <li data-lang-sv="Kvalitetskontroll och diagnostik" data-lang-en="Quality control and diagnostics">Kvalitetskontroll och diagnostik</li>
                                 </ul>
                             </div>
                         </div>
@@ -1149,14 +1098,14 @@
                                 <div class="service-image-container mb-3">
                                     <img src="assets/img/EMC3_logo.png" alt="Mätning och Certifiering" class="service-image">
                                 </div>
-                                <h4 class="service-title">Mätning och Certifiering</h4>
-                                <p class="service-description">
+                                <h4 class="service-title" data-lang-sv="Mätning och Certifiering" data-lang-en="Measurement and Certification">Mätning och Certifiering</h4>
+                                <p class="service-description" data-lang-sv="Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder." data-lang-en="Technical support for EMC, certification, and compliance with safety standards.">
                                     Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder.
                                 </p>
                                 <ul class="service-list">
-                                    <li>Felsökning och design för EMC-kompatibilitet</li>
-                                    <li>CE-märkning och produktsäkerhetsstandarder</li>
-                                    <li>Support vid certifieringsprocessen</li>
+                                    <li data-lang-sv="Felsökning och design för EMC-kompatibilitet" data-lang-en="Troubleshooting and design for EMC compatibility">Felsökning och design för EMC-kompatibilitet</li>
+                                    <li data-lang-sv="CE-märkning och produktsäkerhetsstandarder" data-lang-en="CE marking and product safety standards">CE-märkning och produktsäkerhetsstandarder</li>
+                                    <li data-lang-sv="Support vid certifieringsprocessen" data-lang-en="Support during the certification process">Support vid certifieringsprocessen</li>
                                 </ul>
                             </div>
                         </div>
@@ -1167,7 +1116,7 @@
             <!-- Experience-->
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Erfarenhet</h2>
+                    <h2 class="mb-5" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</h2>
                     <div class="timeline">
                         <!-- Current: Consultant -->
                         <div class="timeline-item">
@@ -1175,11 +1124,11 @@
                                 <img src="assets/img/mb_logo.png" alt="Konsultarbete">
                             </div>
                             <div class="timeline-content">
-                                <div class="timeline-date">2024 - nuvarande</div>
+                                <div class="timeline-date" data-lang-sv="2024 - nuvarande" data-lang-en="2024 - present">2024 - nuvarande</div>
                                 <h3 class="mb-2">Mikael Bengtsson Elektrotekniska AB</h3>
                                 <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Egenkonsult inom Elektronik och<br>Embeddedutveckling</div>
-                                    <p class="mb-0">Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas.</p>
+                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Egenkonsult inom Elektronik och<br>Embeddedutveckling" data-lang-en="Independent Consultant in Electronics and<br>Embedded Development">Egenkonsult inom Elektronik och<br>Embeddedutveckling</div>
+                                    <p class="mb-0" data-lang-sv="Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas." data-lang-en="Offering services in electronics and software development. Taking on assignments covering the entire development chain as well as specific problems that need to be solved.">Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas.</p>
                                 </div>
                                 <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
                                     <i class="fas fa-chevron-right"></i>
@@ -1196,8 +1145,8 @@
                                 <div class="timeline-date">2024 - 2025</div>
                                 <h3 class="mb-2">Elysics AB</h3>
                                 <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Utvecklingsingenjör<br>Elektronik och Embedded</div>
-                                    <p class="mb-0">På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. 
+                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Utvecklingsingenjör<br>Elektronik och Embedded" data-lang-en="Development Engineer<br>Electronics and Embedded">Utvecklingsingenjör<br>Elektronik och Embedded</div>
+                                    <p class="mb-0" data-lang-sv="På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. Jag var även med och utvecklade testsystem för serieproduktion." data-lang-en="At Elysics, I worked on developing embedded systems for industrial products, focusing on both electronics design and software development. I also helped develop test systems for mass production.">På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. 
                                         Jag var även med och utvecklade testsystem för serieproduktion.</p>
                                 </div>
                                 <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
@@ -1215,8 +1164,8 @@
                                 <div class="timeline-date">2019 - 2024</div>
                                 <h3 class="mb-2">Plejd AB</h3>
                                 <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Elektronikingenjör</div>
-                                    <p class="mb-0">Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). 
+                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Elektronikingenjör" data-lang-en="Electronics Engineer">Elektronikingenjör</div>
+                                    <p class="mb-0" data-lang-sv="Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). Högt fokus på DFM (Design for Manufacturing). Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut." data-lang-en="Developed electronics for IoT products. Development included power supply, wireless communication, and certification (EMC/CE). High focus on DFM (Design for Manufacturing). Was project lead for Smart Plug (SPR-01) with responsibility for planning, team coordination, and key product decisions.">Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). 
                                         Högt fokus på DFM (Design for Manufacturing). Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut.</p>
                                 </div>
                                 <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
@@ -1234,8 +1183,8 @@
                                 <div class="timeline-date">2016 - 2019</div>
                                 <h3 class="mb-2">Pluspole AB</h3>
                                 <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Embeddedutvecklare</div>
-                                    <p class="mb-0">Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som 
+                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Embeddedutvecklare" data-lang-en="Embedded Developer">Embeddedutvecklare</div>
+                                    <p class="mb-0" data-lang-sv="Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer." data-lang-en="Consulting work in product development focusing on R&D and prototype development. Worked on projects involving motor control, control systems, and software development on ARM Cortex-M processors.">Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som 
                                         involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer. </p>
                                 </div>
                                 <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
@@ -1251,12 +1200,12 @@
                             </div>
                             <div class="timeline-content">
                                 <div class="timeline-date">2011 - 2016</div>
-                                <h3 class="mb-2">Chalmers<br>Tekniska Högskola</h3>
+                                <h3 class="mb-2" data-lang-sv="Chalmers<br>Tekniska Högskola" data-lang-en="Chalmers<br>University of Technology">Chalmers<br>Tekniska Högskola</h3>
                                 <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;">Civilingenjör, Elektroteknik</div>
+                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Civilingenjör, Elektroteknik" data-lang-en="M.Sc. Electrical Engineering">Civilingenjör, Elektroteknik</div>
                                     <p class="mb-2">Masters: Systems, Control and Mechatronics.</p>
-                                    <p class="mb-2">Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering.</p>
-                                    <p class="mb-0">Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA).</p>
+                                    <p class="mb-2" data-lang-sv="Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering." data-lang-en="Specialization in signal processing, embedded systems, control engineering, and simulation.">Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering.</p>
+                                    <p class="mb-0" data-lang-sv="Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA)." data-lang-en="Board member of the Electrical Engineering Student Union's Telecommunications Division (ETA).">Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA).</p>
                                 </div>
                                 <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
                                     <i class="fas fa-chevron-right"></i>
@@ -1270,13 +1219,13 @@
             <!-- Skills-->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Kompetenser</h2>
+                    <h2 class="mb-5" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</h2>
                     
                     <div class="row g-4">
                         <!-- Programming & Tools -->
                         <div class="col-lg-4 col-md-6">
                             <div class="skills-category">
-                                <h3 class="skills-category-title">Programmering</h3>
+                                <h3 class="skills-category-title" data-lang-sv="Programmering" data-lang-en="Programming">Programmering</h3>
                                 <ul class="skills-list">
                                     <li>C/C++</li>
                                     <li>Python</li>
@@ -1291,7 +1240,7 @@
                         <!-- Design Tools -->
                         <div class="col-lg-4 col-md-6">
                             <div class="skills-category">
-                                <h3 class="skills-category-title">Design & Verktyg</h3>
+                                <h3 class="skills-category-title" data-lang-sv="Design & Verktyg" data-lang-en="Design & Tools">Design & Verktyg</h3>
                                 <ul class="skills-list">
                                     <li>KiCad</li>
                                     <li>Altium Designer</li>
@@ -1303,11 +1252,11 @@
                         <!-- Core Areas -->
                         <div class="col-lg-4 col-md-6">
                             <div class="skills-category">
-                                <h3 class="skills-category-title">Expertområden</h3>
+                                <h3 class="skills-category-title" data-lang-sv="Expertområden" data-lang-en="Areas of Expertise">Expertområden</h3>
                                 <ul class="skills-list">
-                                    <li>IoT och trådlös kommunikation</li>
-                                    <li>Reglerteknik och simulering</li>
-                                    <li>Signalbehandling</li>
+                                    <li data-lang-sv="IoT och trådlös kommunikation" data-lang-en="IoT and wireless communication">IoT och trådlös kommunikation</li>
+                                    <li data-lang-sv="Reglerteknik och simulering" data-lang-en="Control engineering and simulation">Reglerteknik och simulering</li>
+                                    <li data-lang-sv="Signalbehandling" data-lang-en="Signal processing">Signalbehandling</li>
                                 </ul>
                             </div>
                         </div>
@@ -1384,7 +1333,7 @@
             <!-- Projects-->
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
-                    <h2 class="mb-2">Projekt</h2>
+                    <h2 class="mb-2" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</h2>
                     <p class="lead mb-0">Stay tuned!</p>
                 </div>
             </section>
@@ -1392,7 +1341,7 @@
             <!-- Contact-->
             <section class="resume-section" id="contact">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Kontakt</h2>
+                    <h2 class="mb-5" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</h2>
                             <div class="contact-info">
                                 <p class="mb-2">
                                     <i class="fas fa-envelope me-2"></i>
