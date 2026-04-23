@@ -1,1522 +1,1132 @@
 <!DOCTYPE html>
 <html lang="sv">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Mikael Bengtsson Elektrotekniska AB - Elektronik och Mjukvaruutveckling</title>
-        <meta property="og:title" content="Mikael Bengtsson Elektrotekniska AB">
-        <meta property="og:description" content="Konsult inom elektronikutveckling och inbyggda system">
-        <meta property="og:image" content="https://mbelektro.se/assets/img/mb_logo.png">
-        <meta property="og:url" content="https://mbelektro.se">
-        <link rel="canonical" href="https://mbelektro.se/" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <style>
-            /* Fix navbar dropdown text visibility */
-            #topNavbarNav .nav-link {
-                color: rgba(255, 255, 255, 0.85) !important;
-            }
-            #topNavbarNav .nav-link:hover {
-                color: rgba(255, 255, 255, 1) !important;
-            }
-            /* Company name single line styling */
-            .company-name-single-line {
-                font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-                font-size: 1.25rem;
-                font-weight: 400;
-                color: #ffffff !important;
-                white-space: nowrap;
-            }
-            /* Adjust navbar height for single-line text */
-            #topNav {
-                padding-top: 0.5rem !important;
-                padding-bottom: 0.5rem !important;
-                min-height: 70px;
-            }
-            /* Adjust side navigation top position */
-            #sideNav {
-                top: 70px !important;
-                height: calc(100vh - 70px) !important;
-            }
-            
-            /* Add semi-transparent overlay only to the menu area for better text readability */
-            #sideNav .navbar-collapse {
-                position: relative;
-                z-index: 1;
-            }
-            
-            #sideNav .navbar-collapse::before {
-                content: '';
-                position: absolute;
-                top: -20px;
-                left: 0;
-                right: 0;
-                bottom: -20px;
-                background-color: rgba(45, 55, 72, 0.75);
-                z-index: -1;
-                pointer-events: none;
-            }
-            
-            /* Ensure navbar brand (profile pic) is above */
-            #sideNav .navbar-brand {
-                position: relative;
-                z-index: 1;
-            }
-            /* Adjust main content margin */
-            .container-fluid.p-0 {
-                margin-top: 70px !important;
-            }
-            
-            /* Font overrides - Use Nunito for headings but keep Saira for company name */
-            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-                font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-                font-weight: 500;
-            }
-            
-            /* Use Nunito for subheadings too */
-            .subheading {
-                font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-                font-weight: 600;
-            }
-            
-            /* Keep Saira Extra Condensed for navbar-brand only (if needed for other elements) */
-            .navbar-brand {
-                font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-            }
-            
-            /* Circuit background gradient extension for desktop */
-            @media (min-width: 992px) {
-                body {
-                    background: linear-gradient(
-                        to right,
-                        #2d3748 0%,           /* Charcoal dark sidebar color */
-                        #2d3748 8%,           /* Keep full color longer */
-                        rgba(45, 55, 72, 0.9) 12%,  /* Start fade later */
-                        rgba(45, 55, 72, 0.6) 16%,  /* Stronger presence */
-                        rgba(45, 55, 72, 0.3) 20%,  /* Still visible */
-                        #fafaf9 25%           /* Warm white main content */
-                    );
-                    background-attachment: fixed;
-                }
-                
-                /* Add a subtle circuit pattern overlay that fades out */
-                body::before {
-                    content: '';
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-image: url('assets/img/circuit_col.png');
-                    background-size: cover;
-                    background-position: left center;
-                    background-repeat: no-repeat;
-                    opacity: 1;
-                    z-index: -1;
-                    pointer-events: none;
-                    
-                    /* Create gradient mask to fade out the circuit pattern */
-                    -webkit-mask-image: linear-gradient(
-                        to right,
-                        rgba(0,0,0,0.6) 0%,     /* Much stronger circuit pattern at 60% opacity */
-                        rgba(0,0,0,0.5) 8%,     /* Keep strong presence longer */
-                        rgba(0,0,0,0.3) 12%,    /* Still quite visible */
-                        rgba(0,0,0,0.15) 16%,   /* Fade more aggressively */
-                        rgba(0,0,0,0.05) 20%,   /* Almost gone */
-                        rgba(0,0,0,0) 25%       /* Completely transparent - shorter span */
-                    );
-                    mask-image: linear-gradient(
-                        to right,
-                        rgba(0,0,0,0.6) 0%,
-                        rgba(0,0,0,0.5) 8%,
-                        rgba(0,0,0,0.3) 12%,
-                        rgba(0,0,0,0.15) 16%,
-                        rgba(0,0,0,0.05) 20%,
-                        rgba(0,0,0,0) 25%
-                    );
-                }
-                
-                /* Ensure main content has warm white background */
-                .resume-section {
-                    background-color: #fafaf9 !important;
-                }
-                
-                /* Slight adjustment to sidebar positioning to ensure seamless transition */
-                #sideNav {
-                    box-shadow: 1px 0 4px rgba(0,0,0,0.05);
-                }
-            }
-            
-            /* Hide sidebar on screens below 1024px */
-            @media (max-width: 1023px) {
-                body {
-                    padding-left: 0 !important;
-                }
-                
-                #sideNav {
-                    display: none !important;
-                }
-            }
-            
-            /* Reduce sidebar width for medium screens (1024px to 1440px) */
-            @media (min-width: 1024px) and (max-width: 1440px) {
-                body {
-                    padding-left: 16rem !important;
-                }
-                
-                #sideNav {
-                    width: 16rem !important;
-                }
-                
-                #sideNav .navbar-brand .img-profile {
-                    max-width: 14rem !important;
-                    max-height: 14rem !important;
-                }
-            }
-            
-            /* Full width sidebar for large screens (above 1440px) */
-            @media (min-width: 1441px) {
-                body {
-                    padding-left: 24rem !important;
-                }
-                
-                #sideNav {
-                    width: 24rem !important;
-                }
-            }
-            
-            /* Mobile optimizations for iPhone and small screens */
-            @media (max-width: 768px) {
-                /* Reduce navbar height for mobile */
-                #topNav {
-                    padding-top: 0.5rem !important;
-                    padding-bottom: 0.5rem !important;
-                    min-height: 65px !important;
-                }
-                
-                /* Adjust company name font size for mobile */
-                .company-name-single-line {
-                    font-size: 1rem !important;
-                }
-                
-                /* Reduce logo size for mobile */
-                .navbar-brand img {
-                    width: 45px !important;
-                    height: 45px !important;
-                }
-                
-                /* Adjust side navigation and main content for smaller navbar */
-                #sideNav {
-                    top: 65px !important;
-                    height: calc(100vh - 65px) !important;
-                }
-                .container-fluid.p-0 {
-                    margin-top: 65px !important;
-                }
-                
-                /* Reduce main heading sizes */
-                h1 {
-                    font-size: 2.5rem !important;
-                }
-                h2 {
-                    font-size: 2rem !important;
-                }
-                h3 {
-                    font-size: 1.5rem !important;
-                }
-                
-                /* Reduce lead text size */
-                .lead {
-                    font-size: 1.1rem !important;
-                }
-                
-                /* Reduce section padding */
-                .resume-section {
-                    padding: 4rem 1.5rem !important;
-                }
-                
-                /* Reduce subheading font size */
-                .subheading {
-                    font-size: 1rem !important;
-                }
-            }
-            
-            /* Make main heading smaller */
-            h1.mb-0 {
-                font-size: 3.5rem !important;
-                position: relative;
-                z-index: 10;
-                max-width: 700px;
-            }
-            
-            @media (max-width: 768px) {
-                h1.mb-0 {
-                    font-size: 2.5rem !important;
-                }
-            }
-            
-            @media (max-width: 480px) {
-                h1.mb-0 {
-                    font-size: 2rem !important;
-                }
-            }
-            
-            /* About section layout - text on top, images below */
-            .about-content {
-                position: relative;
-                display: block;
-            }
-            
-            .about-text {
-                position: relative;
-                z-index: 10;
-                margin-bottom: 3rem;
-                max-width: 700px;
-            }
-            
-            /* Images positioned below text in side-by-side arrangement */
-            .about-images-below {
-                position: relative;
-                width: 100%;
-                max-width: 900px;
-                margin-top: 2rem;
-            }
-            
-            .image-diagonal-container {
-                position: relative;
-                display: flex;
-                gap: 1.5rem;
-                width: 100%;
-                height: auto;
-                margin: 0 auto;
-            }
-            
-            .diagonal-image {
-                position: relative;
-                border-radius: 12px;
-                object-fit: cover;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            
-            .diagonal-image:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-            }
-            
-            /* KiCad image - left side */
-            .diagonal-image-1 {
-                width: 50%;
-                height: 260px;
-                z-index: 2;
-            }
-            
-            /* IC image - right side */
-            .diagonal-image-2 {
-                width: 50%;
-                height: 260px;
-                z-index: 1;
-            }
-            
-            /* Responsive adjustments for about section */
-            @media (max-width: 768px) {
-                .about-text {
-                    margin-bottom: 2rem;
-                    max-width: 100%;
-                }
-                
-                .image-diagonal-container {
-                    flex-direction: column;
-                    gap: 1rem;
-                }
-                
-                .diagonal-image-1,
-                .diagonal-image-2 {
-                    width: 100%;
-                    height: 200px;
-                    transform: none;
-                    margin-top: 0;
-                }
-            }
-            
-            @media (max-width: 480px) {
-                .about-text {
-                    margin-bottom: 1.5rem;
-                }
-                
-                .diagonal-image-1,
-                .diagonal-image-2 {
-                    height: 160px;
-                }
-            }
-            
-            /* Extra small screens (iPhone SE, etc.) */
-            @media (max-width: 480px) {
-                /* Further reduce navbar height */
-                #topNav {
-                    min-height: 60px !important;
-                    padding-top: 0.4rem !important;
-                    padding-bottom: 0.4rem !important;
-                }
-                
-                /* Smaller company name */
-                .company-name-single-line {
-                    font-size: 0.9rem !important;
-                }
-                
-                /* Smaller logo */
-                .navbar-brand img {
-                    width: 40px !important;
-                    height: 40px !important;
-                }
-                
-                /* Adjust layout for smaller navbar */
-                #sideNav {
-                    top: 60px !important;
-                    height: calc(100vh - 60px) !important;
-                }
-                .container-fluid.p-0 {
-                    margin-top: 60px !important;
-                }
-                
-                /* Smaller headings */
-                h1 {
-                    font-size: 2rem !important;
-                }
-                h2 {
-                    font-size: 1.75rem !important;
-                }
-                h3 {
-                    font-size: 1.25rem !important;
-                }
-                
-                /* Smaller lead text */
-                .lead {
-                    font-size: 1rem !important;
-                }
-                
-                /* Reduce section padding further */
-                .resume-section {
-                    padding: 3rem 1rem !important;
-                }
-                
-                /* Smaller subheading */
-                .subheading {
-                    font-size: 0.9rem !important;
-                }
-                
-                /* Smaller contact info */
-                .contact-info p {
-                    font-size: 0.9rem !important;
-                }
-            }
-            
-            /* Very small screens (320-375px) - Fix hamburger menu wrapping */
-            @media (max-width: 375px) {
-                /* Make company name even smaller on tiny screens */
-                .company-name-single-line {
-                    font-size: 0.75rem !important;
-                }
-                
-                /* Further reduce logo size */
-                .navbar-brand img {
-                    width: 35px !important;
-                    height: 35px !important;
-                }
-                
-                /* Reduce left margin on brand */
-                .navbar-brand {
-                    margin-left: 0 !important;
-                }
-                
-                #topNav .container-fluid {
-                    padding-left: 0.5rem;
-                    padding-right: 0.5rem;
-                }
-                
-                /* Ensure hamburger stays on right */
-                .navbar-toggler {
-                    flex-shrink: 0;
-                    margin-left: auto;
-                }
-            }
-            
-            @media (max-width: 320px) {
-                /* Extra tiny screens - make company name super compact */
-                .company-name-single-line {
-                    font-size: 0.65rem !important;
-                }
-                
-                .navbar-brand img {
-                    width: 30px !important;
-                    height: 30px !important;
-                }
-            }
-            
-            /* Orange hamburger menu icon */
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23bd5d38' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-            }
-            
-            /* Orange border for hamburger button when focused */
-            .navbar-toggler:focus {
-                box-shadow: 0 0 0 0.25rem rgba(189, 93, 56, 0.25) !important;
-            }
-            
-            /* Timeline Styling */
-            .timeline {
-                position: relative;
-                padding: 1.5rem 0;
-            }
-            
-            .timeline::before {
-                content: '';
-                position: absolute;
-                left: 50%;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: #bd5d38;
-                transform: translateX(-50%);
-                z-index: 1;
-            }
-            
-            .timeline-item {
-                position: relative;
-                margin-bottom: -0.5rem;
-                display: flex;
-                align-items: center;
-            }
-            
-            .timeline-item:last-child {
-                margin-bottom: 0;
-            }
-            
-            .timeline-content {
-                background: #fff;
-                border-radius: 12px;
-                padding: 1.5rem;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                border: 1px solid #e9ecef;
-                position: relative;
-                width: 45%;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content {
-                margin-left: auto;
-                margin-right: calc(50% + 95px);
-            }
-            
-            .timeline-item:nth-child(even) .timeline-content {
-                margin-right: auto;
-                margin-left: calc(50% + 95px);
-            }
-            
-            .timeline-content::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                width: 0;
-                height: 0;
-                border: 12px solid transparent;
-                transform: translateY(-50%);
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content::before {
-                left: -12px;
-                border-right-color: #fff;
-            }
-            
-            .timeline-item:nth-child(even) .timeline-content::before {
-                right: -12px;
-                border-left-color: #fff;
-            }
-            
-            .timeline-image {
-                position: absolute;
-                left: calc(50% - 75px);
-                top: 50%;
-                transform: translateY(-50%);
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-                background: white;
-                border: 4px solid #d1d3d4;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10;
-            }
-            
-            /* Default size for all timeline images */
-            .timeline-image img {
-                width: 140px;
-                height: 140px;
-                border-radius: 50%;
-                object-fit: contain;
-            }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Konsult inom elektronikutveckling och inbyggda system" />
+  <title>Mikael Bengtsson Elektrotekniska AB - Elektronik och Mjukvaruutveckling</title>
+  <meta property="og:title" content="Mikael Bengtsson Elektrotekniska AB">
+  <meta property="og:description" content="Konsult inom elektronikutveckling och inbyggda system">
+  <meta property="og:image" content="https://mbelektro.se/assets/img/mb_logo.png">
+  <meta property="og:url" content="https://mbelektro.se">
+  <link rel="canonical" href="https://mbelektro.se/" />
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Space Grotesk — replaces Nunito + Muli -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
 
-            /* Specific sizes for individual timeline items */
-            .timeline-item:nth-child(1) .timeline-image img {
-                width: 80px;
-                height: 80px;
-                border-radius: 0;  /* Remove the circular crop */
-            }
-            
-            /* Dark background for the consultant timeline item to show white logo */
-            .timeline-item:nth-child(1) .timeline-image {
-                background: #343a40;
-            }
+  <style>
+    /* ═══════════════════════════════════════
+       FONTS — unify to Space Grotesk
+    ═══════════════════════════════════════ */
+    *, body, p, .lead, input, button, select, textarea {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    }
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+    .subheading, .navbar-brand {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+      text-transform: none !important;
+    }
+    h1, h2, h3, h4, h5 { font-weight: 700 !important; }
 
-            .timeline-item:nth-child(2) .timeline-image img {
-                width: 110px;
-                height: 110px;
-            }
+    /* ═══════════════════════════════════════
+       COLORS
+    ═══════════════════════════════════════ */
+    body, p, .lead { color: #4b5563 !important; }
+    h1, h2, h3, h4, h5, h6 { color: #1f2937 !important; }
+    .subheading { color: #4b5563 !important; }
 
-            .timeline-item:nth-child(3) .timeline-image img {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .timeline-item:nth-child(4) .timeline-image img {
-                width: 110px;
-                height: 110px;
-            }
+    /* ═══════════════════════════════════════
+       TOP NAV
+    ═══════════════════════════════════════ */
+    #topNav {
+      background-color: #1e2739 !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+      min-height: 70px;
+    }
+    .company-name-line {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85) !important;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    #topNavbarNav .nav-link { color: rgba(255,255,255,0.8) !important; }
+    #topNavbarNav .nav-link:hover { color: #fff !important; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23bd5d38' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
 
-            .timeline-item:nth-child(5) .timeline-image img {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .timeline-date {
-                color: #bd5d38;
-                font-size: 0.9rem;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            
-            /* Mobile responsiveness for timeline - below 1024px */
-            @media (max-width: 1023px) {
-                .timeline::before {
-                    left: 40px;
-                }
-                
-                .timeline-item {
-                    margin-bottom: 2rem !important;
-                }
-                
-                .timeline-content {
-                    width: calc(100% - 110px) !important;
-                    margin-left: 110px !important;
-                    margin-right: 0 !important;
-                }
-                
-                .timeline-content::before {
-                    left: -12px !important;
-                    right: auto !important;
-                    border-right-color: #fff !important;
-                    border-left-color: transparent !important;
-                }
-                
-                .timeline-image {
-                    left: 0px;
-                    width: 80px;
-                    height: 80px;
-                }
-                
-                /* Reduce all timeline image sizes for mobile */
-                .timeline-image img {
-                    width: 60px !important;
-                    height: 60px !important;
-                }
-                
-                /* Override specific sizes for mobile */
-                .timeline-item:nth-child(1) .timeline-image img {
-                    width: 40px !important;
-                    height: 40px !important;
-                }
-                .timeline-item:nth-child(2) .timeline-image img,
-                .timeline-item:nth-child(4) .timeline-image img,
-                .timeline-item:nth-child(5) .timeline-image img {
-                    width: 60px !important;
-                    height: 60px !important;
-                }
-                
-                /* Custom size for third item (Plejd) */
-                .timeline-item:nth-child(3) .timeline-image img {
-                    width: 100px !important;
-                    height: 100px !important;
-                }
-            }
-            
-            /* Small mobile screens only - expand/collapse functionality (500px and below) */
-            @media (max-width: 500px) {
-                .timeline-item {
-                    position: relative;
-                    margin-bottom: 2rem !important;
-                    transition: margin-bottom 0.3s ease;
-                }
-                
-                /* Add extra space when expanded to push down other items */
-                .timeline-item.expanded {
-                    margin-bottom: 0rem !important;
-                }
-                
-                .timeline-content {
-                    position: relative;
-                    min-height: 80px;
-                }
-                
-                /* On mobile, overlay expanded content over the entire timeline item and extend below */
-                .timeline-content .timeline-expanded-content {
-                    position: absolute;
-                    left: -110px;  /* Start from logo position */
-                    top: 0;
-                    width: calc(100% + 110px);  /* Cover entire width including logo */
-                    min-height: 100%;
-                    background: #fff;
-                    border-radius: 12px;
-                    padding: 1rem;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    border: 1px solid #e9ecef;
-                    z-index: 50;
-                    display: none;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                }
-                
-                .timeline-content .timeline-expanded-content.expanded {
-                    display: block;
-                    opacity: 1;
-                    position: relative;
-                    left: -110px;
-                    margin-top: -80px;
-                    margin-bottom: 1rem;
-                }
-                
-                /* Small circular button on the right side, centered vertically */
-                .timeline-toggle-btn {
-                    position: absolute;
-                    right: 0.5rem;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    width: 36px;
-                    height: 36px;
-                    padding: 0;
-                    background: linear-gradient(135deg, #bd5d38 0%, #a04d2f 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    font-size: 0.9rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.3s ease;
-                    z-index: 60;
-                }
-                
-                .timeline-toggle-btn:hover {
-                    transform: translateY(-50%) scale(1.1);
-                    box-shadow: 0 4px 8px rgba(189, 93, 56, 0.3);
-                }
-                
-                .timeline-toggle-btn i {
-                    transition: opacity 0.2s ease;
-                }
-                
-                .timeline-toggle-btn.expanded {
-                    transform: translateY(-50%);
-                }
-            }
-            
-            /* Tablet and Desktop: Show content normally inline, hide toggle button */
-            @media (min-width: 501px) {
-                .timeline-content {
-                    position: relative;
-                }
-                
-                .timeline-expanded-content {
-                    display: block !important;
-                    position: static !important;
-                    background: none !important;
-                    border: none !important;
-                    box-shadow: none !important;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                }
-                
-                .timeline-toggle-btn {
-                    display: none !important;
-                }
-            }
-            
-            /* Service Cards Styling */
-            .service-card {
-                background: #fff;
-                border-radius: 12px;
-                padding: 2rem 1.5rem;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s ease;
-                border: 1px solid #e9ecef;
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-            }
-            
-            .service-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-                border-color: #bd5d38;
-            }
-            
-            .service-image-container {
-                width: 80px;
-                height: 80px;
-                margin: 0 auto 1.5rem;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #bd5d38, #a04d2f);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 15px;
-                box-shadow: 0 4px 15px rgba(189, 93, 56, 0.3);
-            }
-            
-            .service-image {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                filter: brightness(0) invert(1);
-            }
-            
-            .service-title {
-                color: #343a40;
-                font-weight: 600;
-                margin-bottom: 1rem;
-                font-size: 1.25rem;
-                line-height: 1.3;
-            }
-            
-            .service-description {
-                color: #495057;
-                font-size: 0.95rem;
-                line-height: 1.6;
-                margin-bottom: 1rem !important;
-                flex-grow: 0;
-            }
-            
-            .service-list {
-                list-style: none;
-                padding: 0;
-                margin: 0 !important;
-                margin-top: 0.15rem !important;
-                text-align: left;
-            }
-            
-            .service-list li {
-                color: #495057;
-                font-size: 0.9rem;
-                line-height: 1.6;
-                margin-bottom: 0.5rem;
-                padding-left: 1.5rem;
-                position: relative;
-            }
-            
-            .service-list li::before {
-                content: '•';
-                color: #bd5d38;
-                font-weight: bold;
-                position: absolute;
-                left: 0;
-            }
+    /* ═══════════════════════════════════════
+       SIDEBAR
+    ═══════════════════════════════════════ */
+    /* Remove circuit texture */
+    body::before { display: none !important; }
 
-            /* Responsive adjustments for service cards */
-            @media (max-width: 768px) {
-                .service-card {
-                    padding: 1.5rem 1rem;
-                    margin-bottom: 1rem;
-                }
-                
-                .service-image-container {
-                    width: 70px;
-                    height: 70px;
-                    margin-bottom: 1rem;
-                }
-                
-                .service-title {
-                    font-size: 1.25rem;
-                }
-                
-                .service-description {
-                    font-size: 0.9rem;
-                }
-            }
-            
-            @media (max-width: 480px) {
-                .service-card {
-                    padding: 1.25rem 0.75rem;
-                }
-                
-                .service-image-container {
-                    width: 60px;
-                    height: 60px;
-                }
-                
-                .service-title {
-                    font-size: 1rem;
-                }
-            }
-            
-            /* Override uppercase text transforms to allow lowercase headings */
-            h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-                text-transform: none !important;
-            }
-            
-            .subheading {
-                text-transform: none !important;
-            }
-            
-            /* Darken main text for better readability */
-            body, p, .lead {
-                color: #495057 !important;
-            }
-            
-            /* Darken subheadings and other section text */
-            .subheading {
-                color: #495057 !important;
-            }
-            
-            /* Darken contact info text */
-            .contact-info p {
-                color: #495057 !important;
-            }
-            
-            /* Darken skill items and list text */
-            .skill-item span, .fa-ul li {
-                color: #495057 !important;
-            }
-            
-            /* Compact dropdown menu positioned under hamburger */
-            @media (max-width: 991.98px) {
-                #topNavbarNav {
-                    position: absolute;
-                    top: 100%;
-                    right: 15px;
-                    background-color: rgba(45, 55, 72, 0.95);
-                    border-radius: 0.375rem;
-                    padding: 0.5rem;
-                    min-width: 200px;
-                    max-width: 250px;
-                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                }
-                #topNavbarNav .navbar-nav {
-                    flex-direction: column;
-                }
-                #topNavbarNav .nav-item {
-                    padding: 0.25rem 0;
-                }
-                #topNavbarNav .nav-link {
-                    padding: 0.375rem 0.75rem;
-                    font-size: 0.9rem;
-                }
-            }
-        </style>
-    </head>
-    <body id="page-top">
-        <!-- Top Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="background-color: #2d3748; z-index: 1031;">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center ms-4" href="#page-top">
-                    <img src="assets/img/mb_logo.png" alt="Logo" class="me-3" style="width: 50px; height: 50px; object-fit: contain;">
-                    <span class="company-name-single-line">
-                        Elektrotekniska AB
-                    </span>
-                </a>
-                <button class="navbar-toggler" type="button" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="topNavbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Navigation items - only visible on mobile/tablet when sidebar is hidden -->
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
-                        <li class="nav-item d-lg-none"><hr class="dropdown-divider"></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-globe me-1"></i>
-                                <span id="currentLang">SV</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">
-                                    <img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="English" class="me-2">
-                                    English
-                                </a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setLanguage('sv')">
-                                    <img src="https://flagcdn.com/16x12/se.png" width="16" height="12" alt="Svenska" class="me-2">
-                                    Svenska
-                                </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- Side Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top d-none d-lg-flex" id="sideNav" style="top: 70px; height: calc(100vh - 70px);">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Mikael Bengtsson</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.png" alt="Mikael Bengtsson" /></span>
+    /* Desktop gradient — keep subtle but cleaner */
+    @media (min-width: 992px) {
+      body {
+        background: #fafaf9 !important;
+        background-attachment: fixed;
+      }
+      .resume-section { background-color: #fafaf9 !important; }
+      #sideNav { box-shadow: 1px 0 6px rgba(0,0,0,0.12); }
+    }
+
+    #sideNav {
+      background: #1e2739 !important;
+      top: 70px !important;
+      height: calc(100vh - 70px) !important;
+      display: none;
+      flex-direction: column;
+    }
+    @media (min-width: 992px) { #sideNav { display: flex !important; } }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 28px 20px 24px;
+      overflow-y: auto;
+    }
+    .sidebar-logo {
+      width: 52px; height: 52px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+    .sidebar-name {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .sidebar-subtitle {
+      color: #bd5d38;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+    .sidebar-nav { flex: 1; }
+    .sidebar-link {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-left: 3px solid transparent;
+      text-decoration: none !important;
+      letter-spacing: 0.03em;
+      transition: all 0.18s ease;
+      border-radius: 0 4px 4px 0;
+    }
+    .sidebar-link:hover {
+      color: rgba(255,255,255,0.9) !important;
+      background: rgba(255,255,255,0.05);
+      border-left-color: rgba(189,93,56,0.5);
+    }
+    .sidebar-link.active {
+      color: #bd5d38 !important;
+      border-left-color: #bd5d38;
+      background: rgba(189,93,56,0.08);
+      font-weight: 600;
+    }
+    .sidebar-profile-wrap {
+      padding-top: 20px;
+      text-align: center;
+    }
+    .sidebar-profile {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #bd5d38;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Sidebar width responsive */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      body { padding-left: 16rem !important; }
+      #sideNav { width: 16rem !important; }
+    }
+    @media (min-width: 1441px) {
+      body { padding-left: 22rem !important; }
+      #sideNav { width: 22rem !important; }
+    }
+    @media (max-width: 1023px) {
+      body { padding-left: 0 !important; }
+      #sideNav { display: none !important; }
+    }
+
+    /* ═══════════════════════════════════════
+       MAIN CONTENT
+    ═══════════════════════════════════════ */
+    .container-fluid.p-0 { margin-top: 70px !important; }
+    .resume-section { padding: 5rem 3rem !important; }
+    @media (max-width: 768px) { .resume-section { padding: 3.5rem 1.5rem !important; } }
+    @media (max-width: 480px) { .resume-section { padding: 2.5rem 1rem !important; } }
+
+    /* Section h2 */
+    .resume-section h2.mb-5 {
+      font-size: 1.75rem !important;
+      font-weight: 700 !important;
+      color: #1f2937 !important;
+      margin-bottom: 2rem !important;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #f3f4f6;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO — About section
+    ═══════════════════════════════════════ */
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #bd5d38;
+      margin-bottom: 10px;
+    }
+    h1.hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
+      font-weight: 700 !important;
+      color: #1f2937 !important;
+      line-height: 1.0 !important;
+      margin-bottom: 6px !important;
+    }
+    .hero-rule {
+      width: 48px; height: 3px;
+      background: #bd5d38;
+      border-radius: 2px;
+      margin: 14px 0 18px;
+    }
+    .hero-lead {
+      font-size: 1rem !important;
+      font-weight: 400 !important;
+      color: #4b5563 !important;
+      line-height: 1.7 !important;
+      max-width: 520px;
+      margin-bottom: 0 !important;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+    .btn-primary-mb {
+      background: #bd5d38;
+      color: #fff !important;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none !important;
+      display: inline-block;
+      transition: background 0.18s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary-mb:hover { background: #a04d2f; }
+    .btn-outline-mb {
+      background: transparent;
+      color: #1f2937 !important;
+      border: 1.5px solid #d1d5db;
+      padding: 11px 26px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none !important;
+      display: inline-block;
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .btn-outline-mb:hover { border-color: #1f2937; }
+
+    /* Hero image strip */
+    .hero-image-strip {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 640px;
+      height: 160px;
+    }
+    .hero-image-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .hero-image-strip::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+        rgba(250,250,249,0.85) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(250,250,249,0.85) 100%
+      );
+    }
+
+    /* ═══════════════════════════════════════
+       SERVICE CARDS — new style
+    ═══════════════════════════════════════ */
+    .service-card-new {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 18px 16px;
+      border: 1px solid #e9ecef;
+      border-left: 3px solid #bd5d38;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      height: 100%;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .service-card-new:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    .svc-icon {
+      width: 42px; height: 42px;
+      border-radius: 9px;
+      background: #fdf1ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .svc-icon img {
+      width: 24px; height: 24px;
+      object-fit: contain;
+    }
+    .svc-body { flex: 1; min-width: 0; }
+    .svc-title {
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      color: #1f2937 !important;
+      margin-bottom: 4px !important;
+    }
+    .svc-sub {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .svc-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 9px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      color: #4b5563;
+    }
+
+    /* ═══════════════════════════════════════
+       TIMELINE — minor polish
+    ═══════════════════════════════════════ */
+    .timeline { position: relative; padding: 1.5rem 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #bd5d38;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .timeline-content { border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+    .timeline-date { color: #bd5d38; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .timeline-content h3 { font-size: 1.1rem !important; }
+    .timeline-image { border: 3px solid #e5e7eb; }
+    .timeline-item { position: relative; margin-bottom: -0.5rem; display: flex; align-items: center; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-content { background: #fff; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border: 1px solid #e9ecef; position: relative; width: 45%; }
+    .timeline-item:nth-child(odd) .timeline-content { margin-left: auto; margin-right: calc(50% + 95px); }
+    .timeline-item:nth-child(even) .timeline-content { margin-right: auto; margin-left: calc(50% + 95px); }
+    .timeline-content::before { content: ''; position: absolute; top: 50%; width: 0; height: 0; border: 12px solid transparent; transform: translateY(-50%); }
+    .timeline-item:nth-child(odd) .timeline-content::before { left: -12px; border-right-color: #fff; }
+    .timeline-item:nth-child(even) .timeline-content::before { right: -12px; border-left-color: #fff; }
+    .timeline-image { position: absolute; left: calc(50% - 75px); top: 50%; transform: translateY(-50%); width: 150px; height: 150px; border-radius: 50%; background: white; border: 3px solid #e5e7eb; box-shadow: 0 3px 8px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; z-index: 10; }
+    .timeline-image img { width: 140px; height: 140px; border-radius: 50%; object-fit: contain; }
+    .timeline-item:nth-child(1) .timeline-image img { width: 80px; height: 80px; border-radius: 0; }
+    .timeline-item:nth-child(1) .timeline-image { background: #1e2739; }
+    .timeline-item:nth-child(2) .timeline-image img { width: 110px; height: 110px; }
+    .timeline-item:nth-child(3) .timeline-image img { width: 200px; height: 200px; }
+    .timeline-item:nth-child(4) .timeline-image img { width: 110px; height: 110px; }
+    .timeline-item:nth-child(5) .timeline-image img { width: 140px; height: 140px; }
+
+    /* Timeline mobile */
+    @media (max-width: 1023px) {
+      .timeline::before { left: 40px; }
+      .timeline-item { margin-bottom: 2rem !important; }
+      .timeline-content { width: calc(100% - 110px) !important; margin-left: 110px !important; margin-right: 0 !important; }
+      .timeline-content::before { left: -12px !important; right: auto !important; border-right-color: #fff !important; border-left-color: transparent !important; }
+      .timeline-image { left: 0px; width: 80px; height: 80px; }
+      .timeline-image img { width: 60px !important; height: 60px !important; }
+      .timeline-item:nth-child(1) .timeline-image img { width: 40px !important; height: 40px !important; }
+      .timeline-item:nth-child(3) .timeline-image img { width: 100px !important; height: 100px !important; }
+    }
+
+    /* Timeline mobile expand */
+    @media (max-width: 500px) {
+      .timeline-content {
+        position: relative;
+        padding-right: 48px; /* room for button */
+      }
+      /* Hidden by default — no absolute positioning, just display:none */
+      .timeline-content .timeline-expanded-content {
+        display: none;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #f3f4f6;
+      }
+      /* Expanded — flows below, pushes siblings down naturally */
+      .timeline-content .timeline-expanded-content.expanded {
+        display: block;
+      }
+      .timeline-toggle-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 1rem;
+        transform: none;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        background: #bd5d38;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        z-index: 60;
+      }
+      .timeline-toggle-btn:hover { background: #a04d2f; }
+    }
+    @media (min-width: 501px) {
+      .timeline-expanded-content { display: block !important; position: static !important; background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+      .timeline-toggle-btn { display: none !important; }
+    }
+
+    /* ═══════════════════════════════════════
+       SKILLS — redesigned
+    ═══════════════════════════════════════ */
+    .skills-cat-new {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 18px;
+      height: 100%;
+      border: 1px solid #e9ecef;
+      transition: box-shadow 0.2s;
+    }
+    .skills-cat-new:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+    .skills-cat-label {
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px !important;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .skills-cat-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .skill-tag-new {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 11px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      color: #4b5563;
+      margin: 3px 3px 0 0;
+      transition: all 0.18s ease;
+      cursor: default;
+    }
+    .skill-tag-new:hover {
+      background: #bd5d38;
+      color: #fff;
+      border-color: #bd5d38;
+      transform: scale(1.04);
+    }
+
+    /* ═══════════════════════════════════════
+       PROJECTS — placeholder card
+    ═══════════════════════════════════════ */
+    .project-placeholder {
+      background: #fff;
+      border-radius: 10px;
+      border: 1.5px dashed #d1d5db;
+      padding: 32px 24px;
+      max-width: 480px;
+      text-align: center;
+    }
+    .project-placeholder-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 20px;
+    }
+
+    /* ═══════════════════════════════════════
+       CONTACT — dark section
+    ═══════════════════════════════════════ */
+    #contact.resume-section {
+      background: #1e2739 !important;
+    }
+    .contact-dark-inner { max-width: 540px; }
+    .contact-rule {
+      width: 48px; height: 3px;
+      background: #bd5d38;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    #contact h2.mb-5 {
+      color: #fff !important;
+      border-bottom-color: rgba(255,255,255,0.08) !important;
+      font-size: 1.75rem !important;
+    }
+    .contact-tagline {
+      font-size: 1rem !important;
+      color: rgba(255,255,255,0.55) !important;
+      line-height: 1.7;
+      margin-bottom: 24px !important;
+      max-width: 400px;
+    }
+    .contact-email-btn {
+      display: inline-block;
+      background: #bd5d38;
+      color: #fff !important;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 7px;
+      text-decoration: none !important;
+      letter-spacing: 0.01em;
+      margin-bottom: 28px;
+      transition: background 0.18s;
+    }
+    .contact-email-btn:hover { background: #a04d2f; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 13px;
+      text-decoration: none !important;
+      transition: color 0.18s;
+    }
+    .contact-link-item:hover { color: rgba(255,255,255,0.85) !important; }
+    .contact-link-item i { color: #bd5d38; width: 16px; text-align: center; }
+
+    /* ═══════════════════════════════════════
+       SERVICE CARD EXTRAS
+    ═══════════════════════════════════════ */
+    .svc-desc {
+      font-size: 0.85rem;
+      color: #4b5563;
+      line-height: 1.6;
+      margin: 10px 0 8px;
+    }
+    .svc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .svc-list li {
+      font-size: 0.82rem;
+      color: #4b5563;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+    .svc-list li::before {
+      content: '•';
+      color: #bd5d38;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       HERO IMAGES
+    ═══════════════════════════════════════ */
+    .hero-images {
+      display: flex;
+      gap: 1.5rem;
+      max-width: 640px;
+    }
+    .hero-img {
+      width: 50%;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero-img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    }
+    @media (max-width: 600px) {
+      .hero-images { flex-direction: column; }
+      .hero-img { width: 100%; height: 160px; }
+    }
+
+    /* scroll offset for fixed nav */
+    section.resume-section { scroll-margin-top: 70px; }
+
+    /* ═══════════════════════════════════════
+       MOBILE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      h1.hero-name { font-size: 2.4rem !important; }
+      #topNav { min-height: 65px !important; }
+      .container-fluid.p-0 { margin-top: 65px !important; }
+    }
+    @media (max-width: 480px) {
+      h1.hero-name { font-size: 2rem !important; }
+    }
+    @media (max-width: 991.98px) {
+      #topNavbarNav { position: absolute; top: 100%; right: 15px; background-color: rgba(30,39,57,0.97); border-radius: 0.375rem; padding: 0.5rem; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.08); }
+      #topNavbarNav .navbar-nav { flex-direction: column; }
+      #topNavbarNav .nav-item { padding: 0.2rem 0; }
+      #topNavbarNav .nav-link { padding: 0.375rem 0.75rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body id="page-top">
+
+  <!-- ─── TOP NAV (mobile/tablet) ─── -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="topNav" style="z-index:1031;">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center ms-3" href="#page-top">
+        <img src="assets/img/mb_logo.png" alt="MB Logo" style="width:44px;height:44px;object-fit:contain;" class="me-3">
+        <span class="company-name-line">Mikael Bengtsson Elektrotekniska AB</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topNavbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a></li>
+          <li class="nav-item d-lg-none"><a class="nav-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
+          <li class="nav-item d-lg-none"><hr class="dropdown-divider"></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-globe me-1"></i>
+              <span id="currentLang">SV</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!-- Page Content-->
-        <div class="container-fluid p-0" style="margin-top: 70px;">
-            <!-- About-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0" 
-                        data-lang-sv="Elektronik och<br>Mjukvaruutvecklare" 
-                        data-lang-en="Electronics and<br>Software Developer">
-                        Elektronik och<br>
-                        Mjukvaruutvecklare
-                    </h1>
-                    <div class="about-content mt-4">
-                        <div class="about-text">
-                            <p class="lead mb-5" 
-                                data-lang-sv="Med över tio års erfarenhet inom elektronik och inbyggda system hjälper jag företag med produktutveckling genom hela utvecklingskedjan – från tidigt koncept till serieproduktion." 
-                                data-lang-en="With over ten years of experience in electronics and embedded systems, I support companies with product development throughout the entire development chain – from early concept to final production.">
-                            <p class="lead mb-5" 
-                                data-lang-sv="Jag erbjuder tjänster inom elektronikdesign, firmware-utveckling, testsystem och EMC/certifiering." 
-                                data-lang-en="I offer services in electronics design, firmware development, test systems, and EMC/certification.">
-                        </div>
-                    </div>
-                    <div class="about-images-below">
-                        <div class="image-diagonal-container">
-                            <img src="assets/img/Kicad.png" alt="KiCad PCB Design" class="diagonal-image diagonal-image-1" />
-                            <img src="assets/img/IC.jpg" alt="Integrated Circuit" class="diagonal-image diagonal-image-2" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Services-->
-            <section class="resume-section" id="services">
-                <div class="resume-section-content">
-                    <h2 class="mb-5" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</h2>
-                    <div class="row g-4">
-                        <!-- Elektronikutveckling -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="service-card text-center h-100">
-                                <div class="service-image-container mb-3">
-                                    <img src="assets/img/electro_1.png" alt="Elektronikutveckling" class="service-image">
-                                </div>
-                                <h4 class="service-title" data-lang-sv="Elektronikutveckling" data-lang-en="Electronics Development">Elektronikutveckling</h4>
-                                <p class="service-description" data-lang-sv="Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt." data-lang-en="Complete solutions for electronics design, from troubleshooting existing systems to prototype development and finished products.">
-                                    Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt.
-                                </p>
-                                <ul class="service-list">
-                                    <li data-lang-sv="Kretskortsdesign och PCB-layout" data-lang-en="Circuit board design and PCB layout">Kretskortsdesign och PCB-layout</li>
-                                    <li data-lang-sv="Komponentval, EOL support samt kostnadseffektivisering" data-lang-en="Component selection, EOL support, and cost optimization">Komponentval, EOL support samt kostnadseffektivisering</li>
-                                    <li data-lang-sv="Systemdesign och integration" data-lang-en="System design and integration">Systemdesign och integration</li>
-                                    <li data-lang-sv="Produktionsoptimering (DFM - Design for Manufacturing)" data-lang-en="Production optimization (DFM - Design for Manufacturing)">Produktionsoptimering (DFM - Design for Manufacturing)</li>
-                                    <li data-lang-sv="Snabb och kostnadseffektiv prototyputveckling" data-lang-en="Fast and cost-effective prototype development">Snabb och kostnadseffektiv prototyputveckling</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Mjukvaruuutveckling -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="service-card text-center h-100">
-                                <div class="service-image-container mb-3">
-                                    <img src="assets/img/logo_footprint_3_orange.png" alt="Mjukvaruuutveckling" class="service-image">
-                                </div>
-                                <h4 class="service-title" data-lang-sv="Mjukvaruutveckling" data-lang-en="Software Development">Mjukvaruutveckling</h4>
-                                <p class="service-description" data-lang-sv="Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll." data-lang-en="Software for embedded systems and automation with experience across multiple processor architectures and protocols.">
-                                    Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll.
-                                </p>
-                                <ul class="service-list">
-                                    <li data-lang-sv="Firmware för inbyggda system (C/C++), RTOS och Embedded Linux" data-lang-en="Firmware for embedded systems (C/C++), RTOS, and Embedded Linux">Firmware för inbyggda system (C/C++), RTOS och Embedded Linux</li>
-                                    <li data-lang-sv="Automationsskript och testsystem (Python)" data-lang-en="Automation scripts and test systems (Python)">Automationsskript och testsystem (Python)</li>
-                                    <li data-lang-sv="Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl." data-lang-en="Development for ARM Cortex (STM32, nRF) and ESP32, among others">Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl.</li>
-                                    <li>CAN, CANopen, J1939</li>
-                                    <li>FreeRTOS, Zephyr</li>
-                                    <li data-lang-sv="DevOps och versionshantering (Git), CI/CD" data-lang-en="DevOps and version control (Git), CI/CD">DevOps och versionshantering (Git), CI/CD</li>
-                                    <li data-lang-sv="Modellering och simulering (Matlab, Simulink)" data-lang-en="Modeling and simulation (Matlab, Simulink)">Modellering och simulering (Matlab, Simulink)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Test och Automation -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="service-card text-center h-100">
-                                <div class="service-image-container mb-3">
-                                    <img src="assets/img/robo_logo.png" alt="Test och Automation" class="service-image">
-                                </div>
-                                <h4 class="service-title" data-lang-sv="Test och Automation" data-lang-en="Test and Automation">Test och Automation</h4>
-                                <p class="service-description" data-lang-sv="Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion." data-lang-en="Solutions for production and quality assurance from prototype to mass production.">
-                                    Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion.
-                                </p>
-                                <ul class="service-list">
-                                    <li data-lang-sv="Automationsutrustning för produktionsmiljö" data-lang-en="Automation equipment for production environments">Automationsutrustning för produktionsmiljö</li>
-                                    <li data-lang-sv="Framtagning av testfixturer för PCB" data-lang-en="Development of test fixtures for PCB">Framtagning av testfixturer för PCB</li>
-                                    <li data-lang-sv="Testsystem för serieproduktion" data-lang-en="Test systems for mass production">Testsystem för serieproduktion</li>
-                                    <li data-lang-sv="Kvalitetskontroll och diagnostik" data-lang-en="Quality control and diagnostics">Kvalitetskontroll och diagnostik</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Mätning och Certifiering -->
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="service-card text-center h-100">
-                                <div class="service-image-container mb-3">
-                                    <img src="assets/img/EMC3_logo.png" alt="Mätning och Certifiering" class="service-image">
-                                </div>
-                                <h4 class="service-title" data-lang-sv="Mätning och Certifiering" data-lang-en="Measurement and Certification">Mätning och Certifiering</h4>
-                                <p class="service-description" data-lang-sv="Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder." data-lang-en="Technical support for EMC, certification, and compliance with safety standards.">
-                                    Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder.
-                                </p>
-                                <ul class="service-list">
-                                    <li data-lang-sv="Felsökning och design för EMC-kompatibilitet" data-lang-en="Troubleshooting and design for EMC compatibility">Felsökning och design för EMC-kompatibilitet</li>
-                                    <li data-lang-sv="CE-märkning och produktsäkerhetsstandarder" data-lang-en="CE marking and product safety standards">CE-märkning och produktsäkerhetsstandarder</li>
-                                    <li data-lang-sv="Support vid certifieringsprocessen" data-lang-en="Support during the certification process">Support vid certifieringsprocessen</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</h2>
-                    <div class="timeline">
-                        <!-- Current: Consultant -->
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                <img src="assets/img/mb_logo.png" alt="Konsultarbete">
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-date" data-lang-sv="2024 - nuvarande" data-lang-en="2024 - present">2024 - nuvarande</div>
-                                <h3 class="mb-2">Mikael Bengtsson Elektrotekniska AB</h3>
-                                <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Egenkonsult inom Elektronik och<br>Embeddedutveckling" data-lang-en="Independent Consultant in Electronics and<br>Embedded Development">Egenkonsult inom Elektronik och<br>Embeddedutveckling</div>
-                                    <p class="mb-0" data-lang-sv="Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas." data-lang-en="Offering services in electronics and software development. Taking on assignments covering the entire development chain as well as specific problems that need to be solved.">Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas.</p>
-                                </div>
-                                <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Most recent: Elysics AB -->
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                <img src="assets/img/elysics.png" alt="Elysics AB">
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-date">2024 - 2025</div>
-                                <h3 class="mb-2">Elysics AB</h3>
-                                <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Utvecklingsingenjör<br>Elektronik och Embedded" data-lang-en="Development Engineer<br>Electronics and Embedded">Utvecklingsingenjör<br>Elektronik och Embedded</div>
-                                    <p class="mb-0" data-lang-sv="På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. Jag var även med och utvecklade testsystem för serieproduktion." data-lang-en="At Elysics, I worked on developing embedded systems for industrial products, focusing on both electronics design and software development. I also helped develop test systems for mass production.">På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. 
-                                        Jag var även med och utvecklade testsystem för serieproduktion.</p>
-                                </div>
-                                <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Plejd AB -->
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                <img src="assets/img/plejd.png" alt="Plejd AB">
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-date">2019 - 2024</div>
-                                <h3 class="mb-2">Plejd AB</h3>
-                                <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Elektronikingenjör" data-lang-en="Electronics Engineer">Elektronikingenjör</div>
-                                    <p class="mb-0" data-lang-sv="Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). Högt fokus på DFM (Design for Manufacturing). Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut." data-lang-en="Developed electronics for IoT products. Development included power supply, wireless communication, and certification (EMC/CE). High focus on DFM (Design for Manufacturing). Was project lead for Smart Plug (SPR-01) with responsibility for planning, team coordination, and key product decisions.">Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). 
-                                        Högt fokus på DFM (Design for Manufacturing). Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut.</p>
-                                </div>
-                                <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Pluspole AB -->
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                <img src="assets/img/pluspole.png" alt="Pluspole AB">
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-date">2016 - 2019</div>
-                                <h3 class="mb-2">Pluspole AB</h3>
-                                <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Embeddedutvecklare" data-lang-en="Embedded Developer">Embeddedutvecklare</div>
-                                    <p class="mb-0" data-lang-sv="Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer." data-lang-en="Consulting work in product development focusing on R&D and prototype development. Worked on projects involving motor control, control systems, and software development on ARM Cortex-M processors.">Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som 
-                                        involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer. </p>
-                                </div>
-                                <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Chalmers Tekniska Högskola -->
-                        <div class="timeline-item">
-                            <div class="timeline-image">
-                                <img src="assets/img/chalmers.jpg" alt="Chalmers Tekniska Högskola">
-                            </div>
-                            <div class="timeline-content">
-                                <div class="timeline-date">2011 - 2016</div>
-                                <h3 class="mb-2" data-lang-sv="Chalmers<br>Tekniska Högskola" data-lang-en="Chalmers<br>University of Technology">Chalmers<br>Tekniska Högskola</h3>
-                                <div class="timeline-expanded-content">
-                                    <div class="mb-3" style="font-size: 1.25rem; color: #6c757d; font-weight: 500;" data-lang-sv="Civilingenjör, Elektroteknik" data-lang-en="M.Sc. Electrical Engineering">Civilingenjör, Elektroteknik</div>
-                                    <p class="mb-2">Masters: Systems, Control and Mechatronics.</p>
-                                    <p class="mb-2" data-lang-sv="Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering." data-lang-en="Specialization in signal processing, embedded systems, control engineering, and simulation.">Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering.</p>
-                                    <p class="mb-0" data-lang-sv="Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA)." data-lang-en="Board member of the Electrical Engineering Student Union's Telecommunications Division (ETA).">Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA).</p>
-                                </div>
-                                <button class="timeline-toggle-btn" onclick="toggleTimeline(this)">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</h2>
-                    
-                    <div class="row g-4">
-                        <!-- Programming & Tools -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="skills-category">
-                                <h3 class="skills-category-title" data-lang-sv="Programmering" data-lang-en="Programming">Programmering</h3>
-                                <ul class="skills-list">
-                                    <li>C/C++</li>
-                                    <li>Python</li>
-                                    <li>Matlab</li>
-                                    <li>Simulink</li>
-                                    <li>Embedded Linux</li>
-                                    <li>Git, CI/CD</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Design Tools -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="skills-category">
-                                <h3 class="skills-category-title" data-lang-sv="Design & Verktyg" data-lang-en="Design & Tools">Design & Verktyg</h3>
-                                <ul class="skills-list">
-                                    <li>KiCad</li>
-                                    <li>Altium Designer</li>
-                                    <li>Onshape</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Core Areas -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="skills-category">
-                                <h3 class="skills-category-title" data-lang-sv="Expertområden" data-lang-en="Areas of Expertise">Expertområden</h3>
-                                <ul class="skills-list">
-                                    <li data-lang-sv="IoT och trådlös kommunikation" data-lang-en="IoT and wireless communication">IoT och trådlös kommunikation</li>
-                                    <li data-lang-sv="Reglerteknik och simulering" data-lang-en="Control engineering and simulation">Reglerteknik och simulering</li>
-                                    <li data-lang-sv="Signalbehandling" data-lang-en="Signal processing">Signalbehandling</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <style>
-                .skills-category {
-                    background: #fff;
-                    border-radius: 8px;
-                    padding: 1.5rem;
-                    height: 100%;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-                    border: 1px solid #e9ecef;
-                    transition: all 0.3s ease;
-                }
-                
-                .skills-category:hover {
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-                    transform: translateY(-2px);
-                }
-                
-                .skills-category-title {
-                    font-size: 1.1rem;
-                    font-weight: 600;
-                    color: #bd5d38;
-                    margin-bottom: 1rem;
-                    padding-bottom: 0.5rem;
-                    border-bottom: 2px solid #f0f0f0;
-                }
-                
-                .skills-tags {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 0.5rem;
-                }
-                
-                .skill-tag {
-                    display: inline-block;
-                    padding: 0.4rem 0.8rem;
-                    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-                    border: 1px solid #dee2e6;
-                    border-radius: 20px;
-                    font-size: 0.85rem;
-                    color: #495057;
-                    font-weight: 500;
-                    transition: all 0.2s ease;
-                }
-                
-                .skill-tag:hover {
-                    background: linear-gradient(135deg, #bd5d38 0%, #a04d2f 100%);
-                    color: white;
-                    border-color: #bd5d38;
-                    transform: scale(1.05);
-                }
-                
-                @media (max-width: 768px) {
-                    .skills-category {
-                        padding: 1.25rem;
-                    }
-                    
-                    .skills-category-title {
-                        font-size: 1rem;
-                    }
-                    
-                    .skill-tag {
-                        font-size: 0.8rem;
-                        padding: 0.35rem 0.7rem;
-                    }
-                }
-            </style>
-            <hr class="m-0" />
-            <!-- Projects-->
-            <section class="resume-section" id="interests">
-                <div class="resume-section-content">
-                    <h2 class="mb-2" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</h2>
-                    <p class="lead mb-0">Stay tuned!</p>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Contact-->
-            <section class="resume-section" id="contact">
-                <div class="resume-section-content">
-                    <h2 class="mb-5" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</h2>
-                            <div class="contact-info">
-                                <p class="mb-2">
-                                    <i class="fas fa-envelope me-2"></i>
-                                    <a href="mailto:mikael.bengtsson@mbelektro.se">mikael.bengtsson@mbelektro.se</a>
-                                </p>
-                                <p class="mb-2">
-                                    <i class="fas fa-phone me-2"></i>
-                                    <a href="tel:+46735078198">+46735078198</a>
-                                </p>
-                                <p class="mb-2">
-                                    <i class="fas fa-map-marker-alt me-2"></i>
-                                    Frösö-Berge 185, 832 96 Frösön
-                                </p>
-                                <p class="mb-0">
-                                    <i class="fab fa-linkedin me-2"></i>
-                                    <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank">LinkedIn</a>
-                                </p>
-                                <p class="mb-0">
-                                    <i class="fab fa-github me-2"></i>
-                                    <a href="https://github.com/mikbeng" target="_blank">GitHub</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+              <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">
+                <img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="English" class="me-2">English
+              </a></li>
+              <li><a class="dropdown-item" href="#" onclick="setLanguage('sv')">
+                <img src="https://flagcdn.com/16x12/se.png" width="16" height="12" alt="Svenska" class="me-2">Svenska
+              </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── SIDEBAR (desktop) ─── -->
+  <nav id="sideNav" aria-label="Side navigation">
+    <div class="sidebar-inner">
+      <!-- Logo + identity -->
+      <a href="#page-top" class="js-scroll-trigger" style="text-decoration:none;">
+        <img src="assets/img/mb_logo.png" alt="MB Logo" class="sidebar-logo">
+        <div class="sidebar-name">Mikael Bengtsson</div>
+        <div class="sidebar-subtitle">Elektrotekniska AB</div>
+      </a>
+
+      <!-- Nav links -->
+      <nav class="sidebar-nav" id="sidebarNav">
+        <a class="sidebar-link js-scroll-trigger" href="#services" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</a>
+        <a class="sidebar-link js-scroll-trigger" href="#experience" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</a>
+        <a class="sidebar-link js-scroll-trigger" href="#skills" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</a>
+        <a class="sidebar-link js-scroll-trigger" href="#interests" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</a>
+        <a class="sidebar-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a>
+      </nav>
+
+      <!-- Profile photo pinned to bottom -->
+      <div class="sidebar-profile-wrap">
+        <img src="assets/img/profile.png" alt="Mikael Bengtsson" class="sidebar-profile">
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── PAGE CONTENT ─── -->
+  <div class="container-fluid p-0">
+
+    <!-- ABOUT / HERO -->
+    <section class="resume-section" id="about">
+      <div class="resume-section-content">
+        <div class="hero-eyebrow" data-lang-sv="Produktutvecklare – Östersund / Remote – Sverige" data-lang-en="Product Developer – Östersund / Remote – Sweden">Produktutvecklare – Östersund / Remote – Sverige</div>
+        <h1 class="hero-name" data-lang-sv="Mikael<br>Bengtsson" data-lang-en="Mikael<br>Bengtsson">Mikael<br>Bengtsson</h1>
+        <div class="hero-rule"></div>
+        <p class="hero-lead"
+           data-lang-sv="Med över tio års erfarenhet inom elektronik och inbyggda system hjälper jag företag med produktutveckling genom hela kedjan – från tidigt koncept till serieproduktion."
+           data-lang-en="With over ten years of experience in electronics and embedded systems, I support companies throughout the entire development chain – from early concept to final production.">
+          Med över tio års erfarenhet inom elektronik och inbyggda system hjälper jag företag med produktutveckling genom hela kedjan – från tidigt koncept till serieproduktion.
+        </p>
+        <p class="hero-lead mt-2"
+           data-lang-sv="Jag erbjuder tjänster inom elektronikdesign, firmware-utveckling, testsystem och EMC/certifiering."
+           data-lang-en="I offer services in electronics design, firmware development, test systems, and EMC/certification.">
+          Jag erbjuder tjänster inom elektronikdesign, firmware-utveckling, testsystem och EMC/certifiering.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary-mb js-scroll-trigger" data-lang-sv="Kontakta mig" data-lang-en="Contact me">Kontakta mig</a>
+          <a href="#services" class="btn-outline-mb js-scroll-trigger" data-lang-sv="Se tjänster →" data-lang-en="View services →">Se tjänster →</a>
         </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- Language Selector JS-->
-        <script>
-            // Timeline expand/collapse functionality for mobile
-            function toggleTimeline(button) {
-                // Only run on mobile (screen width <= 500px)
-                if (window.innerWidth > 500) {
-                    return;
-                }
-                
-                const timelineItem = button.closest('.timeline-item');
-                const expandedContent = timelineItem ? timelineItem.querySelector('.timeline-expanded-content') : null;
-                
-                // Try to find icon - either <i> tag or the <svg> inside it
-                let icon = button.querySelector('i');
-                if (!icon) {
-                    icon = button.querySelector('svg');
-                }
-                
-                const isExpanded = expandedContent ? expandedContent.classList.contains('expanded') : false;
-                
-                // Safety check
-                if (!icon || !expandedContent) {
-                    return;
-                }
-                
-                // Make sure we're working with the <i> element, not the svg
-                if (icon.tagName === 'SVG') {
-                    icon = icon.closest('i') || icon;
-                }
-                
-                // Close all other expanded timeline items
-                document.querySelectorAll('.timeline-item.expanded').forEach(item => {
-                    if (item !== timelineItem) {
-                        item.classList.remove('expanded');
-                        const content = item.querySelector('.timeline-expanded-content');
-                        const btn = item.querySelector('.timeline-toggle-btn');
-                        const btnIcon = btn ? btn.querySelector('i') : null;
-                        if (content) content.classList.remove('expanded');
-                        if (btn) btn.classList.remove('expanded');
-                        if (btnIcon) {
-                            btnIcon.classList.remove('fa-chevron-left');
-                            btnIcon.classList.add('fa-chevron-right');
-                        }
-                    }
-                });
-                
-                if (isExpanded) {
-                    // Closing - switch to right arrow
-                    timelineItem.classList.remove('expanded');
-                    expandedContent.classList.remove('expanded');
-                    button.classList.remove('expanded');
-                    icon.classList.remove('fa-chevron-left');
-                    icon.classList.add('fa-chevron-right');
-                } else {
-                    // Opening - switch to left arrow
-                    timelineItem.classList.add('expanded');
-                    expandedContent.classList.add('expanded');
-                    button.classList.add('expanded');
-                    icon.classList.remove('fa-chevron-right');
-                    icon.classList.add('fa-chevron-left');
-                }
-            }
-            
-            function setLanguage(lang) {
-                const currentLangSpan = document.getElementById('currentLang');
-                if (lang === 'sv') {
-                    currentLangSpan.textContent = 'SE';
-                } else {
-                    currentLangSpan.textContent = 'EN';
-                }
-                
-                // Store language preference
-                localStorage.setItem('selectedLanguage', lang);
-                
-                // Update all elements with data-lang-* attributes
-                updatePageLanguage(lang);
-            }
-            
-            function updatePageLanguage(lang) {
-                // Find all elements with language attributes
-                const elements = document.querySelectorAll('[data-lang-en], [data-lang-sv]');
-                
-                elements.forEach(element => {
-                    const enText = element.getAttribute('data-lang-en');
-                    const svText = element.getAttribute('data-lang-sv');
-                    
-                    if (lang === 'en' && enText) {
-                        // Check if element has innerHTML with HTML tags or is plain text
-                        if (enText.includes('<')) {
-                            element.innerHTML = enText;
-                        } else {
-                            element.textContent = enText;
-                        }
-                    } else if (lang === 'sv' && svText) {
-                        // Check if element has innerHTML with HTML tags or is plain text
-                        if (svText.includes('<')) {
-                            element.innerHTML = svText;
-                        } else {
-                            element.textContent = svText;
-                        }
-                    }
-                });
-            }
-            
-            // Load saved language preference on page load
-            document.addEventListener('DOMContentLoaded', function() {
-                const savedLang = localStorage.getItem('selectedLanguage') || 'sv';
-                setLanguage(savedLang);
-                
-                // Enhanced hamburger menu functionality
-                const hamburger = document.querySelector('.navbar-toggler');
-                const navMenu = document.querySelector('#topNavbarNav');
-                const navLinks = document.querySelectorAll('#topNavbarNav .nav-link');
-                
-                if (hamburger && navMenu) {
-                    // Toggle menu on hamburger click
-                    hamburger.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log('Hamburger toggled');
-                        navMenu.classList.toggle('show');
-                    });
-                    
-                    // Prevent menu from closing when clicking inside it
-                    navMenu.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                    });
-                    
-                    // Close menu when clicking on navigation links
-                    navLinks.forEach(link => {
-                        link.addEventListener('click', function() {
-                            console.log('Nav link clicked, closing menu');
-                            navMenu.classList.remove('show');
-                        });
-                    });
-                    
-                    // Close menu when clicking outside
-                    document.addEventListener('click', function(e) {
-                        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                            navMenu.classList.remove('show');
-                        }
-                    });
-                }
-            });
-        </script>
-    </body>
+        <div class="hero-images">
+          <img src="assets/img/Kicad.png" alt="KiCad PCB Design" class="hero-img" />
+          <img src="assets/img/IC.jpg" alt="Integrated Circuit" class="hero-img" />
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+    <!-- SERVICES -->
+    <section class="resume-section" id="services">
+      <div class="resume-section-content">
+        <h2 class="mb-5" data-lang-sv="Tjänster" data-lang-en="Services">Tjänster</h2>
+        <div class="row g-3">
+
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="service-card-new h-100">
+              <div class="svc-icon"><img src="assets/img/electro_1.png" alt=""></div>
+              <div class="svc-body">
+                <div class="svc-title" data-lang-sv="Elektronikutveckling" data-lang-en="Electronics Development">Elektronikutveckling</div>
+
+                <div class="svc-tags">
+                  <span class="svc-tag">KiCad</span>
+                  <span class="svc-tag">Altium</span>
+                  <span class="svc-tag" data-lang-sv="Prototyp" data-lang-en="Prototype">Prototyp</span>
+                  <span class="svc-tag">PCB-layout</span>
+                  <span class="svc-tag" data-lang-sv="Komponentval" data-lang-en="Component selection">Komponentval</span>
+                  <span class="svc-tag">DFM</span>
+                </div>
+                <p class="svc-desc" data-lang-sv="Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt." data-lang-en="Complete solutions for electronics design, from troubleshooting existing systems to prototype development and finished products.">Kompletta lösningar för elektronikdesign, allt från felsökning på befintliga system till prototyputveckling och färdig produkt.</p>
+                <ul class="svc-list">
+                  <li data-lang-sv="Kretskortsdesign och PCB-layout" data-lang-en="Circuit board design and PCB layout">Kretskortsdesign och PCB-layout</li>
+                  <li data-lang-sv="Komponentval, EOL support samt kostnadseffektivisering" data-lang-en="Component selection, EOL support, and cost optimization">Komponentval, EOL support samt kostnadseffektivisering</li>
+                  <li data-lang-sv="Systemdesign och integration" data-lang-en="System design and integration">Systemdesign och integration</li>
+                  <li data-lang-sv="Produktionsoptimering (DFM - Design for Manufacturing)" data-lang-en="Production optimization (DFM - Design for Manufacturing)">Produktionsoptimering (DFM - Design for Manufacturing)</li>
+                  <li data-lang-sv="Snabb och kostnadseffektiv prototyputveckling" data-lang-en="Fast and cost-effective prototype development">Snabb och kostnadseffektiv prototyputveckling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="service-card-new h-100">
+              <div class="svc-icon"><img src="assets/img/logo_footprint_3_orange.png" alt=""></div>
+              <div class="svc-body">
+                <div class="svc-title" data-lang-sv="Mjukvaruutveckling" data-lang-en="Software Development">Mjukvaruutveckling</div>
+
+                <div class="svc-tags">
+                  <span class="svc-tag">C/C++</span>
+                  <span class="svc-tag">Python</span>
+                  <span class="svc-tag">FreeRTOS</span>
+                  <span class="svc-tag">Zephyr</span>
+                  <span class="svc-tag">Embedded Linux</span>
+                  <span class="svc-tag">CI/CD</span>
+                  <span class="svc-tag">Git</span>
+                </div>
+                <p class="svc-desc" data-lang-sv="Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll." data-lang-en="Software for embedded systems and automation with experience across multiple processor architectures and protocols.">Mjukvara för inbyggda system och automation med erfarenhet från flera processorarkitekturer och protokoll.</p>
+                <ul class="svc-list">
+                  <li data-lang-sv="Firmware för inbyggda system (C/C++), RTOS och Embedded Linux" data-lang-en="Firmware for embedded systems (C/C++), RTOS, and Embedded Linux">Firmware för inbyggda system (C/C++), RTOS och Embedded Linux</li>
+                  <li data-lang-sv="Automationsskript och testsystem (Python)" data-lang-en="Automation scripts and test systems (Python)">Automationsskript och testsystem (Python)</li>
+                  <li data-lang-sv="Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl." data-lang-en="Development for ARM Cortex (STM32, nRF) and ESP32, among others">Utveckling för ARM Cortex (STM32, nRF) och ESP32 m.fl.</li>
+                  <li>CAN, CANopen, J1939</li>
+                  <li>FreeRTOS, Zephyr</li>
+                  <li data-lang-sv="DevOps och versionshantering (Git), CI/CD" data-lang-en="DevOps and version control (Git), CI/CD">DevOps och versionshantering (Git), CI/CD</li>
+                  <li data-lang-sv="Modellering och simulering (Matlab, Simulink)" data-lang-en="Modeling and simulation (Matlab, Simulink)">Modellering och simulering (Matlab, Simulink)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="service-card-new h-100">
+              <div class="svc-icon"><img src="assets/img/robo_logo.png" alt=""></div>
+              <div class="svc-body">
+                <div class="svc-title" data-lang-sv="Test och Automation" data-lang-en="Test and Automation">Test och Automation</div>
+
+                <div class="svc-tags">
+                  <span class="svc-tag">Python</span>
+                  <span class="svc-tag" data-lang-sv="Testfixtur" data-lang-en="Test fixture">Testfixtur</span>
+                  <span class="svc-tag" data-lang-sv="Kvalitetskontroll" data-lang-en="Quality control">Kvalitetskontroll</span>
+                  <span class="svc-tag" data-lang-sv="Serieproduktion" data-lang-en="Mass production">Serieproduktion</span>
+                </div>
+                <p class="svc-desc" data-lang-sv="Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion." data-lang-en="Solutions for production and quality assurance from prototype to mass production.">Lösningar för produktion och kvalitetssäkring från prototyp till serieproduktion.</p>
+                <ul class="svc-list">
+                  <li data-lang-sv="Automationsutrustning för produktionsmiljö" data-lang-en="Automation equipment for production environments">Automationsutrustning för produktionsmiljö</li>
+                  <li data-lang-sv="Framtagning av testfixturer för PCB" data-lang-en="Development of test fixtures for PCB">Framtagning av testfixturer för PCB</li>
+                  <li data-lang-sv="Testsystem för serieproduktion" data-lang-en="Test systems for mass production">Testsystem för serieproduktion</li>
+                  <li data-lang-sv="Kvalitetskontroll och diagnostik" data-lang-en="Quality control and diagnostics">Kvalitetskontroll och diagnostik</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="service-card-new h-100">
+              <div class="svc-icon"><img src="assets/img/EMC3_logo.png" alt=""></div>
+              <div class="svc-body">
+                <div class="svc-title" data-lang-sv="Mätning och Certifiering" data-lang-en="Measurement and Certification">Mätning och Certifiering</div>
+
+                <div class="svc-tags">
+                  <span class="svc-tag">EMC</span>
+                  <span class="svc-tag">CE</span>
+                  <span class="svc-tag" data-lang-sv="Produktsäkerhet" data-lang-en="Product safety">Produktsäkerhet</span>
+                  <span class="svc-tag" data-lang-sv="Certifiering" data-lang-en="Certification">Certifiering</span>
+                </div>
+                <p class="svc-desc" data-lang-sv="Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder." data-lang-en="Technical support for EMC, certification, and compliance with safety standards.">Teknisk support för EMC, certifiering och efterlevnad av säkerhetsstandarder.</p>
+                <ul class="svc-list">
+                  <li data-lang-sv="Felsökning och design för EMC-kompatibilitet" data-lang-en="Troubleshooting and design for EMC compatibility">Felsökning och design för EMC-kompatibilitet</li>
+                  <li data-lang-sv="CE-märkning och produktsäkerhetsstandarder" data-lang-en="CE marking and product safety standards">CE-märkning och produktsäkerhetsstandarder</li>
+                  <li data-lang-sv="Support vid certifieringsprocessen" data-lang-en="Support during the certification process">Support vid certifieringsprocessen</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+    <!-- EXPERIENCE -->
+    <section class="resume-section" id="experience">
+      <div class="resume-section-content">
+        <h2 class="mb-5" data-lang-sv="Erfarenhet" data-lang-en="Experience">Erfarenhet</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-image">
+              <img src="assets/img/mb_logo.png" alt="Konsultarbete">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date" data-lang-sv="2024 – nuvarande" data-lang-en="2024 – present">2024 – nuvarande</div>
+              <h3 class="mb-2">Mikael Bengtsson Elektrotekniska AB</h3>
+              <div class="timeline-expanded-content">
+                <div class="mb-3" style="font-size:1.05rem;color:#6c757d;font-weight:500;" data-lang-sv="Egenkonsult – Elektronik & Embedded" data-lang-en="Independent Consultant – Electronics & Embedded">Egenkonsult – Elektronik & Embedded</div>
+                <p class="mb-0" data-lang-sv="Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas." data-lang-en="Offering services in electronics and software development. Taking on assignments covering the entire development chain as well as specific problems that need to be solved.">Erbjuder tjänster inom elektronikutveckling och mjukvaruutveckling. Tar emot uppdrag som omfattar hela utvecklingskedjan samt specifika problem som behöver lösas.</p>
+              </div>
+              <button class="timeline-toggle-btn" onclick="toggleTimeline(this)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-image">
+              <img src="assets/img/elysics.png" alt="Elysics AB">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2024 – 2025</div>
+              <h3 class="mb-2">Elysics AB</h3>
+              <div class="timeline-expanded-content">
+                <div class="mb-3" style="font-size:1.05rem;color:#6c757d;font-weight:500;" data-lang-sv="Utvecklingsingenjör – Elektronik & Embedded" data-lang-en="Development Engineer – Electronics & Embedded">Utvecklingsingenjör – Elektronik & Embedded</div>
+                <p class="mb-0" data-lang-sv="På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. Jag var även med och utvecklade testsystem för serieproduktion." data-lang-en="At Elysics, I worked on developing embedded systems for industrial products, focusing on both electronics design and software development. I also helped develop test systems for mass production.">På Elysics arbetade jag med utveckling av inbyggda system för industriella produkter, med fokus på både elektronikdesign och mjukvaruutveckling. Jag var även med och utvecklade testsystem för serieproduktion.</p>
+              </div>
+              <button class="timeline-toggle-btn" onclick="toggleTimeline(this)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-image">
+              <img src="assets/img/plejd.png" alt="Plejd AB">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2019 – 2024</div>
+              <h3 class="mb-2">Plejd AB</h3>
+              <div class="timeline-expanded-content">
+                <div class="mb-3" style="font-size:1.05rem;color:#6c757d;font-weight:500;" data-lang-sv="Elektronikingenjör" data-lang-en="Electronics Engineer">Elektronikingenjör</div>
+                <p class="mb-0" data-lang-sv="Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). Högt fokus på DFM. Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut." data-lang-en="Developed electronics for IoT products. Development included power supply, wireless communication, and certification (EMC/CE). High focus on DFM. Was project lead for Smart Plug (SPR-01) with responsibility for planning, team coordination, and key product decisions.">Utvecklade elektronik för IoT-produkter. Utvecklingen omfattade kraftförsörjning, trådlös kommunikation samt certifiering (EMC/CE). Högt fokus på DFM (Design for Manufacturing). Var projektledare för Smart Plug (SPR‑01) med ansvar för planering, samordning mellan team och centrala produktbeslut.</p>
+              </div>
+              <button class="timeline-toggle-btn" onclick="toggleTimeline(this)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-image">
+              <img src="assets/img/pluspole.png" alt="Pluspole AB">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2016 – 2019</div>
+              <h3 class="mb-2">Pluspole AB</h3>
+              <div class="timeline-expanded-content">
+                <div class="mb-3" style="font-size:1.05rem;color:#6c757d;font-weight:500;" data-lang-sv="Embeddedutvecklare" data-lang-en="Embedded Developer">Embeddedutvecklare</div>
+                <p class="mb-0" data-lang-sv="Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer." data-lang-en="Consulting work in product development focusing on R&D and prototype development. Worked on projects involving motor control, control systems, and software development on ARM Cortex-M processors.">Konsultarbete inom produktutveckling med fokus på R&D och prototyputveckling. Arbetade med projekt som involverade motorstyrning, reglerteknik samt mjukvaruutveckling på ARM Cortex-M processorer.</p>
+              </div>
+              <button class="timeline-toggle-btn" onclick="toggleTimeline(this)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-image">
+              <img src="assets/img/chalmers.jpg" alt="Chalmers">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2011 – 2016</div>
+              <h3 class="mb-2" data-lang-sv="Chalmers Tekniska Högskola" data-lang-en="Chalmers University of Technology">Chalmers Tekniska Högskola</h3>
+              <div class="timeline-expanded-content">
+                <div class="mb-3" style="font-size:1.05rem;color:#6c757d;font-weight:500;" data-lang-sv="Civilingenjör, Elektroteknik" data-lang-en="M.Sc. Electrical Engineering">Civilingenjör, Elektroteknik</div>
+                <p class="mb-1">Masters: Systems, Control and Mechatronics.</p>
+                <p class="mb-1" data-lang-sv="Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering." data-lang-en="Specialization in signal processing, embedded systems, control engineering, and simulation.">Fördjupning inom signalbehandling, inbyggda system, reglerteknik och simulering.</p>
+                <p class="mb-0" data-lang-sv="Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA)." data-lang-en="Board member of the Electrical Engineering Student Union's Telecommunications Division (ETA).">Styrelsemedlem i E-sektionens Teletekniska Avdelning (ETA).</p>
+              </div>
+              <button class="timeline-toggle-btn" onclick="toggleTimeline(this)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+    <!-- SKILLS -->
+    <section class="resume-section" id="skills">
+      <div class="resume-section-content">
+        <h2 class="mb-5" data-lang-sv="Kompetenser" data-lang-en="Skills">Kompetenser</h2>
+        <div class="row g-3">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="skills-cat-new">
+              <div class="skills-cat-label" style="color:#2563eb;">
+                <span class="skills-cat-dot" style="background:#2563eb;"></span>
+                <span data-lang-sv="Programmering" data-lang-en="Programming">Programmering</span>
+              </div>
+              <div>
+                <span class="skill-tag-new">C/C++</span>
+                <span class="skill-tag-new">Python</span>
+                <span class="skill-tag-new">Matlab</span>
+                <span class="skill-tag-new">Simulink</span>
+                <span class="skill-tag-new">Embedded Linux</span>
+                <span class="skill-tag-new">Git</span>
+                <span class="skill-tag-new">CI/CD</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="skills-cat-new">
+              <div class="skills-cat-label" style="color:#7c3aed;">
+                <span class="skills-cat-dot" style="background:#7c3aed;"></span>
+                <span data-lang-sv="Design & Verktyg" data-lang-en="Design & Tools">Design & Verktyg</span>
+              </div>
+              <div>
+                <span class="skill-tag-new">KiCad</span>
+                <span class="skill-tag-new">Altium Designer</span>
+                <span class="skill-tag-new">Onshape</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="skills-cat-new">
+              <div class="skills-cat-label" style="color:#bd5d38;">
+                <span class="skills-cat-dot" style="background:#bd5d38;"></span>
+                <span data-lang-sv="Expertområden" data-lang-en="Areas of Expertise">Expertområden</span>
+              </div>
+              <div>
+                <span class="skill-tag-new">IoT</span>
+                <span class="skill-tag-new" data-lang-sv="Trådlös kommunikation" data-lang-en="Wireless comms">Trådlös kommunikation</span>
+                <span class="skill-tag-new" data-lang-sv="Reglerteknik" data-lang-en="Control engineering">Reglerteknik</span>
+                <span class="skill-tag-new" data-lang-sv="Signalbehandling" data-lang-en="Signal processing">Signalbehandling</span>
+                <span class="skill-tag-new">ARM Cortex-M</span>
+                <span class="skill-tag-new">EMC</span>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+    <!-- PROJECTS -->
+    <section class="resume-section" id="interests">
+      <div class="resume-section-content">
+        <h2 class="mb-5" data-lang-sv="Projekt" data-lang-en="Projects">Projekt</h2>
+        <div class="project-placeholder">
+          <div class="project-placeholder-icon">🔧</div>
+          <div style="font-size:1rem;font-weight:600;color:#1f2937;margin-bottom:8px;"
+               data-lang-sv="Projekt publiceras snart" data-lang-en="Projects coming soon">
+            Projekt publiceras snart
+          </div>
+          <p style="font-size:0.875rem;color:#6b7280;margin:0;"
+             data-lang-sv="Här kommer jag att presentera utvalda projekt och case studies från min konsultverksamhet."
+             data-lang-en="Here I will present selected projects and case studies from my consulting work.">
+            Här kommer jag att presentera utvalda projekt och case studies från min konsultverksamhet.
+          </p>
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+    <!-- CONTACT -->
+    <section class="resume-section" id="contact">
+      <div class="resume-section-content">
+        <div class="contact-dark-inner">
+          <div class="contact-rule"></div>
+          <h2 class="mb-5" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</h2>
+          <p class="contact-tagline"
+             data-lang-sv="Har du ett projekt i tankarna? Hör av dig – jag tar gärna ett inledande samtal för att diskutera hur jag kan hjälpa till."
+             data-lang-en="Have a project in mind? Get in touch – I'm happy to have an initial conversation about how I can help.">
+            Har du ett projekt i tankarna? Hör av dig – jag tar gärna ett inledande samtal för att diskutera hur jag kan hjälpa till.
+          </p>
+          <a href="/cdn-cgi/l/email-protection#48252123292d24662a2d262f3c3b3b272608252a2d242d233c3a27663b2d" class="contact-email-btn d-block" style="max-width:fit-content;">
+            <span class="__cf_email__" data-cfemail="29444042484c45074b4c474e5d5a5a464769444b4c454c425d5b46075a4c">[email&#160;protected]</span>
+          </a>
+          <div class="contact-links">
+            <a href="tel:+46735078198" class="contact-link-item">
+              <i class="fas fa-phone"></i> +46 735 07 81 98
+            </a>
+            <a href="https://www.linkedin.com/in/mikael-bengtsson-4725b8271" target="_blank" class="contact-link-item">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/mikbeng" target="_blank" class="contact-link-item">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <span class="contact-link-item">
+              <i class="fas fa-map-marker-alt"></i> Frösön, Sverige
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
+    /* ── Active nav highlight ── */
+    function updateActiveNav() {
+      const sections = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.sidebar-link');
+      let current = '';
+      // If near the bottom of the page, activate last section
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 80;
+      if (nearBottom) {
+        current = sections[sections.length - 1].id;
+      } else {
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 100;
+          if (window.scrollY >= top) current = sec.id;
+        });
+      }
+      links.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    /* ── Timeline expand/collapse (mobile only) ── */
+    function toggleTimeline(button) {
+      if (window.innerWidth > 500) return;
+      const item = button.closest('.timeline-item');
+      const content = item && item.querySelector('.timeline-expanded-content');
+      let icon = button.querySelector('i') || button.querySelector('svg');
+      if (!content || !icon) return;
+      const isOpen = content.classList.contains('expanded');
+      document.querySelectorAll('.timeline-item.expanded').forEach(it => {
+        if (it !== item) {
+          it.classList.remove('expanded');
+          const c = it.querySelector('.timeline-expanded-content');
+          const b = it.querySelector('.timeline-toggle-btn');
+          const ic = b && b.querySelector('i');
+          if (c) c.classList.remove('expanded');
+          if (b) b.classList.remove('expanded');
+          if (ic) { ic.classList.remove('fa-chevron-left'); ic.classList.add('fa-chevron-right'); }
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('expanded');
+        content.classList.remove('expanded');
+        button.classList.remove('expanded');
+        icon.classList.remove('fa-chevron-left');
+        icon.classList.add('fa-chevron-right');
+      } else {
+        item.classList.add('expanded');
+        content.classList.add('expanded');
+        button.classList.add('expanded');
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-left');
+      }
+    }
+
+    /* ── Language selector ── */
+    function setLanguage(lang) {
+      document.getElementById('currentLang').textContent = lang === 'sv' ? 'SE' : 'EN';
+      localStorage.setItem('selectedLanguage', lang);
+      updatePageLanguage(lang);
+    }
+
+    function updatePageLanguage(lang) {
+      document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
+        const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
+        if (!text) return;
+        if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
+      });
+    }
+
+    /* ── Init ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('selectedLanguage') || 'sv';
+      setLanguage(savedLang);
+
+      /* Mobile hamburger */
+      const hamburger = document.querySelector('.navbar-toggler');
+      const navMenu = document.querySelector('#topNavbarNav');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', e => {
+          e.preventDefault(); e.stopPropagation();
+          navMenu.classList.toggle('show');
+        });
+        navMenu.addEventListener('click', e => e.stopPropagation());
+        document.querySelectorAll('#topNavbarNav .nav-link').forEach(link => {
+          link.addEventListener('click', () => navMenu.classList.remove('show'));
+        });
+        document.addEventListener('click', e => {
+          if (!hamburger.contains(e.target) && !navMenu.contains(e.target))
+            navMenu.classList.remove('show');
+        });
+      }
+    });
+  </script>
+</body>
 </html>
