@@ -383,11 +383,42 @@
 
     /* Timeline mobile expand */
     @media (max-width: 500px) {
-      .timeline-content { position: relative; min-height: 80px; }
-      .timeline-content .timeline-expanded-content { position: absolute; left: -110px; top: 0; width: calc(100% + 110px); min-height: 100%; background: #fff; border-radius: 10px; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e9ecef; z-index: 50; display: none; opacity: 0; transition: opacity 0.3s ease; }
-      .timeline-content .timeline-expanded-content.expanded { display: block; opacity: 1; position: relative; left: -110px; margin-top: -80px; margin-bottom: 1rem; }
-      .timeline-toggle-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; padding: 0; background: #bd5d38; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 60; }
-      .timeline-toggle-btn:hover { transform: translateY(-50%) scale(1.1); }
+      .timeline-content {
+        position: relative;
+        padding-right: 48px; /* room for button */
+      }
+      /* Hidden by default — no absolute positioning, just display:none */
+      .timeline-content .timeline-expanded-content {
+        display: none;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #f3f4f6;
+      }
+      /* Expanded — flows below, pushes siblings down naturally */
+      .timeline-content .timeline-expanded-content.expanded {
+        display: block;
+      }
+      .timeline-toggle-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 1rem;
+        transform: none;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        background: #bd5d38;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        z-index: 60;
+      }
+      .timeline-toggle-btn:hover { background: #a04d2f; }
     }
     @media (min-width: 501px) {
       .timeline-expanded-content { display: block !important; position: static !important; background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
@@ -976,8 +1007,8 @@
              data-lang-en="Have a project in mind? Get in touch – I'm happy to have an initial conversation about how I can help.">
             Har du ett projekt i tankarna? Hör av dig – jag tar gärna ett inledande samtal för att diskutera hur jag kan hjälpa till.
           </p>
-          <a href="/cdn-cgi/l/email-protection#1d7074767c7871337f78737a696e6e72735d707f78717876696f72336e78" class="contact-email-btn d-block" style="max-width:fit-content;">
-            <span class="__cf_email__" data-cfemail="1c7175777d7970327e79727b686f6f73725c717e79707977686e73326f79">[email&#160;protected]</span>
+          <a href="/cdn-cgi/l/email-protection#48252123292d24662a2d262f3c3b3b272608252a2d242d233c3a27663b2d" class="contact-email-btn d-block" style="max-width:fit-content;">
+            <span class="__cf_email__" data-cfemail="29444042484c45074b4c474e5d5a5a464769444b4c454c425d5b46075a4c">[email&#160;protected]</span>
           </a>
           <div class="contact-links">
             <a href="tel:+46735078198" class="contact-link-item">
