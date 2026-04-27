@@ -93,24 +93,29 @@
       overflow-y: auto;
     }
     .sidebar-logo {
-      width: 52px; height: 52px;
+      width: 64px; height: 64px;
       object-fit: contain;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .sidebar-name {
       color: #fff;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       line-height: 1.2;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
     .sidebar-subtitle {
       color: #bd5d38;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       margin-bottom: 28px;
+    }
+    @media (min-width: 1441px) {
+      .sidebar-logo { width: 76px; height: 76px; }
+      .sidebar-name { font-size: 20px; }
+      .sidebar-subtitle { font-size: 12px; }
     }
     .sidebar-nav { flex: 0 0 auto; }
     .sidebar-link {
@@ -681,6 +686,8 @@
       <!-- Logo + identity -->
       <a href="#page-top" class="js-scroll-trigger" style="text-decoration:none;">
         <img src="assets/img/mb_logo.png" alt="MB Logo" class="sidebar-logo">
+        <div class="sidebar-name">Mikael Bengtsson</div>
+        <div class="sidebar-subtitle">Elektrotekniska AB</div>
       </a>
 
       <!-- Nav links -->
