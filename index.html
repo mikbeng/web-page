@@ -83,6 +83,7 @@
       flex-direction: column;
     }
     @media (min-width: 992px) { #sideNav { display: flex !important; } }
+    @media (min-width: 992px) { #topNav .navbar-brand { display: none !important; } }
 
     .sidebar-inner {
       display: flex;
@@ -111,13 +112,13 @@
       letter-spacing: 0.1em;
       margin-bottom: 28px;
     }
-    .sidebar-nav { flex: 1; }
+    .sidebar-nav { flex: 0 0 auto; }
     .sidebar-link {
       display: block;
       color: rgba(255,255,255,0.6);
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 500;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-left: 3px solid transparent;
       text-decoration: none !important;
       letter-spacing: 0.03em;
@@ -136,11 +137,11 @@
       font-weight: 600;
     }
     .sidebar-profile-wrap {
-      padding-top: 20px;
+      padding: 75px 0 20px;
       text-align: center;
     }
     .sidebar-profile {
-      width: 120px; height: 120px;
+      width: 160px; height: 160px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid #bd5d38;
@@ -197,6 +198,13 @@
       color: #1f2937 !important;
       line-height: 1.0 !important;
       margin-bottom: 6px !important;
+    }
+    .hero-company {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #4b5563;
+      letter-spacing: 0.02em;
+      margin-top: 8px;
     }
     .hero-rule {
       width: 48px; height: 3px;
@@ -612,10 +620,20 @@
       h1.hero-name { font-size: 2rem !important; }
     }
     @media (max-width: 991.98px) {
-      #topNavbarNav { position: absolute; top: 100%; right: 15px; background-color: rgba(30,39,57,0.97); border-radius: 0.375rem; padding: 0.5rem; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.08); }
+      #topNav .container-fluid { position: relative; }
+      #topNavbarNav { position: absolute; top: 100%; right: 1rem; margin-top: 6px; background-color: rgba(30,39,57,0.97); border-radius: 0.375rem; padding: 0.5rem; min-width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.08); }
       #topNavbarNav .navbar-nav { flex-direction: column; }
       #topNavbarNav .nav-item { padding: 0.2rem 0; }
       #topNavbarNav .nav-link { padding: 0.375rem 0.75rem; font-size: 0.9rem; }
+      .navbar-toggler { margin-right: 0.5rem; }
+    }
+    /* Small phones: stack brand vertically so toggler has room */
+    @media (max-width: 575px) {
+      #topNav { min-height: 78px !important; padding-top: 0.4rem !important; padding-bottom: 0.4rem !important; }
+      .container-fluid.p-0 { margin-top: 78px !important; }
+      .navbar-brand { flex-direction: column; align-items: flex-start !important; }
+      .navbar-brand .me-3 { margin-right: 0 !important; margin-bottom: 2px; }
+      .company-name-line { font-size: 0.78rem !important; white-space: normal !important; line-height: 1.15; max-width: 60vw; }
     }
   </style>
 </head>
@@ -626,7 +644,6 @@
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center ms-3" href="#page-top">
         <img src="assets/img/mb_logo.png" alt="MB Logo" style="width:44px;height:44px;object-fit:contain;" class="me-3">
-        <span class="company-name-line">Mikael Bengtsson Elektrotekniska AB</span>
       </a>
       <button class="navbar-toggler border-0" type="button" aria-controls="topNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -664,8 +681,6 @@
       <!-- Logo + identity -->
       <a href="#page-top" class="js-scroll-trigger" style="text-decoration:none;">
         <img src="assets/img/mb_logo.png" alt="MB Logo" class="sidebar-logo">
-        <div class="sidebar-name">Mikael Bengtsson</div>
-        <div class="sidebar-subtitle">Elektrotekniska AB</div>
       </a>
 
       <!-- Nav links -->
@@ -677,7 +692,7 @@
         <a class="sidebar-link js-scroll-trigger" href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a>
       </nav>
 
-      <!-- Profile photo pinned to bottom -->
+      <!-- Profile photo just below menu -->
       <div class="sidebar-profile-wrap">
         <img src="assets/img/profile.png" alt="Mikael Bengtsson" class="sidebar-profile">
       </div>
@@ -692,6 +707,7 @@
       <div class="resume-section-content">
         <div class="hero-eyebrow" data-lang-sv="Produktutvecklare – Östersund / Remote – Sverige" data-lang-en="Product Developer – Östersund / Remote – Sweden">Produktutvecklare – Östersund / Remote – Sverige</div>
         <h1 class="hero-name" data-lang-sv="Mikael<br>Bengtsson" data-lang-en="Mikael<br>Bengtsson">Mikael<br>Bengtsson</h1>
+        <div class="hero-company">Elektrotekniska AB</div>
         <div class="hero-rule"></div>
         <p class="hero-lead"
            data-lang-sv="Med över tio års erfarenhet inom elektronik och inbyggda system hjälper jag företag med produktutveckling genom hela kedjan – från tidigt koncept till serieproduktion."
