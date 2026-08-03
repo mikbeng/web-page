@@ -546,7 +546,30 @@
     #contact.resume-section {
       background: #1e2739 !important;
     }
-    .contact-dark-inner { max-width: 540px; }
+    .contact-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      width: 100%;
+      max-width: 1100px;
+    }
+    .contact-dark-inner { max-width: 540px; flex: 1 1 auto; min-width: 0; }
+    .contact-photo-wrap {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 320px;
+    }
+    .contact-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    }
+    @media (min-width: 768px) {
+      .contact-photo-wrap { max-width: 540px; }
+    }
     .contact-rule {
       width: 48px; height: 3px;
       background: #bd5d38;
@@ -1105,6 +1128,7 @@
     <!-- CONTACT -->
     <section class="resume-section" id="contact">
       <div class="resume-section-content">
+        <div class="contact-layout">
         <div class="contact-dark-inner">
           <div class="contact-rule"></div>
           <h2 class="mb-5" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</h2>
@@ -1130,6 +1154,10 @@
               <i class="fas fa-map-marker-alt"></i> Frösön, Sverige
             </span>
           </div>
+        </div>
+        <figure class="contact-photo-wrap">
+          <img src="assets/img/me_solder.jpg" alt="Mikael Bengtsson soldering" class="contact-photo" width="640" height="360" loading="lazy" />
+        </figure>
         </div>
       </div>
     </section>
