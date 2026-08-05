@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Trådlös BLE-sensornod med ESP32-C3 — låg viloström och lång batteritid på AAA-cell." />
-  <title>Trådlös sensornod — Projekt | Mikael Bengtsson Elektrotekniska AB</title>
+  <meta name="description" content="Wireless BLE sensor node with ESP32-C3 — low quiescent current and long battery life on a AAA cell." />
+  <title>Wireless sensor node — Project | Mikael Bengtsson Elektrotekniska AB</title>
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -158,74 +158,51 @@
     <div class="project-topnav-actions">
       <a href="../index.html#interests" class="project-back-link">
         <i class="fas fa-arrow-left"></i>
-        <span data-lang-sv="Tillbaka till projekt" data-lang-en="Back to projects">Tillbaka till projekt</span>
+        <span>Back to projects</span>
       </a>
-      <button type="button" class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
     </div>
   </header>
 
   <main class="project-page">
-    <div class="project-eyebrow" data-lang-sv="Projekt" data-lang-en="Project">Projekt</div>
-    <h1 data-lang-sv="Trådlös sensornod" data-lang-en="Wireless sensor node">Trådlös sensornod</h1>
+    <div class="project-eyebrow">Project</div>
+    <h1>Wireless sensor node</h1>
 
     <div class="project-hero-img">
-      <img src="../assets/img/projects/bouncy/EA-0002.png" alt="Kretskortsrendering EA-0002">
+      <img src="../assets/img/projects/bouncy/EA-0002.png" alt="PCB rendering EA-0002">
     </div>
 
     <div class="project-body">
-      <p data-lang-sv="Design av en batteridriven, trådlös sensornod byggd kring ESP32-C3 och en LIS3DH accelerometer. Kommunikation sker via Bluetooth Low Energy (BLE) till app på telefon eller annan enhet."
-         data-lang-en="Design of a battery-powered wireless sensor node built around ESP32-C3 and an LIS3DH accelerometer. Communication is via Bluetooth Low Energy (BLE) to an app on a phone or other device.">
-        Design av en batteridriven, trådlös sensornod byggd kring ESP32-C3 och en LIS3DH accelerometer. Kommunikation sker via Bluetooth Low Energy (BLE) till app på telefon eller annan enhet.
-      </p>
-      <p data-lang-sv="Designens fokus är låg standby-förbrukning för lång batterilivslängd på en enda AAA-cell. Huvudprocessorn hålls helt avstängd i viloläge medan endast accelerometern är aktiv. Sensorn väcker systemet via en latchad interrupt som styr ESP32-modulens EN-ingång. Total strömförbrukning i viloläge är ca 33 µA, vilket ger en uppskattad batterilivslängd på omkring 3 år."
-         data-lang-en="The design focus is low standby consumption for long battery life on a single AAA cell. The main processor is fully powered off in sleep while only the accelerometer is active. The sensor wakes the system via a latched interrupt that controls the ESP32 module's EN input. Total idle current is approximately 33 µA, giving an estimated battery life of around 3 years.">
-        Designens fokus är låg standby-förbrukning för lång batterilivslängd på en enda AAA-cell. Huvudprocessorn hålls helt avstängd i viloläge medan endast accelerometern är aktiv. Sensorn väcker systemet via en latchad interrupt som styr ESP32-modulens EN-ingång. Total strömförbrukning i viloläge är ca 33 µA, vilket ger en uppskattad batterilivslängd på omkring 3 år.
-      </p>
-      <p data-lang-sv="Strömförsörjningen bygger på en boost-omvandlare (TPS613221) med låg viloström, som höjer cellens nominella 1,5 V till 3,3 V."
-         data-lang-en="The power supply uses a low-quiescent boost converter (TPS613221) that steps the cell's nominal 1.5 V up to 3.3 V.">
-        Strömförsörjningen bygger på en boost-omvandlare (TPS613221) med låg viloström, som höjer cellens nominella 1,5 V till 3,3 V.
-      </p>
+      <p>Design of a battery-powered wireless sensor node built around ESP32-C3 and an LIS3DH accelerometer. Communication is via Bluetooth Low Energy (BLE) to an app on a phone or other device.</p>
+      <p>The design focus is low standby consumption for long battery life on a single AAA cell. The main processor is fully powered off in sleep while only the accelerometer is active. The sensor wakes the system via a latched interrupt that controls the ESP32 module's EN input. Total idle current is approximately 33 µA, giving an estimated battery life of around 3 years.</p>
+      <p>The power supply uses a low-quiescent boost converter (TPS613221) that steps the cell's nominal 1.5 V up to 3.3 V.</p>
     </div>
 
-    <h2 class="project-section-title" data-lang-sv="Prototyp" data-lang-en="Prototype">Prototyp</h2>
+    <h2 class="project-section-title">Prototype</h2>
     <div class="project-photo-grid">
       <figure>
-        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00104.JPG" aria-label="Förstora bild 1">
-          <img src="../assets/img/projects/bouncy/DSC00104.JPG" alt="Prototyp av sensornod">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00104.JPG" aria-label="Enlarge image 1">
+          <img src="../assets/img/projects/bouncy/DSC00104.JPG" alt="Prototype sensor node">
         </button>
       </figure>
       <figure>
-        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00110.JPG" aria-label="Förstora bild 2">
-          <img src="../assets/img/projects/bouncy/DSC00110.JPG" alt="Prototyp av sensornod">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00110.JPG" aria-label="Enlarge image 2">
+          <img src="../assets/img/projects/bouncy/DSC00110.JPG" alt="Prototype sensor node">
         </button>
       </figure>
       <figure>
-        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00111.JPG" aria-label="Förstora bild 3">
-          <img src="../assets/img/projects/bouncy/DSC00111.JPG" alt="Prototyp av sensornod">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/bouncy/DSC00111.JPG" aria-label="Enlarge image 3">
+          <img src="../assets/img/projects/bouncy/DSC00111.JPG" alt="Prototype sensor node">
         </button>
       </figure>
     </div>
   </main>
 
   <div id="photoLightbox" class="photo-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-    <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="Stäng">&times;</button>
+    <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="Close">&times;</button>
     <img src="" alt="" id="photoLightboxImg">
   </div>
 
   <script>
-    function setLanguage(lang) {
-      localStorage.setItem('selectedLanguage', lang);
-      document.getElementById('langToggle').textContent = lang === 'sv' ? 'EN' : 'SE';
-      document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
-        const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
-        if (!text) return;
-        if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
-      });
-    }
-    function toggleLanguage() {
-      const next = (localStorage.getItem('selectedLanguage') || 'sv') === 'sv' ? 'en' : 'sv';
-      setLanguage(next);
-    }
     function openPhotoLightbox(src, alt) {
       const lightbox = document.getElementById('photoLightbox');
       const img = document.getElementById('photoLightboxImg');
@@ -244,8 +221,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      setLanguage(localStorage.getItem('selectedLanguage') || 'sv');
-
       document.querySelectorAll('.project-photo-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
           const img = btn.querySelector('img');

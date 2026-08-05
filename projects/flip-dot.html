@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Flip-dot — elektromekanisk display med ESP32-styrning. Projektdokumentation." />
+  <meta name="description" content="Flipdot display — electromechanical panel retrofitted with ESP32. Project documentation." />
   <title>Flip-dot — Projekt | Mikael Bengtsson Elektrotekniska AB</title>
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -82,6 +82,14 @@
     }
     .project-photo-grid.two-col {
       grid-template-columns: repeat(2, 1fr);
+    }
+    .project-photo-single {
+      margin: 12px 0 1.5rem;
+      max-width: min(100%, 560px);
+    }
+    .project-photo-single .project-photo-thumb img {
+      aspect-ratio: auto;
+      object-fit: contain;
     }
     @media (max-width: 640px) {
       .project-photo-grid,
@@ -162,85 +170,70 @@
     <div class="project-topnav-actions">
       <a href="../index.html#interests" class="project-back-link">
         <i class="fas fa-arrow-left"></i>
-        <span data-lang-sv="Tillbaka till projekt" data-lang-en="Back to projects">Tillbaka till projekt</span>
+        <span>Back to projects</span>
       </a>
-      <button type="button" class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
     </div>
   </header>
 
   <main class="project-page">
-    <div class="project-eyebrow" data-lang-sv="Projekt" data-lang-en="Project">Projekt</div>
-    <h1 data-lang-sv="Flipdot Display" data-lang-en="Flipdot Display">Flipdot Display</h1>
+    <div class="project-eyebrow">Project</div>
+    <h1>Flipdot Display</h1>
 
     <div class="project-hero-img">
       <img src="../assets/img/projects/flip-dot/flip_frame_2.png" alt="Flip-dot display">
     </div>
 
     <div class="project-body">
-      <h2 class="project-section-title" data-lang-sv="Introduktion" data-lang-en="Introduction">Introduktion</h2>
-      <p data-lang-sv="Jag fick den här displayen av en före detta kollega som hittat den i en container. Det var i princip bara ett stort kretskort med 13×28 flipdot-pixlar och några logik-IC:er — inget hölje, ingen dokumentation, ingen aning om den ens fungerade. Jag tyckte det vore kul att se om jag kunde få liv i den och kanske köra den från en mikrokontroller, antingen för animationer eller som en snygg väggklocka. Med noll koll på statusen satte jag igång med att reverse-engineera kortet."
-         data-lang-en="I got this display from a former colleague who had found it in a dumpster. It was basically just a large PCB with 13×28 flipdot pixels and some logic ICs — no enclosure, no documentation, no idea if it even worked. I thought it would be fun to see if I could bring it back to life and drive it from a microcontroller, either for animations or as a nice-looking wall clock. With zero knowledge of its state, I got to work reverse-engineering the board.">
-        Jag fick den här displayen av en före detta kollega som hittat den i en container. Det var i princip bara ett stort kretskort med 13×28 flipdot-pixlar och några logik-IC:er — inget hölje, ingen dokumentation, ingen aning om den ens fungerade. Jag tyckte det vore kul att se om jag kunde få liv i den och kanske köra den från en mikrokontroller, antingen för animationer eller som en snygg väggklocka. Med noll koll på statusen satte jag igång med att reverse-engineera kortet.
-      </p>
+      <h2 class="project-section-title">Untapped potential</h2>
+      <p>I got this display from a former colleague who had found it in a dumpster. It was basically just a large PCB with 13×28 flipdot pixels and some logic ICs — no enclosure, no documentation, no idea if it even worked. I thought it would be fun to see if I could bring it back to life and drive it from a microcontroller, either for animations or as a nice-looking wall clock. With zero knowledge of its state, I got to work reverse-engineering the board.</p>
 
       <div class="project-photo-grid two-col">
         <figure>
-          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_1.png" aria-label="Förstora bild 1">
-            <img src="../assets/img/projects/flip-dot/flip_bench_1.png" alt="Flipdot-display på arbetsbänken">
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_1.png" aria-label="Enlarge image 1">
+            <img src="../assets/img/projects/flip-dot/flip_bench_1.png" alt="Flipdot display on the workbench">
           </button>
         </figure>
         <figure>
-          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_2.png" aria-label="Förstora bild 2">
-            <img src="../assets/img/projects/flip-dot/flip_bench_2.png" alt="Närbild på flipdot-panelen">
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_2.png" aria-label="Enlarge image 2">
+            <img src="../assets/img/projects/flip-dot/flip_bench_2.png" alt="Close-up of the flipdot panel">
           </button>
         </figure>
       </div>
 
-      <h2 class="project-section-title" data-lang-sv="Reverse engineering" data-lang-en="Reverse engineering">Reverse engineering</h2>
-      <p data-lang-sv="Jag skissade upp kretsen (se <a href='../assets/img/projects/flip-dot/schematic.pdf' target='_blank' rel='noopener'>schematic.pdf</a>) och listade ut vilka pinnar som behövde vickas för att få displayen att göra det jag ville. Panelen är uppdelad i fyra kolumnsektioner och två radsektioner, där varje sektion består av en demux (74HC4514), en source-driver (TD62789A) och en sink-driver (ULN2003A). Tillsammans styr de vilken pixel som får en kort strömpuls, och pulsens riktning avgör om pixeln flippas till gul eller svart."
-         data-lang-en="I sketched out the circuit (see <a href='../assets/img/projects/flip-dot/schematic.pdf' target='_blank' rel='noopener'>schematic.pdf</a>) and figured out which pins to wiggle to make the display do what I wanted. The panel is divided into four column sections and two row sections, where each section consists of a demux (74HC4514), a source driver (TD62789A) and a sink driver (ULN2003A). Together they decide which pixel gets a short current pulse, and the direction of that pulse decides whether the dot flips to yellow or black.">
-        Jag skissade upp kretsen (se <a href="../assets/img/projects/flip-dot/schematic.pdf" target="_blank" rel="noopener">schematic.pdf</a>) och listade ut vilka pinnar som behövde vickas för att få displayen att göra det jag ville. Panelen är uppdelad i fyra kolumnsektioner och två radsektioner, där varje sektion består av en demux (74HC4514), en source-driver (TD62789A) och en sink-driver (ULN2003A). Tillsammans styr de vilken pixel som får en kort strömpuls, och pulsens riktning avgör om pixeln flippas till gul eller svart.
-      </p>
+      <h2 class="project-section-title">Reverse engineering</h2>
+      <p>I sketched out the circuit (<a href="../assets/img/projects/flip-dot/schematic.pdf" target="_blank" rel="noopener">schematic</a>) and figured out which pins to wiggle to make the display do what I wanted. The panel is divided into four column sections and two row sections, where each section consists of a demux (74HC4514), a source driver (TD62789A) and a sink driver (ULN2003A). Together they decide which pixel gets a short current pulse, and the direction of that pulse decides whether the dot flips to yellow or black.</p>
 
       <div class="project-photo-grid two-col">
         <figure>
-          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_3.png" aria-label="Förstora bild 3">
-            <img src="../assets/img/projects/flip-dot/flip_bench_3.png" alt="Baksidan av kortet med drivkretsar">
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_3.png" aria-label="Enlarge image 3">
+            <img src="../assets/img/projects/flip-dot/flip_bench_3.png" alt="Back of the board with driver circuitry">
           </button>
         </figure>
         <figure>
-          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_4.png" aria-label="Förstora bild 4">
-            <img src="../assets/img/projects/flip-dot/flip_bench_4.png" alt="Närbild på demux och drivsteg">
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_4.png" aria-label="Enlarge image 4">
+            <img src="../assets/img/projects/flip-dot/flip_bench_4.png" alt="Close-up of demux and driver stages">
           </button>
         </figure>
       </div>
 
-      <p data-lang-sv="När jag väl förstått mönstret kopplade jag en Raspberry Pi Pico till IDC-kontakten på displaykortet och började experimentera i CircuitPython för att se om jag kunde flippa några pixlar. Efter en del pillande fick jag igång displayen och kunde rita bitmappar och enkla mönster på den. Det blev dock ganska snabbt tydligt att CircuitPython inte riktigt räckte till — GPIO-lagret är helt enkelt inte snabbt nog för den uppdateringsfrekvens jag ville ha, särskilt när man börjar tänka på flytande animationer över alla 364 pixlar."
-         data-lang-en="Once I understood the pattern I hooked a Raspberry Pi Pico to the display board's IDC connector and started poking around in CircuitPython to see if I could flip some pixels. After some fiddling I got the display running and could draw bitmaps and simple patterns on it. It quickly became clear, though, that CircuitPython wasn't quite up to the job — the GPIO layer simply isn't fast enough for the update rate I wanted, especially once you start thinking about smooth animations across all 364 pixels.">
-        När jag väl förstått mönstret kopplade jag en Raspberry Pi Pico till IDC-kontakten på displaykortet och började experimentera i CircuitPython för att se om jag kunde flippa några pixlar. Efter en del pillande fick jag igång displayen och kunde rita bitmappar och enkla mönster på den. Det blev dock ganska snabbt tydligt att CircuitPython inte riktigt räckte till — GPIO-lagret är helt enkelt inte snabbt nog för den uppdateringsfrekvens jag ville ha, särskilt när man börjar tänka på flytande animationer över alla 364 pixlar.
-      </p>
+      <p>Once I understood the pattern I hooked a Raspberry Pi Pico to the display board's IDC connector and started poking around in CircuitPython to see if I could flip some pixels. After some fiddling I got the display running and could draw bitmaps and simple patterns on it. I also put together a simple Python program to emulate the panel on my computer, which made it much easier to see which fonts and layouts actually read well at 28×13 before pushing pixels to the hardware.</p>
+
+      <figure class="project-photo-single">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/image_renderer_pic_test.png" aria-label="Enlarge emulator screenshot">
+          <img src="../assets/img/projects/flip-dot/image_renderer_pic_test.png" alt="Python display emulator showing 13:20 on a 28×13 grid">
+        </button>
+      </figure>
+
+      <p>It quickly became clear, though, that CircuitPython wasn't quite up to the job. The GPIO layer simply isn't fast enough for the update rate I wanted, especially once you start thinking about smooth animations across all 364 pixels.</p>
     </div>
   </main>
 
   <div id="photoLightbox" class="photo-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-    <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="Stäng">&times;</button>
+    <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="Close">&times;</button>
     <img src="" alt="" id="photoLightboxImg">
   </div>
 
   <script>
-    function setLanguage(lang) {
-      localStorage.setItem('selectedLanguage', lang);
-      document.getElementById('langToggle').textContent = lang === 'sv' ? 'EN' : 'SE';
-      document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
-        const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
-        if (!text) return;
-        if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
-      });
-    }
-    function toggleLanguage() {
-      const next = (localStorage.getItem('selectedLanguage') || 'sv') === 'sv' ? 'en' : 'sv';
-      setLanguage(next);
-    }
     function openPhotoLightbox(src, alt) {
       const lightbox = document.getElementById('photoLightbox');
       const img = document.getElementById('photoLightboxImg');
@@ -259,8 +252,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      setLanguage(localStorage.getItem('selectedLanguage') || 'sv');
-
       document.querySelectorAll('.project-photo-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
           const img = btn.querySelector('img');

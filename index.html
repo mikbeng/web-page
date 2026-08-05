@@ -737,7 +737,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-globe me-1"></i>
-              <span id="currentLang">SV</span>
+              <span id="currentLang">EN</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
               <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">
@@ -1089,14 +1089,8 @@
               </div>
               <div class="project-card-body">
                 <h3 class="project-card-title">No More Boots — SkiDriller</h3>
-                <p class="project-card-teaser"
-                   data-lang-sv="Industriellt CNC-system för automatiserad montering av skidbindningar — backend, frontend och elektronik."
-                   data-lang-en="Industrial CNC system for automated ski binding mounting — backend, frontend, and electronics.">
-                  Industriellt CNC-system för automatiserad montering av skidbindningar — backend, frontend och elektronik.
-                </p>
-                <span class="project-card-link"
-                      data-lang-sv="Läs mer →"
-                      data-lang-en="Read more →">Läs mer →</span>
+                <p class="project-card-teaser">Industrial CNC system for automated ski binding mounting — backend, frontend, and electronics.</p>
+                <span class="project-card-link">Read more →</span>
               </div>
             </a>
           </div>
@@ -1106,37 +1100,21 @@
                 <img src="assets/img/projects/flip-dot/flip_frame_2.png" alt="Flip-dot">
               </div>
               <div class="project-card-body">
-                <h3 class="project-card-title"
-                    data-lang-sv="Flipdot Display"
-                    data-lang-en="Flipdot Display">Flipdot Display</h3>
-                <p class="project-card-teaser"
-                   data-lang-sv="Personligt projekt där en gammal flipdot-display retrofittats med en ESP32 för hypnotiska animationer och en väggmonterad klocka."
-                   data-lang-en="Personal showcase project with an old flipdot display retrofitted with an ESP32, driving mesmerizing animations and a functional wall-mounted clock.">
-                  Personligt projekt där en gammal flipdot-display retrofittats med en ESP32 för hypnotiska animationer och en väggmonterad klocka.
-                </p>
-                <span class="project-card-link"
-                      data-lang-sv="Läs mer →"
-                      data-lang-en="Read more →">Läs mer →</span>
+                <h3 class="project-card-title">Flipdot Display</h3>
+                <p class="project-card-teaser">Personal showcase project with an old flipdot display retrofitted with an ESP32, driving mesmerizing animations and a functional wall-mounted clock.</p>
+                <span class="project-card-link">Read more →</span>
               </div>
             </a>
           </div>
           <div class="col-sm-6 col-lg-5">
             <a href="projects/bouncy.html" class="project-card">
               <div class="project-card-image">
-                <img src="assets/img/projects/bouncy/EA-0002.png" alt="Trådlös BLE-sensornod EA-0002">
+                <img src="assets/img/projects/bouncy/EA-0002.png" alt="Wireless BLE sensor node EA-0002">
               </div>
               <div class="project-card-body">
-                <h3 class="project-card-title"
-                    data-lang-sv="Trådlös sensornod (BLE)"
-                    data-lang-en="Wireless sensor node (BLE)">Trådlös sensornod (BLE)</h3>
-                <p class="project-card-teaser"
-                   data-lang-sv="Batteridriven sensornod med ESP32-C3 — ca 33 µA i viloläge och uppskattat ~3 års batteritid på AAA."
-                   data-lang-en="Battery-powered sensor node with ESP32-C3 — approx. 33 µA idle and an estimated ~3 years of battery life on AAA.">
-                  Batteridriven sensornod med ESP32-C3 — ca 33 µA i viloläge och uppskattat ~3 års batteritid på AAA.
-                </p>
-                <span class="project-card-link"
-                      data-lang-sv="Läs mer →"
-                      data-lang-en="Read more →">Läs mer →</span>
+                <h3 class="project-card-title">Wireless sensor node (BLE)</h3>
+                <p class="project-card-teaser">Battery-powered sensor node with ESP32-C3 — approx. 33 µA idle and an estimated ~3 years of battery life on AAA.</p>
+                <span class="project-card-link">Read more →</span>
               </div>
             </a>
           </div>
@@ -1245,6 +1223,7 @@
 
     /* ── Language selector ── */
     function setLanguage(lang) {
+      document.documentElement.lang = lang;
       document.getElementById('currentLang').textContent = lang === 'sv' ? 'SE' : 'EN';
       localStorage.setItem('selectedLanguage', lang);
       updatePageLanguage(lang);
@@ -1252,6 +1231,7 @@
 
     function updatePageLanguage(lang) {
       document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
+        if (el.closest('.projects-grid')) return;
         const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
         if (!text) return;
         if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
@@ -1260,7 +1240,7 @@
 
     /* ── Init ── */
     document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('selectedLanguage') || 'sv';
+      const savedLang = localStorage.getItem('selectedLanguage') || 'en';
       setLanguage(savedLang);
 
       /* Mobile hamburger */

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="SkiDriller — CNC-system för skidbindningsmontering. Projekt hos No More Boots." />
-  <title>SkiDriller — Projekt | Mikael Bengtsson Elektrotekniska AB</title>
+  <meta name="description" content="SkiDriller — CNC system for ski binding mounting. Project by No More Boots." />
+  <title>SkiDriller — Project | Mikael Bengtsson Elektrotekniska AB</title>
   <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -96,55 +96,31 @@
     <div class="project-topnav-actions">
       <a href="../index.html#interests" class="project-back-link">
         <i class="fas fa-arrow-left"></i>
-        <span data-lang-sv="Tillbaka till projekt" data-lang-en="Back to projects">Tillbaka till projekt</span>
+        <span>Back to projects</span>
       </a>
-      <button type="button" class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
     </div>
   </header>
 
   <main class="project-page">
-    <div class="project-eyebrow" data-lang-sv="Projekt" data-lang-en="Project">Projekt</div>
+    <div class="project-eyebrow">Project</div>
     <h1>No More Boots<br>SkiDriller</h1>
 
     <div class="project-hero-img">
-      <img src="../assets/img/projects/NMB/Skidriller utan bakgrund.webp" alt="SkiDriller CNC-maskin">
+      <img src="../assets/img/projects/NMB/Skidriller utan bakgrund.webp" alt="SkiDriller CNC machine">
     </div>
 
-    <p class="project-lead"
-       data-lang-sv="SkiDriller är ett industriellt CNC-system för automatiserad montering av skidbindningar, med integrerad elektromekanik och rörelsestyrning."
-       data-lang-en="SkiDriller is an industrial CNC system for automated ski binding mounting, with integrated electromechanics and motion control.">
-      SkiDriller är ett industriellt CNC-system för automatiserad montering av skidbindningar, med integrerad elektromekanik och rörelsestyrning.
-    </p>
+    <p class="project-lead">SkiDriller is an industrial CNC system for automated ski binding mounting, with integrated electromechanics and motion control.</p>
 
-    <h2 class="project-section-title" data-lang-sv="Min roll" data-lang-en="My role">Min roll</h2>
-    <p data-lang-sv="Min roll i projektet omfattar utveckling av mjukvara inom backend och frontend samt elektroniksystem."
-       data-lang-en="My role in the project includes software development across backend and frontend, as well as electronics systems.">
-      Min roll i projektet omfattar utveckling av mjukvara inom backend och frontend samt elektroniksystem.
-    </p>
+    <h2 class="project-section-title">My role</h2>
+    <p>My role in the project includes software development across backend and frontend, as well as electronics systems.</p>
 
     <a href="https://nomoreboots.se/products/skidriller/" target="_blank" rel="noopener noreferrer" class="project-external-btn">
-      <span data-lang-sv="Besök produktsidan" data-lang-en="Visit product page">Besök produktsidan</span>
+      <span>Visit product page</span>
       <i class="fas fa-external-link-alt"></i>
     </a>
   </main>
 
   <script>
-    function setLanguage(lang) {
-      localStorage.setItem('selectedLanguage', lang);
-      document.getElementById('langToggle').textContent = lang === 'sv' ? 'EN' : 'SE';
-      document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
-        const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
-        if (!text) return;
-        if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
-      });
-    }
-    function toggleLanguage() {
-      const next = (localStorage.getItem('selectedLanguage') || 'sv') === 'sv' ? 'en' : 'sv';
-      setLanguage(next);
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      setLanguage(localStorage.getItem('selectedLanguage') || 'sv');
-    });
   </script>
 </body>
 </html>
