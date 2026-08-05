@@ -63,13 +63,21 @@
       justify-content: flex-start;
       align-items: center;
     }
-    .project-hero-img img {
+    .project-hero-img img,
+    .project-hero-img video {
       max-width: min(100%, 520px);
       max-height: 320px;
       object-fit: contain;
       display: block;
     }
     .project-body p { font-size: 1.0625rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .project-body a {
+      color: #bd5d38;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .project-body a:hover { color: #9a4a2e; }
     .project-section-title {
       font-size: 1.125rem !important; margin: 2rem 0 0.75rem !important;
       padding-bottom: 0.5rem; border-bottom: 2px solid #f3f4f6;
@@ -83,9 +91,36 @@
     .project-photo-grid.two-col {
       grid-template-columns: repeat(2, 1fr);
     }
+    .project-photo-pair-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: min(100%, 680px);
+      margin: 12px 0 1.5rem;
+    }
+    .project-photo-pair-stack figure { margin: 0; }
+    .project-photo-pair-stack .project-photo-thumb img {
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
+    .project-photo-gallery-lg {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 100%;
+      margin: 12px 0 1.5rem;
+    }
+    .project-photo-gallery-lg figure { margin: 0; }
+    .project-photo-gallery-lg .project-photo-thumb img {
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
     .project-photo-single {
       margin: 12px 0 1.5rem;
       max-width: min(100%, 560px);
+    }
+    .project-photo-single.project-photo-single-sm {
+      max-width: min(100%, 240px);
     }
     .project-photo-single .project-photo-thumb img {
       aspect-ratio: auto;
@@ -158,6 +193,24 @@
     }
     .photo-lightbox-close:hover { background: rgba(255,255,255,0.22); }
     body.lightbox-open { overflow: hidden; }
+    .project-video {
+      margin: 12px 0 1.5rem;
+      max-width: min(100%, 560px);
+    }
+    .project-video video {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+      background: #eef2f6;
+    }
+    .project-video.project-video-lg {
+      max-width: 100%;
+    }
+    .project-video.project-video-lg video {
+      max-height: min(72vh, 520px);
+    }
   </style>
 </head>
 <body class="project-detail-page">
@@ -180,7 +233,7 @@
     <h1>Flipdot Display</h1>
 
     <div class="project-hero-img">
-      <img src="../assets/img/projects/flip-dot/flip_frame_2.png" alt="Flip-dot display">
+      <img src="../assets/img/projects/flip-dot/flip_frame_2.png" alt="Flip-dot display (hero image placeholder)">
     </div>
 
     <div class="project-body">
@@ -201,7 +254,13 @@
       </div>
 
       <h2 class="project-section-title">Reverse engineering</h2>
-      <p>I sketched out the circuit (<a href="../assets/img/projects/flip-dot/schematic.pdf" target="_blank" rel="noopener">schematic</a>) and figured out which pins to wiggle to make the display do what I wanted. The panel is divided into four column sections and two row sections, where each section consists of a demux (74HC4514), a source driver (TD62789A) and a sink driver (ULN2003A). Together they decide which pixel gets a short current pulse, and the direction of that pulse decides whether the dot flips to yellow or black.</p>
+      <p>I sketched out the circuit and figured out which pins to wiggle to make the display do what I wanted. The panel seemed to be divided into four column sections and two row sections, where each section consists of a demux (74HC4514), a source driver (TD62789A) and a sink driver (ULN2003A). Together they decide which pixel gets a short current pulse, and the direction of that pulse decides whether the dot flips to yellow or black.</p>
+
+      <figure class="project-photo-single">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/schematic.png" aria-label="Enlarge hand-drawn schematic">
+          <img src="../assets/img/projects/flip-dot/schematic.png" alt="Hand-drawn schematic of the flipdot driver sections">
+        </button>
+      </figure>
 
       <div class="project-photo-grid two-col">
         <figure>
@@ -224,7 +283,134 @@
         </button>
       </figure>
 
-      <p>It quickly became clear, though, that CircuitPython wasn't quite up to the job. The GPIO layer simply isn't fast enough for the update rate I wanted, especially once you start thinking about smooth animations across all 364 pixels.</p>
+      <p>It quickly became clear, though, that CircuitPython wasn't quite suitable for this project. The GPIO layer simply isn't fast enough for the update rate I wanted, especially once you start thinking about smooth animations across all 364 pixels.</p>
+
+      <h2 class="project-section-title">Custom driver</h2>
+      <p>With CircuitPython's limitations in mind, and because I wanted a wireless connection to the display, I started designing a driver board around an ESP32. I picked the ESP32 Feather module since I had a few of those lying around at home. The driver board is fairly simple: an IDC connector matching the flipdot board, with a 1-to-1 IDC cable in between.</p>
+
+      <figure class="project-photo-single">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/controller_board_schematic.png" aria-label="Enlarge controller board schematic">
+          <img src="../assets/img/projects/flip-dot/controller_board_schematic.png" alt="Schematic of the custom ESP32 Feather driver board">
+        </button>
+      </figure>
+
+      <p>The original plan was to run the whole thing from a single-cell LiPo battery. The ESP32 Feather has built-in battery charging, and the display itself draws nothing between refreshes, so it seemed worth trying. The flipdot panel needs 24&nbsp;V DC, which means boosting the cell's 3.7&nbsp;V.</p>
+        
+      <p>Once the board was delivered and assembled, I tried to feed it from a single LiPo cell but I got issues with voltage drops on the low voltage side. Flipping a pixel pulls a short but hefty current pulse on the 24&nbsp;V side, and the boost had to source more current from the battery than the cell could deliver. I tried beefing up the 24&nbsp;V side with capacitors, but then inrush when enabling the boost became a problem. That's solvable with more engineering, but I decided to move on: drop the battery, remove the boost converter, and feed the driver and display from a 24&nbsp;V DC supply.</p>
+
+      <p>Here is the layout and the resulting board. Unfortunately, I forgot to take pictures of the final assembled board before it was mounted in the display frame.</p>
+
+      <div class="project-photo-grid two-col">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/controller_board_1.png" aria-label="Enlarge board render 1">
+            <img src="../assets/img/projects/flip-dot/controller_board_1.png" alt="3D render of the driver board with ESP32 Feather and IDC connector">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/controller_board_2.png" aria-label="Enlarge board render 2">
+            <img src="../assets/img/projects/flip-dot/controller_board_2.png" alt="Alternate view of the assembled driver board">
+          </button>
+        </figure>
+      </div>
+
+      <figure class="project-photo-single project-photo-single-sm">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/controller_board_layout.png" aria-label="Enlarge PCB layout">
+          <img src="../assets/img/projects/flip-dot/controller_board_layout.png" alt="PCB layout for the flip-dot driver board">
+        </button>
+      </figure>
+
+      <h2 class="project-section-title">Firmware</h2>
+      <p>The display is driven by firmware (C-code) on the ESP32 with the esp-idf framework. It has a small layer that talks to the flipdot hardware and separate applications on top. A physical switch on the unit cycles between three modes: a wall clock, a demo screensaver that runs simple animations, and a games mode for anything that needs player input.</p>
+      <p>Clock mode keeps the panel useful as everyday decor. Demo mode loops lightweight visuals without any controller attached. Games mode is where interactive apps live; input arrives over ESP-NOW from a wireless controller I designed as a <a href="nes-controller.html">side project</a> in a compact NES-style form factor.</p>
+      <p>Only Snake is implemented in the games slot so far, but the idea is to add more titles over time. Pong is next on the list as it would be nice to have a two player game. Switching modes clears the framebuffer and hands control to the next application, so each mode can run its own update loop without getting in the way of the others.</p>
+
+      <p>Here is a video of the display running the screensaver mode. Sound on for maximum pleasure!</p>
+      <figure class="project-video">
+        <video
+          src="../assets/img/projects/flip-dot/flip_dot_bench_screensaver.mp4"
+          controls
+          playsinline
+          preload="metadata"
+          aria-label="Flip-dot display demonstration (video with sound)">
+        </video>
+      </figure>
+
+      <h2 class="project-section-title">Enclosure</h2>
+      <p>I built the enclosure from 9&nbsp;mm birch plywood sheets, stacked and glued into a single frame. Layering the cuts let me carve cavities so the flip-dot board and driver PCB sit in defined pockets instead of floating on standoffs. At the time I had access to a laser cutter that could handle 9&nbsp;mm plywood, so this approach was the practical way to get accurate geometry without CNC milling the whole box.</p>
+      <p>I modelled everything in Fusion&nbsp;360, exported the layer profiles, and had the sheets cut to match. Four layers make up the stack: I glued them together, sanded the outside until the edges read as one solid part, and finished with clear coat for a light sheen.</p>
+
+      <div class="project-photo-pair-stack">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/frame/frame_1_noPCB.png" aria-label="Enlarge Fusion 360 frame model without PCB">
+            <img src="../assets/img/projects/flip-dot/frame/frame_1_noPCB.png" alt="Fusion 360 model of the stacked plywood enclosure frame">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/frame/frame_2.png" aria-label="Enlarge frame layer stack in Fusion 360">
+            <img src="../assets/img/projects/flip-dot/frame/frame_2.png" alt="Fusion 360 view of individual plywood layers in the frame stack">
+          </button>
+        </figure>
+      </div>
+
+      <p>The assembly view below has the top sheet removed so you can see how the flip-dot panel and driver board nest inside the cavities. The grey block is the display module; the green PCB is the ESP32 driver sitting in its own pocket under the panel.</p>
+
+      <figure class="project-photo-single">
+        <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/frame/frame_3_with_PCB.png" aria-label="Enlarge internal fit with PCB">
+          <img src="../assets/img/projects/flip-dot/frame/frame_3_with_PCB.png" alt="Exploded Fusion 360 view with flip-dot board and driver PCB in the frame cavities">
+        </button>
+      </figure>
+
+      <p>Once glued, sanded, and coated, the frame turned out nicely.</p>
+
+      <div class="project-photo-grid two-col">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_frame_1.png" aria-label="Enlarge finished enclosure front">
+            <img src="../assets/img/projects/flip-dot/flip_frame_1.png" alt="Finished birch enclosure displaying 13:20 on the flip-dot panel">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/frame/flip_frame_2.png" aria-label="Enlarge finished enclosure angle view">
+            <img src="../assets/img/projects/flip-dot/frame/flip_frame_2.png" alt="Finished enclosure on the workbench showing stacked plywood edges">
+          </button>
+        </figure>
+      </div>
+
+      <h2 class="project-section-title">Final result</h2>
+      <p>The display ended up mounted above a doorway at my office, where it runs as a wall clock most of the time. The birch frame fits the room better than a bare panel would, and the flip-dot noise is part of the charm when the time changes.</p>
+
+      <div class="project-photo-gallery-lg">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/final_pics/DSC00604.JPG" aria-label="Enlarge installed clock wide shot">
+            <img src="../assets/img/projects/flip-dot/final_pics/DSC00604.JPG" alt="Flip-dot wall clock mounted above a doorway in a rustic interior">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/final_pics/DSC00603.JPG" aria-label="Enlarge installed clock room view">
+            <img src="../assets/img/projects/flip-dot/final_pics/DSC00603.JPG" alt="Wide view of the room with the flip-dot clock above the door">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/final_pics/DSC00597.JPG" aria-label="Enlarge clock side angle">
+            <img src="../assets/img/projects/flip-dot/final_pics/DSC00597.JPG" alt="Side view of the mounted clock showing stacked plywood edges">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/final_pics/DSC00598.JPG" aria-label="Enlarge clock oblique view">
+            <img src="../assets/img/projects/flip-dot/final_pics/DSC00598.JPG" alt="Oblique view of the flip-dot clock on the wall">
+          </button>
+        </figure>
+      </div>
+
+      <p>When the clock rolls into a new hour, the firmware runs a short full-panel animation before settling back on the time. Here it is crossing an hour boundary — sound on if you want the full flip-dot experience.</p>
+      <figure class="project-video project-video-lg">
+        <video
+          src="../assets/img/projects/flip-dot/final_pics/flip_dot_wall_clock.mp4"
+          controls
+          playsinline
+          preload="metadata"
+          aria-label="Flip-dot wall clock hour-change animation">
+        </video>
+      </figure>
     </div>
   </main>
 
