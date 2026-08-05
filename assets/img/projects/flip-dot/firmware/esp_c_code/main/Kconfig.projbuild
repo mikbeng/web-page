@@ -1,0 +1,21 @@
+# put here your custom config value
+menu "Example Configuration"
+config ESP_WIFI_SSID
+    string "WiFi SSID"
+    default "myssid"
+    help
+	SSID (network name) for the example to connect to.
+
+config ESP_WIFI_PASSWORD
+    string "WiFi Password"
+    default "mypassword"
+    help
+	WiFi password (WPA or WPA2) for the example to use.
+
+config CLOCK_TIMEZONE
+    string "POSIX TZ string for clock display"
+    default "UTC0"
+    help
+	Timezone used when rendering the clock (POSIX TZ format).
+	Example for Sweden: CET-1CEST,M3.5.0,M10.5.0/3
+endmenu

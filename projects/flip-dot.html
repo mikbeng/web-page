@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Flip-dot — elektromekanisk display med ESP32-styrning. Projektdokumentation." />
+  <title>Flip-dot — Projekt | Mikael Bengtsson Elektrotekniska AB</title>
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
+  <style>
+    *, body, p, a, button { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important; }
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif !important; text-transform: none !important; font-weight: 700 !important; color: #1f2937 !important; }
+    body.project-detail-page {
+      background: #fafaf9; color: #4b5563; margin: 0;
+      padding-top: 70px !important;
+      padding-left: 0 !important;
+      text-align: left;
+    }
+    .project-topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1031;
+      background: #1e2739; min-height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.25rem;
+    }
+    .project-topnav-brand {
+      display: flex; align-items: center; gap: 12px;
+      color: #fff; text-decoration: none !important;
+    }
+    .project-topnav-brand img { width: 40px; height: 40px; object-fit: contain; }
+    .project-topnav-brand span { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+    .project-topnav-actions { display: flex; align-items: center; gap: 16px; }
+    .project-back-link {
+      color: rgba(255,255,255,0.8) !important;
+      font-size: 0.875rem; font-weight: 500;
+      text-decoration: none !important;
+    }
+    .project-back-link:hover { color: #fff !important; }
+    .project-back-link i { margin-right: 6px; }
+    .lang-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9); font-size: 0.75rem; font-weight: 600;
+      padding: 6px 12px; border-radius: 6px; cursor: pointer;
+    }
+    .lang-btn:hover { border-color: #bd5d38; color: #bd5d38; }
+    .project-page {
+      max-width: 820px;
+      margin: 0;
+      padding: 3rem 3rem 4rem;
+      text-align: left;
+    }
+    @media (max-width: 768px) { .project-page { padding: 2.5rem 1.5rem 3rem; } }
+    @media (max-width: 480px) { .project-page { padding: 2rem 1rem 3rem; } }
+    .project-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #bd5d38; margin-bottom: 10px;
+    }
+    .project-hero-img {
+      background: linear-gradient(160deg, #f8f4f2 0%, #eef2f6 100%);
+      border-radius: 12px; padding: 24px; margin: 28px 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .project-hero-img img {
+      max-width: min(100%, 520px);
+      max-height: 320px;
+      object-fit: contain;
+      display: block;
+    }
+    .project-body p { font-size: 1.0625rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .project-section-title {
+      font-size: 1.125rem !important; margin: 2rem 0 0.75rem !important;
+      padding-bottom: 0.5rem; border-bottom: 2px solid #f3f4f6;
+    }
+    .project-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 12px 0 1.5rem;
+    }
+    .project-photo-grid.two-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 640px) {
+      .project-photo-grid,
+      .project-photo-grid.two-col { grid-template-columns: 1fr; }
+    }
+    .project-photo-grid figure { margin: 0; }
+    .project-photo-thumb {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #eef2f6;
+      cursor: zoom-in;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .project-photo-thumb:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .project-photo-thumb img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(15, 20, 30, 0.92);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    .photo-lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .photo-lightbox img {
+      max-width: min(100%, 1100px);
+      max-height: calc(100vh - 4rem);
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .photo-lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 1.75rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .photo-lightbox-close:hover { background: rgba(255,255,255,0.22); }
+    body.lightbox-open { overflow: hidden; }
+  </style>
+</head>
+<body class="project-detail-page">
+
+  <header class="project-topnav">
+    <a href="../index.html" class="project-topnav-brand">
+      <img src="../assets/img/mb_logo.png" alt="MB Logo">
+      <span>Mikael Bengtsson</span>
+    </a>
+    <div class="project-topnav-actions">
+      <a href="../index.html#interests" class="project-back-link">
+        <i class="fas fa-arrow-left"></i>
+        <span data-lang-sv="Tillbaka till projekt" data-lang-en="Back to projects">Tillbaka till projekt</span>
+      </a>
+      <button type="button" class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
+    </div>
+  </header>
+
+  <main class="project-page">
+    <div class="project-eyebrow" data-lang-sv="Projekt" data-lang-en="Project">Projekt</div>
+    <h1 data-lang-sv="Flipdot Display" data-lang-en="Flipdot Display">Flipdot Display</h1>
+
+    <div class="project-hero-img">
+      <img src="../assets/img/projects/flip-dot/flip_frame_2.png" alt="Flip-dot display">
+    </div>
+
+    <div class="project-body">
+      <h2 class="project-section-title" data-lang-sv="Introduktion" data-lang-en="Introduction">Introduktion</h2>
+      <p data-lang-sv="Jag fick den här displayen av en före detta kollega som hittat den i en container. Det var i princip bara ett stort kretskort med 13×28 flipdot-pixlar och några logik-IC:er — inget hölje, ingen dokumentation, ingen aning om den ens fungerade. Jag tyckte det vore kul att se om jag kunde få liv i den och kanske köra den från en mikrokontroller, antingen för animationer eller som en snygg väggklocka. Med noll koll på statusen satte jag igång med att reverse-engineera kortet."
+         data-lang-en="I got this display from a former colleague who had found it in a dumpster. It was basically just a large PCB with 13×28 flipdot pixels and some logic ICs — no enclosure, no documentation, no idea if it even worked. I thought it would be fun to see if I could bring it back to life and drive it from a microcontroller, either for animations or as a nice-looking wall clock. With zero knowledge of its state, I got to work reverse-engineering the board.">
+        Jag fick den här displayen av en före detta kollega som hittat den i en container. Det var i princip bara ett stort kretskort med 13×28 flipdot-pixlar och några logik-IC:er — inget hölje, ingen dokumentation, ingen aning om den ens fungerade. Jag tyckte det vore kul att se om jag kunde få liv i den och kanske köra den från en mikrokontroller, antingen för animationer eller som en snygg väggklocka. Med noll koll på statusen satte jag igång med att reverse-engineera kortet.
+      </p>
+
+      <div class="project-photo-grid two-col">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_1.png" aria-label="Förstora bild 1">
+            <img src="../assets/img/projects/flip-dot/flip_bench_1.png" alt="Flipdot-display på arbetsbänken">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_2.png" aria-label="Förstora bild 2">
+            <img src="../assets/img/projects/flip-dot/flip_bench_2.png" alt="Närbild på flipdot-panelen">
+          </button>
+        </figure>
+      </div>
+
+      <h2 class="project-section-title" data-lang-sv="Reverse engineering" data-lang-en="Reverse engineering">Reverse engineering</h2>
+      <p data-lang-sv="Jag skissade upp kretsen (se <a href='../assets/img/projects/flip-dot/schematic.pdf' target='_blank' rel='noopener'>schematic.pdf</a>) och listade ut vilka pinnar som behövde vickas för att få displayen att göra det jag ville. Panelen är uppdelad i fyra kolumnsektioner och två radsektioner, där varje sektion består av en demux (74HC4514), en source-driver (TD62789A) och en sink-driver (ULN2003A). Tillsammans styr de vilken pixel som får en kort strömpuls, och pulsens riktning avgör om pixeln flippas till gul eller svart."
+         data-lang-en="I sketched out the circuit (see <a href='../assets/img/projects/flip-dot/schematic.pdf' target='_blank' rel='noopener'>schematic.pdf</a>) and figured out which pins to wiggle to make the display do what I wanted. The panel is divided into four column sections and two row sections, where each section consists of a demux (74HC4514), a source driver (TD62789A) and a sink driver (ULN2003A). Together they decide which pixel gets a short current pulse, and the direction of that pulse decides whether the dot flips to yellow or black.">
+        Jag skissade upp kretsen (se <a href="../assets/img/projects/flip-dot/schematic.pdf" target="_blank" rel="noopener">schematic.pdf</a>) och listade ut vilka pinnar som behövde vickas för att få displayen att göra det jag ville. Panelen är uppdelad i fyra kolumnsektioner och två radsektioner, där varje sektion består av en demux (74HC4514), en source-driver (TD62789A) och en sink-driver (ULN2003A). Tillsammans styr de vilken pixel som får en kort strömpuls, och pulsens riktning avgör om pixeln flippas till gul eller svart.
+      </p>
+
+      <div class="project-photo-grid two-col">
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_3.png" aria-label="Förstora bild 3">
+            <img src="../assets/img/projects/flip-dot/flip_bench_3.png" alt="Baksidan av kortet med drivkretsar">
+          </button>
+        </figure>
+        <figure>
+          <button type="button" class="project-photo-thumb" data-full-src="../assets/img/projects/flip-dot/flip_bench_4.png" aria-label="Förstora bild 4">
+            <img src="../assets/img/projects/flip-dot/flip_bench_4.png" alt="Närbild på demux och drivsteg">
+          </button>
+        </figure>
+      </div>
+
+      <p data-lang-sv="När jag väl förstått mönstret kopplade jag en Raspberry Pi Pico till IDC-kontakten på displaykortet och började experimentera i CircuitPython för att se om jag kunde flippa några pixlar. Efter en del pillande fick jag igång displayen och kunde rita bitmappar och enkla mönster på den. Det blev dock ganska snabbt tydligt att CircuitPython inte riktigt räckte till — GPIO-lagret är helt enkelt inte snabbt nog för den uppdateringsfrekvens jag ville ha, särskilt när man börjar tänka på flytande animationer över alla 364 pixlar."
+         data-lang-en="Once I understood the pattern I hooked a Raspberry Pi Pico to the display board's IDC connector and started poking around in CircuitPython to see if I could flip some pixels. After some fiddling I got the display running and could draw bitmaps and simple patterns on it. It quickly became clear, though, that CircuitPython wasn't quite up to the job — the GPIO layer simply isn't fast enough for the update rate I wanted, especially once you start thinking about smooth animations across all 364 pixels.">
+        När jag väl förstått mönstret kopplade jag en Raspberry Pi Pico till IDC-kontakten på displaykortet och började experimentera i CircuitPython för att se om jag kunde flippa några pixlar. Efter en del pillande fick jag igång displayen och kunde rita bitmappar och enkla mönster på den. Det blev dock ganska snabbt tydligt att CircuitPython inte riktigt räckte till — GPIO-lagret är helt enkelt inte snabbt nog för den uppdateringsfrekvens jag ville ha, särskilt när man börjar tänka på flytande animationer över alla 364 pixlar.
+      </p>
+    </div>
+  </main>
+
+  <div id="photoLightbox" class="photo-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="Stäng">&times;</button>
+    <img src="" alt="" id="photoLightboxImg">
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      localStorage.setItem('selectedLanguage', lang);
+      document.getElementById('langToggle').textContent = lang === 'sv' ? 'EN' : 'SE';
+      document.querySelectorAll('[data-lang-en], [data-lang-sv]').forEach(el => {
+        const text = lang === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sv');
+        if (!text) return;
+        if (text.includes('<')) { el.innerHTML = text; } else { el.textContent = text; }
+      });
+    }
+    function toggleLanguage() {
+      const next = (localStorage.getItem('selectedLanguage') || 'sv') === 'sv' ? 'en' : 'sv';
+      setLanguage(next);
+    }
+    function openPhotoLightbox(src, alt) {
+      const lightbox = document.getElementById('photoLightbox');
+      const img = document.getElementById('photoLightboxImg');
+      img.src = src;
+      img.alt = alt;
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+    }
+    function closePhotoLightbox() {
+      const lightbox = document.getElementById('photoLightbox');
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      document.getElementById('photoLightboxImg').src = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(localStorage.getItem('selectedLanguage') || 'sv');
+
+      document.querySelectorAll('.project-photo-thumb').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const img = btn.querySelector('img');
+          openPhotoLightbox(btn.dataset.fullSrc, img.alt);
+        });
+      });
+      document.getElementById('photoLightboxClose').addEventListener('click', closePhotoLightbox);
+      document.getElementById('photoLightbox').addEventListener('click', e => {
+        if (e.target.id === 'photoLightbox') closePhotoLightbox();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closePhotoLightbox();
+      });
+    });
+  </script>
+</body>
+</html>
